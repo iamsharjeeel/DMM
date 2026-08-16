@@ -253,7 +253,7 @@ export function PrayerRequestForm() {
           </Checkbox>
         </div>
       ) : null}
-      <p className="text-sm text-ink-soft">{prayer.frontendNotice}</p>
+      <p className="text-xs leading-relaxed text-ink-soft">{prayer.frontendNotice}</p>
       <div>
         <Button type="submit" variant="primary" size="lg">
           {prayer.form.submitLabel}

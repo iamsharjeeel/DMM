@@ -312,7 +312,7 @@ export function SpeakingBookingForm() {
           className={controlClassName}
         />
       </FormField>
-      <p className="text-sm text-ink-soft">
+      <p className="text-xs leading-relaxed text-ink-soft">
         This form currently confirms on this page only. Requests are not stored
         or sent until submission handling is implemented.
       </p>

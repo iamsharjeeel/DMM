@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { headerCta, primaryNav } from "@/content/navigation";
@@ -65,6 +66,70 @@ export function MobileNavigation() {
     };
   }, [open]);
 
+  const overlay = open ? (
+    <div
+      ref={panelRef}
+      id={panelId}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Menu"
+      className="fixed inset-0 z-[80] flex flex-col bg-ivory"
+    >
+      <div className="h-[2px] bg-forest" aria-hidden="true" />
+      <div className="flex items-center justify-between px-5 py-4">
+        <Wordmark compact />
+        <button
+          ref={closeRef}
+          type="button"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center"
+          onClick={() => setMenuPath(null)}
+        >
+          <CloseIcon />
+          <span className="sr-only">Close menu</span>
+        </button>
+      </div>
+      <nav className="flex flex-1 flex-col px-6 pb-16 pt-8 sm:px-10">
+        <p className="eyebrow text-forest">Menu</p>
+        <GoldRule className="mt-5" />
+        <ul className="mt-10 space-y-5">
+          {primaryNav.map((item) => {
+            const current =
+              item.href === "/"
+                ? pathname === "/"
+                : pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  aria-current={current ? "page" : undefined}
+                  className={cn(
+                    "font-display text-[2.6rem] leading-none text-ink sm:text-5xl",
+                    current && "italic",
+                  )}
+                  onClick={() => setMenuPath(null)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <Link
+          href={headerCta.href}
+          className={buttonClassName({
+            variant: "primary",
+            size: "lg",
+            className: "mt-12 w-full max-w-sm",
+          })}
+          onClick={() => setMenuPath(null)}
+        >
+          {headerCta.label}
+        </Link>
+      </nav>
+    </div>
+  ) : null;
+
   return (
     <div className="lg:hidden">
       <button
@@ -78,69 +143,7 @@ export function MobileNavigation() {
         <MenuIcon />
         <span className="sr-only">Open menu</span>
       </button>
-      {open ? (
-        <div
-          ref={panelRef}
-          id={panelId}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-          className="fixed inset-0 z-50 flex flex-col bg-ivory"
-        >
-          <div className="h-[2px] bg-forest" aria-hidden="true" />
-          <div className="flex items-center justify-between px-5 py-4">
-            <Wordmark compact />
-            <button
-              ref={closeRef}
-              type="button"
-              className="inline-flex min-h-11 min-w-11 items-center justify-center"
-              onClick={() => setMenuPath(null)}
-            >
-              <CloseIcon />
-              <span className="sr-only">Close menu</span>
-            </button>
-          </div>
-          <nav className="flex flex-1 flex-col px-6 pb-16 pt-8 sm:px-10">
-            <p className="eyebrow text-forest">Menu</p>
-            <GoldRule className="mt-5" />
-            <ul className="mt-10 space-y-5">
-              {primaryNav.map((item) => {
-                const current =
-                  item.href === "/"
-                    ? pathname === "/"
-                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
-
-                return (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={current ? "page" : undefined}
-                      className={cn(
-                        "font-display text-[2.6rem] leading-none text-ink sm:text-5xl",
-                        current && "italic",
-                      )}
-                      onClick={() => setMenuPath(null)}
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-            <Link
-              href={headerCta.href}
-              className={buttonClassName({
-                variant: "primary",
-                size: "lg",
-                className: "mt-12 w-full max-w-sm",
-              })}
-              onClick={() => setMenuPath(null)}
-            >
-              {headerCta.label}
-            </Link>
-          </nav>
-        </div>
-      ) : null}
+      {overlay ? createPortal(overlay, document.body) : null}
     </div>
   );
 }
