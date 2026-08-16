@@ -1,13 +1,30 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { eventTypes, speaking, speakingTopicOptions } from "@/content/speaking";
 import { Button } from "@/components/ui/Button";
+import { HoneypotField } from "@/components/forms/HoneypotField";
 import { controlClassName, FormField } from "@/components/forms/FormField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
-import { isValidEmail, requiredText } from "@/lib/validation";
-import type { FieldErrors, SpeakingBookingValues } from "@/types/forms";
+import {
+  clip,
+  fieldLimits,
+  isAllowed,
+  isAutomatedSubmission,
+  isReasonableEventDate,
+  isValidEmail,
+  isValidPhone,
+  parseAttendance,
+  requiredText,
+  tooLong,
+} from "@/lib/validation";
+import type { EventFormat, FieldErrors, SpeakingBookingValues } from "@/types/forms";
+
+const formatOptions = [
+  { value: "in-person", label: "In-person" },
+  { value: "virtual", label: "Virtual" },
+] as const;
 
 const empty: SpeakingBookingValues = {
   name: "",
@@ -46,28 +63,65 @@ function validate(values: SpeakingBookingValues): FieldErrors<SpeakingBookingVal
   const name = requiredText(values.name, "Name");
   const organization = requiredText(values.organization, "Organization");
   const eventName = requiredText(values.eventName, "Event name");
-  const eventDate = requiredText(values.eventDate, "Event date");
   const eventLocation = requiredText(values.eventLocation, "Event location");
-  const eventType = requiredText(values.eventType, "Type of event");
-  const topic = requiredText(values.topic, "Requested speaking topic");
   const details = requiredText(values.details, "Tell us about your event");
 
   if (name) errors.name = name;
+  else {
+    const long = tooLong(values.name, fieldLimits.name, "Name");
+    if (long) errors.name = long;
+  }
   if (organization) errors.organization = organization;
+  else {
+    const long = tooLong(values.organization, fieldLimits.organization, "Organization");
+    if (long) errors.organization = long;
+  }
   if (!values.email.trim()) {
     errors.email = "Email is required.";
   } else if (!isValidEmail(values.email)) {
     errors.email = "Enter a valid email address.";
   }
+  if (values.phone && !isValidPhone(values.phone)) {
+    errors.phone = "Enter a valid phone number.";
+  }
   if (eventName) errors.eventName = eventName;
-  if (eventDate) errors.eventDate = eventDate;
+  else {
+    const long = tooLong(values.eventName, fieldLimits.eventName, "Event name");
+    if (long) errors.eventName = long;
+  }
+  if (!values.eventDate) {
+    errors.eventDate = "Event date is required.";
+  } else if (!isReasonableEventDate(values.eventDate)) {
+    errors.eventDate = "Enter a valid event date.";
+  }
   if (eventLocation) errors.eventLocation = eventLocation;
-  if (eventType) errors.eventType = eventType;
-  if (!values.format) errors.format = "Select in-person or virtual.";
-  if (topic) errors.topic = topic;
+  else {
+    const long = tooLong(values.eventLocation, fieldLimits.eventLocation, "Event location");
+    if (long) errors.eventLocation = long;
+  }
+  if (!isAllowed(values.eventType, eventTypes)) {
+    errors.eventType = "Select a valid type of event.";
+  }
+  if (!isAllowed(values.format, ["in-person", "virtual"])) {
+    errors.format = "Select in-person or virtual.";
+  }
+  if (!isAllowed(values.topic, speakingTopicOptions)) {
+    errors.topic = "Select a valid speaking topic.";
+  }
   if (details) errors.details = details;
-  if (values.attendance && Number(values.attendance) < 1) {
-    errors.attendance = "Enter a valid estimated attendance.";
+  else {
+    const long = tooLong(values.details, fieldLimits.details, "Tell us about your event");
+    if (long) errors.details = long;
+  }
+  if (values.referral) {
+    const long = tooLong(values.referral, fieldLimits.referral, "This field");
+    if (long) errors.referral = long;
+  }
+  if (values.attendance) {
+    const attendance = parseAttendance(values.attendance);
+    if (attendance === undefined || Number.isNaN(attendance) || attendance < 1 || attendance > fieldLimits.attendanceMax) {
+      errors.attendance = "Enter a valid estimated attendance.";
+    }
   }
 
   return errors;
@@ -76,9 +130,15 @@ function validate(values: SpeakingBookingValues): FieldErrors<SpeakingBookingVal
 export function SpeakingBookingForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<FieldErrors<SpeakingBookingValues>>({});
+  const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const startedAt = useRef<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   function update<K extends keyof SpeakingBookingValues>(
     key: K,
@@ -87,8 +147,22 @@ export function SpeakingBookingForm() {
     setValues((current) => ({ ...current, [key]: value }));
   }
 
+  function resetForm() {
+    setValues(empty);
+    setErrors({});
+    setHoneypot("");
+    setSubmitted(false);
+    startedAt.current = Date.now();
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isAutomatedSubmission(honeypot, startedAt.current)) {
+      setValues(empty);
+      setHoneypot("");
+      setSubmitted(true);
+      return;
+    }
     const nextErrors = validate(values);
     setErrors(nextErrors);
     const first = fieldOrder.find((key) => nextErrors[key]);
@@ -112,11 +186,7 @@ export function SpeakingBookingForm() {
           heading="Your booking request is ready on this page"
           body="Thank you for your interest in inviting Pastor Donald Mayes. This confirmation is the frontend experience only."
           notice="Booking requests are not stored or sent yet. When submission handling is connected, our team will follow up from this form."
-          onReset={() => {
-            setValues(empty);
-            setErrors({});
-            setSubmitted(false);
-          }}
+          onReset={resetForm}
           resetLabel="Submit another request"
         />
       </div>
@@ -128,15 +198,18 @@ export function SpeakingBookingForm() {
       ref={formRef}
       noValidate
       onSubmit={handleSubmit}
-      className="grid gap-6"
+      className="relative grid gap-6"
+      autoComplete="on"
     >
+      <HoneypotField value={honeypot} onChange={setHoneypot} />
       <div className="grid gap-6 md:grid-cols-2">
         <FormField id="name" label="Name" required error={errors.name}>
           <input
             name="name"
             autoComplete="name"
+            maxLength={fieldLimits.name}
             value={values.name}
-            onChange={(event) => update("name", event.target.value)}
+            onChange={(event) => update("name", clip(event.target.value, fieldLimits.name))}
             className={controlClassName}
           />
         </FormField>
@@ -149,8 +222,11 @@ export function SpeakingBookingForm() {
           <input
             name="organization"
             autoComplete="organization"
+            maxLength={fieldLimits.organization}
             value={values.organization}
-            onChange={(event) => update("organization", event.target.value)}
+            onChange={(event) =>
+              update("organization", clip(event.target.value, fieldLimits.organization))
+            }
             className={controlClassName}
           />
         </FormField>
@@ -159,8 +235,9 @@ export function SpeakingBookingForm() {
             name="email"
             type="email"
             autoComplete="email"
+            maxLength={fieldLimits.email}
             value={values.email}
-            onChange={(event) => update("email", event.target.value)}
+            onChange={(event) => update("email", clip(event.target.value, fieldLimits.email))}
             className={controlClassName}
           />
         </FormField>
@@ -169,8 +246,9 @@ export function SpeakingBookingForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
+            maxLength={fieldLimits.phone}
             value={values.phone}
-            onChange={(event) => update("phone", event.target.value)}
+            onChange={(event) => update("phone", clip(event.target.value, fieldLimits.phone))}
             className={controlClassName}
           />
         </FormField>
@@ -182,8 +260,11 @@ export function SpeakingBookingForm() {
         >
           <input
             name="eventName"
+            maxLength={fieldLimits.eventName}
             value={values.eventName}
-            onChange={(event) => update("eventName", event.target.value)}
+            onChange={(event) =>
+              update("eventName", clip(event.target.value, fieldLimits.eventName))
+            }
             className={controlClassName}
           />
         </FormField>
@@ -210,8 +291,11 @@ export function SpeakingBookingForm() {
       >
         <input
           name="eventLocation"
+          maxLength={fieldLimits.eventLocation}
           value={values.eventLocation}
-          onChange={(event) => update("eventLocation", event.target.value)}
+          onChange={(event) =>
+            update("eventLocation", clip(event.target.value, fieldLimits.eventLocation))
+          }
           className={controlClassName}
         />
       </FormField>
@@ -225,7 +309,12 @@ export function SpeakingBookingForm() {
           <select
             name="eventType"
             value={values.eventType}
-            onChange={(event) => update("eventType", event.target.value)}
+            onChange={(event) => {
+              const next = event.target.value;
+              if (!next || isAllowed(next, eventTypes)) {
+                update("eventType", next);
+              }
+            }}
             className={controlClassName}
           >
             <option value="">Select a type</option>
@@ -245,6 +334,7 @@ export function SpeakingBookingForm() {
             name="attendance"
             type="number"
             min={1}
+            max={fieldLimits.attendanceMax}
             inputMode="numeric"
             value={values.attendance}
             onChange={(event) => update("attendance", event.target.value)}
@@ -258,13 +348,12 @@ export function SpeakingBookingForm() {
         value={values.format}
         required
         error={errors.format}
-        options={[
-          { value: "in-person", label: "In-person" },
-          { value: "virtual", label: "Virtual" },
-        ]}
-        onChange={(value) =>
-          update("format", value as SpeakingBookingValues["format"])
-        }
+        options={formatOptions}
+        onChange={(value) => {
+          if (isAllowed(value, ["in-person", "virtual"])) {
+            update("format", value as EventFormat);
+          }
+        }}
       />
       <FormField
         id="topic"
@@ -275,7 +364,12 @@ export function SpeakingBookingForm() {
         <select
           name="topic"
           value={values.topic}
-          onChange={(event) => update("topic", event.target.value)}
+          onChange={(event) => {
+            const next = event.target.value;
+            if (!next || isAllowed(next, speakingTopicOptions)) {
+              update("topic", next);
+            }
+          }}
           className={controlClassName}
         >
           <option value="">Select a topic</option>
@@ -295,8 +389,11 @@ export function SpeakingBookingForm() {
         <textarea
           name="details"
           rows={6}
+          maxLength={fieldLimits.details}
           value={values.details}
-          onChange={(event) => update("details", event.target.value)}
+          onChange={(event) =>
+            update("details", clip(event.target.value, fieldLimits.details))
+          }
           className={`${controlClassName} min-h-40 py-3`}
         />
       </FormField>
@@ -307,8 +404,11 @@ export function SpeakingBookingForm() {
       >
         <input
           name="referral"
+          maxLength={fieldLimits.referral}
           value={values.referral}
-          onChange={(event) => update("referral", event.target.value)}
+          onChange={(event) =>
+            update("referral", clip(event.target.value, fieldLimits.referral))
+          }
           className={controlClassName}
         />
       </FormField>

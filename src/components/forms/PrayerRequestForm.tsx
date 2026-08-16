@@ -4,10 +4,20 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { followUpOptions, prayer } from "@/content/prayer";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/forms/Checkbox";
+import { HoneypotField } from "@/components/forms/HoneypotField";
 import { controlClassName, FormField } from "@/components/forms/FormField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
-import { isValidEmail, requiredText } from "@/lib/validation";
+import {
+  clip,
+  fieldLimits,
+  isAllowed,
+  isAutomatedSubmission,
+  isValidEmail,
+  isValidPhone,
+  requiredText,
+  tooLong,
+} from "@/lib/validation";
 import type {
   ContactMethod,
   FieldErrors,
@@ -26,21 +36,37 @@ const empty: PrayerRequestValues = {
   consent: false,
 };
 
+const followUpValues = ["yes", "no"] as const;
+const contactMethodValues = ["email", "phone", "text"] as const;
+
 function validate(values: PrayerRequestValues): FieldErrors<PrayerRequestValues> {
   const errors: FieldErrors<PrayerRequestValues> = {};
   const request = requiredText(values.request, "Your prayer request");
   if (request) errors.request = request;
+  else {
+    const long = tooLong(values.request, fieldLimits.request, "Your prayer request");
+    if (long) errors.request = long;
+  }
+
+  if (values.name) {
+    const long = tooLong(values.name, fieldLimits.name, "Your name");
+    if (long) errors.name = long;
+  }
 
   if (values.email && !isValidEmail(values.email)) {
     errors.email = "Enter a valid email address.";
   }
 
-  if (!values.followUp) {
+  if (values.phone && !isValidPhone(values.phone)) {
+    errors.phone = "Enter a valid phone number.";
+  }
+
+  if (!isAllowed(values.followUp, followUpValues)) {
     errors.followUp = "Please choose whether you would like follow-up.";
   }
 
   if (values.followUp === "yes") {
-    if (!values.contactMethod) {
+    if (!isAllowed(values.contactMethod, contactMethodValues)) {
       errors.contactMethod = "Choose how you would prefer we contact you.";
     }
     if (!values.consent) {
@@ -56,6 +82,8 @@ function validate(values: PrayerRequestValues): FieldErrors<PrayerRequestValues>
     if (values.contactMethod === "phone" || values.contactMethod === "text") {
       if (!values.phone.trim()) {
         errors.phone = "Phone number is required for phone or text follow-up.";
+      } else if (!isValidPhone(values.phone)) {
+        errors.phone = "Enter a valid phone number.";
       }
     }
   }
@@ -77,10 +105,16 @@ const focusOrder: Array<keyof PrayerRequestValues> = [
 export function PrayerRequestForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<FieldErrors<PrayerRequestValues>>({});
+  const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const startedAt = useRef<number | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
   const wantsFollowUp = values.followUp === "yes";
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
 
   useEffect(() => {
     if (submitted) {
@@ -95,7 +129,18 @@ export function PrayerRequestForm() {
     setValues((current) => ({ ...current, [key]: value }));
   }
 
+  function resetForm() {
+    setValues(empty);
+    setErrors({});
+    setHoneypot("");
+    setSubmitted(false);
+    startedAt.current = Date.now();
+  }
+
   function handleFollowUp(value: string) {
+    if (!isAllowed(value, followUpValues)) {
+      return;
+    }
     const followUp = value as FollowUpChoice;
     setValues((current) => ({
       ...current,
@@ -107,6 +152,12 @@ export function PrayerRequestForm() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isAutomatedSubmission(honeypot, startedAt.current)) {
+      setValues(empty);
+      setHoneypot("");
+      setSubmitted(true);
+      return;
+    }
     const nextErrors = validate(values);
     setErrors(nextErrors);
     const first = focusOrder.find((key) => nextErrors[key]);
@@ -128,11 +179,7 @@ export function PrayerRequestForm() {
           body={prayer.confirmation.body}
           motto={prayer.confirmation.motto}
           notice={prayer.frontendNotice}
-          onReset={() => {
-            setValues(empty);
-            setErrors({});
-            setSubmitted(false);
-          }}
+          onReset={resetForm}
           resetLabel="Share another request"
         />
       </div>
@@ -144,14 +191,16 @@ export function PrayerRequestForm() {
       ref={formRef}
       noValidate
       onSubmit={handleSubmit}
-      className="grid gap-7"
+      className="relative grid gap-7"
     >
+      <HoneypotField value={honeypot} onChange={setHoneypot} />
       <FormField id="name" label={prayer.form.name.label} error={errors.name}>
         <input
           name="name"
           autoComplete="name"
+          maxLength={fieldLimits.name}
           value={values.name}
-          onChange={(event) => update("name", event.target.value)}
+          onChange={(event) => update("name", clip(event.target.value, fieldLimits.name))}
           className={controlClassName}
         />
       </FormField>
@@ -166,8 +215,9 @@ export function PrayerRequestForm() {
           name="email"
           type="email"
           autoComplete="email"
+          maxLength={fieldLimits.email}
           value={values.email}
-          onChange={(event) => update("email", event.target.value)}
+          onChange={(event) => update("email", clip(event.target.value, fieldLimits.email))}
           className={controlClassName}
         />
       </FormField>
@@ -185,8 +235,9 @@ export function PrayerRequestForm() {
           name="phone"
           type="tel"
           autoComplete="tel"
+          maxLength={fieldLimits.phone}
           value={values.phone}
-          onChange={(event) => update("phone", event.target.value)}
+          onChange={(event) => update("phone", clip(event.target.value, fieldLimits.phone))}
           className={controlClassName}
         />
       </FormField>
@@ -199,8 +250,11 @@ export function PrayerRequestForm() {
         <textarea
           name="request"
           rows={8}
+          maxLength={fieldLimits.request}
           value={values.request}
-          onChange={(event) => update("request", event.target.value)}
+          onChange={(event) =>
+            update("request", clip(event.target.value, fieldLimits.request))
+          }
           className={`${controlClassName} min-h-48 py-3`}
         />
       </FormField>
@@ -240,7 +294,11 @@ export function PrayerRequestForm() {
             required
             error={errors.contactMethod}
             options={prayer.form.contactMethod.options}
-            onChange={(value) => update("contactMethod", value as ContactMethod)}
+            onChange={(value) => {
+              if (isAllowed(value, contactMethodValues)) {
+                update("contactMethod", value as ContactMethod);
+              }
+            }}
           />
           <Checkbox
             id="consent"

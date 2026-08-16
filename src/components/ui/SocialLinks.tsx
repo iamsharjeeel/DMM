@@ -1,4 +1,5 @@
 import { site, type SocialNetwork } from "@/config/site";
+import { isSafeHttpsUrl } from "@/lib/urls";
 
 const labels: Record<SocialNetwork, string> = {
   facebook: "Facebook",
@@ -10,7 +11,10 @@ export function SocialLinks({ invert = false }: { invert?: boolean }) {
   const links = (Object.keys(site.social) as SocialNetwork[])
     .map((network) => {
       const href = site.social[network];
-      return href ? { network, href, label: labels[network] } : null;
+      if (!href || !isSafeHttpsUrl(href)) {
+        return null;
+      }
+      return { network, href, label: labels[network] };
     })
     .filter((item): item is { network: SocialNetwork; href: string; label: string } =>
       Boolean(item),
@@ -26,6 +30,8 @@ export function SocialLinks({ invert = false }: { invert?: boolean }) {
         <li key={link.network}>
           <a
             href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className={
               invert
                 ? "text-sm text-paper/80 underline-offset-4 hover:text-paper hover:underline"

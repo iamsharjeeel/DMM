@@ -27,7 +27,12 @@ Phase 1 production-ready informational site. Temporary branding. No backend.
 
 Valid submissions show an on-page confirmation. Nothing is stored, emailed, posted, or logged.
 
-Honest notices are shown on both forms so this is not mistaken for live delivery.
+- Honest notices are shown on both forms so this is not mistaken for live delivery
+- Honeypot and minimum submit timing discard likely automated fills on the client only
+
+## Security
+
+See `docs/SECURITY.md`. Classification: Frontend / Marketing. Headers/CSP are implemented in `next.config.ts`. No backend rate limiting yet because there is no submission endpoint.
 
 ## Known limitations
 
@@ -66,8 +71,9 @@ Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEX
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`; layout props do not depend on generated `LayoutProps`)
 - production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
-- production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
 - route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
+- dependency audit: `npm run audit` — 0 vulnerabilities (production deps)
+- security headers: CSP, nosniff, DENY framing, Referrer-Policy, Permissions-Policy, HSTS, COOP present on `/`; `X-Powered-By` not sent
 
 ## Recommended next action
 

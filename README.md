@@ -31,6 +31,7 @@ npm run lint
 npm run typecheck
 npm run build
 npm run start
+npm run audit
 ```
 
 ## Pages
@@ -79,3 +80,4 @@ See `docs/DEPLOYMENT.md`.
 - `docs/CONTENT.md`
 - `docs/DESIGN-SYSTEM.md`
 - `docs/DEPLOYMENT.md`
+- `docs/SECURITY.md`

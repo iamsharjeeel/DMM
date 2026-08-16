@@ -7,3 +7,4 @@
 - Implemented accessible frontend-only booking and prayer forms with confirmation states
 - Added metadata, sitemap, robots, JSON-LD, and generated Open Graph images
 - Added Cursor Cloud environment config (`.cursor/environment.json`)
+- Applied the agent security baseline: production headers/CSP, form allowlists and length limits, honeypot/timing, HTTPS URL normalization, and `docs/SECURITY.md`

@@ -18,6 +18,7 @@ cp .env.example .env.local
 npm run lint
 npm run typecheck
 npm run build
+npm run audit
 npm run start
 ```
 
@@ -49,7 +50,7 @@ Optional:
 NEXT_PUBLIC_SITE_URL=https://your-production-domain
 ```
 
-Use it for canonical URLs, sitemap, and Open Graph. Do not add CRM, API, or database variables for Phase 1.
+Use it for canonical URLs, sitemap, and Open Graph. Value must be an HTTPS origin. Do not add CRM, API, or database variables for Phase 1.
 
 ## 8. Domain
 
@@ -71,4 +72,5 @@ Merging to the production branch (usually `main`) deploys production.
 - Forms show confirmation without claiming email delivery
 - `/sitemap.xml` and `/robots.txt` resolve
 - Social share images load
-- No social icons appear until URLs are configured
+- No social icons appear until HTTPS URLs are configured
+- Response includes CSP, `X-Frame-Options`, `nosniff`, Referrer-Policy, and HSTS

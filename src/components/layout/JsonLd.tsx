@@ -1,4 +1,5 @@
 import { getJsonLd } from "@/lib/json-ld";
+import { serializeJsonLd } from "@/lib/json-ld-script";
 
 export function JsonLd() {
   const data = getJsonLd();
@@ -6,7 +7,7 @@ export function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(data) }}
     />
   );
 }

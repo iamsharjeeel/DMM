@@ -50,9 +50,13 @@ Site-wide values: `src/config/site.ts`.
 
 ## Forms
 
-Client-side validation only. Success is local React state. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
+Client-side validation only: required fields, types, max lengths, email/phone format, and allowlists for enums. Honeypot + minimum submit timing discard likely automated fills locally. Success is local React state. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
 
-Do not add persistence or network code here without an explicit later project.
+Do not add persistence or network code here without an explicit later project. A future endpoint must re-validate and rate-limit server-side.
+
+## Security
+
+Headers and CSP live in `src/config/security-headers.ts` and are applied in `next.config.ts`. See `docs/SECURITY.md`.
 
 ## Metadata
 
@@ -69,5 +73,5 @@ All temporary brand values are CSS custom properties in `src/app/globals.css`. T
 - No shadcn/SaaS card system — editorial layout
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
-- Social links render only when URLs are non-null
+- Social links render only for confirmed `https:` URLs
 - Forms disclose that delivery is not connected

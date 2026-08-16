@@ -35,6 +35,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Do not persist prayer text to localStorage, URLs, analytics, or the console
 - Do not display social links unless URLs exist in `src/config/site.ts`
 - Do not generate or fake photographs of Pastor Mayes
+- Read `docs/SECURITY.md` before changing forms, headers, CSP, or adding any backend
+- Do not fake security (fake CAPTCHA, browser-only rate limits presented as server enforcement, unverified CSRF tokens)
+- Do not add analytics, pixels, or third-party scripts without updating CSP and `docs/SECURITY.md`
+- Do not log form contents, secrets, or stack traces to the client
 
 ## Content rules
 
@@ -47,6 +51,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
+- `npm run audit`
 - Verify routes: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
 - Update `CHANGELOG.md`
 - Update `HANDOVER.md`
