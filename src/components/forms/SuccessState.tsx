@@ -20,16 +20,14 @@ export function SuccessState({
     <div
       role="status"
       tabIndex={-1}
-      className="border border-rule bg-paper px-6 py-10 sm:px-10"
+      className="rounded-none border border-hairline bg-canvas px-6 py-10 sm:px-10"
     >
-      <h3 className="font-display text-3xl sm:text-4xl">{heading}</h3>
-      <p className="mt-4 text-lg text-ink-soft">{body}</p>
-      {motto ? (
-        <p className="mt-6 font-display text-2xl italic">{motto}</p>
-      ) : (
-        <p className="mt-6 font-display text-2xl italic">{site.motto}</p>
-      )}
-      <p className="mt-8 text-sm text-ink-soft">{notice}</p>
+      <h3 className="type-display-md text-ink">{heading}</h3>
+      <p className="type-body mt-7">{body}</p>
+      <p className="type-serif-italic mt-7 text-gold">
+        {motto ?? site.motto}
+      </p>
+      <p className="mt-8 font-serif text-sm text-muted">{notice}</p>
       <Button variant="secondary" className="mt-8" onClick={onReset}>
         {resetLabel}
       </Button>

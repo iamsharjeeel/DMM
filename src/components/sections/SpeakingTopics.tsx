@@ -1,28 +1,30 @@
 import { speaking } from "@/content/speaking";
+import { ChapterHead } from "@/components/ui/ChapterHead";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function SpeakingTopics() {
   const { topics } = speaking;
 
   return (
-    <Section tone="paper">
+    <Section hairline>
       <Container>
-        <SectionHeading heading={topics.heading} />
-        <ol className="mt-12 divide-y divide-rule">
+        <ChapterHead
+          numeral="02"
+          eyebrow="The Record"
+          heading={topics.heading}
+        />
+        <ol className="mt-[56px]">
           {topics.items.map((topic, index) => (
             <li
               key={topic.id}
-              className="grid gap-4 py-10 md:grid-cols-[5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-10"
+              className="grid gap-4 border-t border-hairline py-10 md:grid-cols-[5rem_minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-10"
             >
-              <span className="text-sm tracking-[0.18em] text-bronze-dark">
+              <span className="font-display text-[30px] font-medium leading-none text-gold">
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <h3 className="font-display text-3xl leading-tight">
-                {topic.title}
-              </h3>
-              <p className="text-lg text-ink-soft">{topic.body}</p>
+              <h3 className="type-display-md text-ink">{topic.title}</h3>
+              <p className="type-body">{topic.body}</p>
             </li>
           ))}
         </ol>

@@ -16,8 +16,8 @@ export function createOgImage(title: string, kicker = site.name) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#f6f1e8",
-          color: "#1c1917",
+          backgroundColor: "#f6f1e7",
+          color: "#1d2532",
           padding: "72px 80px",
         }}
       >
@@ -26,14 +26,14 @@ export function createOgImage(title: string, kicker = site.name) {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            fontSize: 22,
-            letterSpacing: "0.28em",
+            fontSize: 18,
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#9c7a4a",
+            color: "#b38c4e",
           }}
         >
           <span>{kicker}</span>
-          <span>DMM</span>
+          <span>DM</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div
@@ -49,8 +49,8 @@ export function createOgImage(title: string, kicker = site.name) {
           <div
             style={{
               width: 80,
-              height: 2,
-              backgroundColor: "#9c7a4a",
+              height: 1,
+              backgroundColor: "#b38c4e",
             }}
           />
         </div>
@@ -58,7 +58,7 @@ export function createOgImage(title: string, kicker = site.name) {
           style={{
             display: "flex",
             fontSize: 24,
-            color: "#57534e",
+            color: "#4a4439",
             maxWidth: 760,
             lineHeight: 1.4,
           }}

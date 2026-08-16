@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { headerCta, primaryNav } from "@/content/navigation";
 import { buttonClassName } from "@/components/ui/Button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
+import { cn } from "@/lib/cn";
 
 export function MobileNavigation() {
   const pathname = usePathname();
@@ -58,12 +59,10 @@ export function MobileNavigation() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="fixed inset-0 z-50 flex flex-col bg-ivory"
+          className="fixed inset-0 z-50 flex flex-col bg-canvas"
         >
-          <div className="flex items-center justify-between px-5 py-4">
-            <p className="text-xs font-medium tracking-[0.24em] uppercase text-bronze-dark">
-              Menu
-            </p>
+          <div className="flex items-center justify-between border-b border-hairline px-5 py-4">
+            <p className="type-meta text-gold">Menu</p>
             <button
               ref={closeRef}
               type="button"
@@ -75,18 +74,28 @@ export function MobileNavigation() {
             </button>
           </div>
           <nav className="flex flex-1 flex-col justify-center px-8 pb-16">
-            <ul className="space-y-6">
-              {primaryNav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="font-display text-4xl text-ink"
-                    onClick={() => setMenuPath(null)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+            <ul className="space-y-7">
+              {primaryNav.map((item) => {
+                const active =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname === item.href;
+
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className={cn(
+                        "type-display-lg text-ink",
+                        active && "text-gold",
+                      )}
+                      onClick={() => setMenuPath(null)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
             <Link
               href={headerCta.href}

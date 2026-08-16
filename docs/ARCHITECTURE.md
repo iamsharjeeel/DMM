@@ -23,6 +23,7 @@ Server Components by default.
 
 Client Components:
 
+- `HeaderNav` — active gold hairline on the current route
 - `MobileNavigation` — open state, focus, escape, scroll lock
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
@@ -62,7 +63,7 @@ JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person only
 
 ## Design tokens
 
-All temporary brand values are CSS custom properties in `src/app/globals.css`. Tailwind `@theme inline` maps them to utilities (`bg-ivory`, `text-navy`, `font-display`, `max-w-content`).
+Brand tokens are CSS custom properties in `src/app/globals.css` (`:root`). Tailwind `@theme inline` maps them to utilities (`bg-canvas`, `text-gold`, `bg-navy-panel`, `font-display`, `max-w-content`).
 
 ## Important decisions
 

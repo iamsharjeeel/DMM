@@ -1,12 +1,13 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { buttonClassName } from "@/components/ui/Button";
 
 type ButtonLinkProps = {
   href: string;
-  variant?: "primary" | "secondary" | "navy" | "ghost" | "invert";
+  variant?: "primary" | "secondary" | "invert";
   size?: "md" | "lg";
   className?: string;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export function ButtonLink({

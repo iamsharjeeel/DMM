@@ -1,26 +1,35 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 export function Section({
   children,
   className,
   id,
-  tone = "ivory",
+  tone = "canvas",
+  hairline = false,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   id?: string;
-  tone?: "ivory" | "paper" | "navy" | "prayer" | "deep";
+  tone?: "canvas" | "canvas-soft" | "navy";
+  hairline?: boolean;
 }) {
   const tones = {
-    ivory: "bg-ivory text-ink",
-    paper: "bg-paper text-ink",
-    navy: "bg-navy text-paper",
-    prayer: "bg-prayer text-ink",
-    deep: "bg-ivory-deep text-ink",
+    canvas: "bg-canvas text-ink",
+    "canvas-soft": "bg-canvas-soft text-ink",
+    navy: "bg-navy-panel text-on-navy",
   } as const;
 
   return (
-    <section id={id} className={cn("section-space", tones[tone], className)}>
+    <section
+      id={id}
+      className={cn(
+        "section-space",
+        tones[tone],
+        hairline && "section-hairline",
+        className,
+      )}
+    >
       {children}
     </section>
   );

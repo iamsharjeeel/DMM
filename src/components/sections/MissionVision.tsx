@@ -3,33 +3,36 @@ import { Container } from "@/components/ui/Container";
 
 export function MissionVision() {
   return (
-    <section>
+    <section className="section-hairline">
       <div className="grid lg:grid-cols-2">
-        <div className="bg-ivory-deep">
+        <div className="bg-canvas">
           <Container width="full" className="section-space lg:pr-16">
-            <p className="text-xs font-medium tracking-[0.28em] uppercase text-bronze-dark">
-              What we do
-            </p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+            <p className="type-meta text-gold">What we do</p>
+            <h2 className="type-display-lg mt-4 text-ink">
               {home.mission.heading}
             </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed">
+            <p className="type-serif-italic mt-7 max-w-measure text-gold">
               {home.mission.body}
             </p>
-            <p className="mt-6 font-display text-2xl italic text-ink-soft">
-              {home.mission.supporting}
-            </p>
+            <p className="type-body mt-7">{home.mission.supporting}</p>
           </Container>
         </div>
-        <div className="bg-navy text-paper">
-          <Container width="full" className="section-space lg:pl-16">
-            <p className="text-xs font-medium tracking-[0.28em] uppercase text-bronze">
+        <div className="relative overflow-hidden bg-navy-panel text-on-navy">
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute top-8 right-8 font-display text-[120px] leading-none font-medium text-gold/15"
+          >
+            II.
+          </span>
+          <Container width="full" className="section-space relative lg:pl-16">
+            <p className="type-meta text-on-navy">
               What that work hopes to accomplish
             </p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">
+            <h2 className="type-display-lg mt-4 text-on-navy">
               {home.vision.heading}
             </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-paper/85">
+            <div className="mt-7 h-px w-14 bg-gold" />
+            <p className="type-body mt-7 max-w-measure text-on-navy-muted">
               {home.vision.body}
             </p>
           </Container>

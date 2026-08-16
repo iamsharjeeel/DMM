@@ -16,9 +16,9 @@ Do not paraphrase these into generic ministry marketing.
 
 ## Temporary placeholders
 
-- Text wordmark + DM monogram (final logo not supplied)
-- Ivory / charcoal / navy / bronze token palette
-- Photography frames labeled “Photography pending”
+- `BrandLockup` SVG monogram (final logo file not supplied)
+- Editorial cream / navy / gold token palette (The Pastor's Record)
+- Photography reservation frames (“A portrait of Pastor Mayes, arriving shortly,”)
 - Generated OG images using motto/headlines
 - Suggested domain fallback `https://donaldmayesministries.com` for metadata when env is unset
 - Form “To be discussed” topic option (operational, not a ministry topic)

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import { Cormorant_Garamond, Jost, Source_Serif_4 } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/layout/JsonLd";
@@ -11,15 +11,23 @@ import "./globals.css";
 
 const display = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
   display: "swap",
 });
 
-const sans = Source_Sans_3({
+const serif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-source-sans",
+  weight: ["400"],
+  variable: "--font-source-serif",
+  display: "swap",
+});
+
+const meta = Jost({
+  subsets: ["latin"],
+  weight: ["500"],
+  variable: "--font-jost",
   display: "swap",
 });
 
@@ -57,7 +65,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f6f1e8",
+  themeColor: "#f6f1e7",
   width: "device-width",
   initialScale: 1,
 };
@@ -68,8 +76,11 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable}`}>
-      <body className="min-h-screen font-sans antialiased">
+    <html
+      lang="en"
+      className={`${display.variable} ${serif.variable} ${meta.variable}`}
+    >
+      <body className="min-h-screen font-serif">
         <SkipLink />
         <JsonLd />
         <Header />

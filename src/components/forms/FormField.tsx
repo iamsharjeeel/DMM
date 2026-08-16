@@ -34,35 +34,35 @@ export function FormField({
 
   return (
     <div className="space-y-2">
-      <label htmlFor={id} className="block text-sm font-medium text-ink">
+      <label htmlFor={id} className="type-meta block text-ink">
         {label}
         {required ? (
-          <span className="text-bronze-dark">
+          <span className="text-gold">
             {" "}
             *
             <span className="sr-only"> required</span>
           </span>
         ) : (
-          <span className="ml-2 text-xs font-normal tracking-normal text-ink-soft">
+          <span className="ml-2 font-serif text-[13px] font-normal tracking-normal text-muted normal-case">
             Optional
           </span>
         )}
       </label>
       {hint ? (
-        <p id={hintId} className="text-sm text-ink-soft">
+        <p id={hintId} className="font-serif text-sm text-muted">
           {hint}
         </p>
       ) : null}
       <div
         className={cn(
           error &&
-            "[&_input]:border-bronze-dark [&_select]:border-bronze-dark [&_textarea]:border-bronze-dark",
+            "[&_input]:border-gold-deep [&_select]:border-gold-deep [&_textarea]:border-gold-deep",
         )}
       >
         {field}
       </div>
       {error ? (
-        <p id={errorId} role="alert" className="text-sm text-bronze-dark">
+        <p id={errorId} role="alert" className="font-serif text-sm text-gold-deep">
           {error}
         </p>
       ) : null}
@@ -71,4 +71,4 @@ export function FormField({
 }
 
 export const controlClassName =
-  "min-h-12 w-full rounded-sm border border-rule bg-paper px-3 py-2 text-base text-ink transition-colors focus:border-bronze focus:outline-none";
+  "min-h-12 w-full rounded-none border border-hairline bg-canvas px-3 py-2 font-serif text-[17px] text-ink transition-colors focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold";

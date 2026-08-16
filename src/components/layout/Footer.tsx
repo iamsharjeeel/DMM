@@ -3,31 +3,25 @@ import { site } from "@/config/site";
 import { footerNav, legalNav } from "@/content/navigation";
 import { Container } from "@/components/ui/Container";
 import { SocialLinks } from "@/components/ui/SocialLinks";
-import { Wordmark } from "@/components/ui/Wordmark";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-paper">
-      <Container className="py-16 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
+    <footer className="bg-navy-panel text-on-navy">
+      <Container className="py-[112px] max-lg:py-[84px]">
+        <div className="flex flex-col items-center text-center">
+          <BrandLockup variant="monogram" />
+          <p className="type-serif-italic mt-7 text-gold">{site.motto}</p>
+        </div>
+        <div className="mt-[56px] grid gap-12 md:grid-cols-2 lg:grid-cols-2">
           <div>
-            <Wordmark invert />
-            <p className="mt-6 font-display text-2xl italic">{site.motto}</p>
-            <p className="mt-4 max-w-md text-paper/75">
-              Teaching followers of Christ how to love people through practical
-              biblical living.
-            </p>
-          </div>
-          <div>
-            <p className="text-xs tracking-[0.22em] uppercase text-bronze">
-              Navigate
-            </p>
-            <ul className="mt-4 space-y-3">
+            <p className="type-meta text-gold">Navigate</p>
+            <ul className="mt-7 space-y-3">
               {footerNav.map((item) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-paper/85 hover:text-paper"
+                    className="text-on-navy transition-colors hover:text-gold"
                   >
                     {item.label}
                   </Link>
@@ -36,26 +30,30 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <p className="text-xs tracking-[0.22em] uppercase text-bronze">
-              Connect
-            </p>
-            <p className="mt-4 max-w-xs text-sm text-paper/75">
+            <p className="type-meta text-gold">Connect</p>
+            <p className="type-body mt-7 max-w-measure text-on-navy-muted">
               Invite Pastor Mayes to speak, or share a prayer request. Public
               email and social profiles will appear here once they are confirmed.
             </p>
-            <div className="mt-4">
+            <div className="mt-7">
               <SocialLinks invert />
             </div>
           </div>
         </div>
-        <div className="mt-14 flex flex-col gap-4 border-t border-paper/15 pt-6 text-sm text-paper/65 sm:flex-row sm:items-center sm:justify-between">
-          <p>
-            © {site.copyrightYear} {site.legalName}. All Rights Reserved.
+        <div className="mt-[56px] border-t border-hairline pt-7">
+          <p className="text-sm text-on-navy-muted">
+            © {site.copyrightYear} {site.legalName}.
           </p>
-          <ul className="flex gap-5">
+          <p className="type-meta mt-4 text-on-navy-muted">
+            Est. 40+ years of service — Springfield / Phoenix
+          </p>
+          <ul className="mt-7 flex gap-7">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-paper">
+                <Link
+                  href={item.href}
+                  className="type-meta text-on-navy-muted hover:text-on-navy"
+                >
                   {item.label}
                 </Link>
               </li>

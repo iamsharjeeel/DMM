@@ -1,5 +1,6 @@
 import { speaking } from "@/content/speaking";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ChapterHead } from "@/components/ui/ChapterHead";
 import { Container } from "@/components/ui/Container";
 import { PastorImage } from "@/components/ui/PastorImage";
 
@@ -7,30 +8,37 @@ export function SpeakingHero() {
   const { hero } = speaking;
 
   return (
-    <section className="bg-navy text-paper">
-      <Container className="grid items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24">
-        <div>
-          <h1 className="font-display text-5xl leading-[0.95] text-balance sm:text-6xl lg:text-7xl">
-            {hero.headline}
-          </h1>
-          <p className="mt-6 text-xl text-bronze">{hero.supporting}</p>
-          <div className="mt-8 max-w-xl space-y-4 text-lg text-paper/80">
+    <section className="section-hairline bg-canvas">
+      <Container className="grid items-center gap-14 py-[84px] lg:grid-cols-12 lg:py-[140px]">
+        <div className="lg:col-span-7">
+          <ChapterHead
+            numeral="01"
+            eyebrow="Speaking"
+            heading={hero.headline}
+            as="h1"
+          />
+          <p className="type-serif-italic mt-7 text-ink">{hero.supporting}</p>
+          <div className="mt-7 space-y-5">
             {hero.body.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph} className="type-body">
+                {paragraph}
+              </p>
             ))}
           </div>
-          <div className="mt-10">
-            <ButtonLink href={hero.cta.href} variant="primary" size="lg">
+          <div className="mt-[56px]">
+            <ButtonLink href={hero.cta.href} variant="primary">
               {hero.cta.label}
             </ButtonLink>
           </div>
         </div>
-        <PastorImage
-          slot={hero.image.slot}
-          alt={hero.image.alt}
-          aspect="portrait"
-          priority
-        />
+        <div className="lg:col-span-5">
+          <PastorImage
+            slot={hero.image.slot}
+            alt={hero.image.alt}
+            aspect="portrait"
+            priority
+          />
+        </div>
       </Container>
     </section>
   );

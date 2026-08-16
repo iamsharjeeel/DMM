@@ -1,23 +1,21 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "navy" | "ghost" | "invert";
+type ButtonVariant = "primary" | "secondary" | "invert";
 type ButtonSize = "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-bronze text-paper hover:bg-bronze-dark focus-visible:outline-bronze",
+    "bg-gold text-ink hover:bg-gold-deep focus-visible:outline-gold",
   secondary:
-    "border border-ink/20 bg-transparent text-ink hover:border-bronze hover:text-bronze-dark",
-  navy: "bg-navy text-paper hover:bg-navy-deep",
-  ghost: "text-ink underline-offset-[6px] hover:text-bronze hover:underline",
+    "border border-ink bg-transparent text-ink hover:bg-gold/5 focus-visible:outline-gold",
   invert:
-    "border border-paper/40 bg-transparent text-paper hover:border-paper hover:bg-paper/10",
+    "border border-on-navy bg-transparent text-on-navy hover:bg-gold/5 focus-visible:outline-gold",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  md: "min-h-11 px-5 py-2.5 text-sm tracking-[0.08em]",
-  lg: "min-h-12 px-6 py-3 text-sm tracking-[0.1em]",
+  md: "px-8 py-4",
+  lg: "px-8 py-4",
 };
 
 export function buttonClassName({
@@ -30,7 +28,7 @@ export function buttonClassName({
   className?: string;
 } = {}) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-sm font-medium uppercase transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60",
+    "type-meta inline-flex items-center justify-center rounded-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60",
     variants[variant],
     sizes[size],
     className,

@@ -1,31 +1,40 @@
 import { home } from "@/content/home";
+import { ChapterHead } from "@/components/ui/ChapterHead";
 import { Container } from "@/components/ui/Container";
 import { PastorImage } from "@/components/ui/PastorImage";
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function MeetPastor() {
   const { meet } = home;
 
   return (
-    <Section tone="paper">
-      <Container className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+    <Section hairline>
+      <Container className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-16">
         <PastorImage
           slot={meet.image.slot}
           alt={meet.image.alt}
           aspect="portrait"
         />
         <div>
-          <SectionHeading heading={meet.heading} />
-          <div className="mt-8 space-y-5 text-lg text-ink-soft">
+          <ChapterHead
+            numeral="I"
+            eyebrow="The Pastor"
+            heading={meet.heading}
+          />
+          <div className="mt-7 space-y-5">
             {meet.paragraphs.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
+              <p key={paragraph} className="type-body">
+                {paragraph}
+              </p>
             ))}
           </div>
-          <p className="mt-8 text-ink-soft">{meet.principleLead}</p>
-          <p className="mt-3 font-display text-3xl italic">{meet.principle}</p>
-          <p className="mt-8 text-ink-soft">{meet.mottoLead}</p>
-          <p className="mt-3 font-display text-4xl italic">{meet.motto}</p>
+          <p className="type-body mt-7">{meet.principleLead}</p>
+          <p className="type-serif-italic mt-4 text-ink">{meet.principle}</p>
+          <p className="type-body mt-7">{meet.mottoLead}</p>
+          <blockquote className="mt-7 ml-9">
+            <div className="mb-7 h-px w-14 bg-gold" />
+            <p className="type-serif-italic text-[24px] text-ink">{meet.motto}</p>
+          </blockquote>
         </div>
       </Container>
     </Section>

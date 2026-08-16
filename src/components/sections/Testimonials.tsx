@@ -1,3 +1,7 @@
+import { ChapterHead } from "@/components/ui/ChapterHead";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+
 export function Testimonials({
   heading,
   items,
@@ -10,23 +14,26 @@ export function Testimonials({
   }
 
   return (
-    <section className="section-space bg-paper">
-      <div className="mx-auto max-w-content px-5 sm:px-8 lg:px-12">
-        <h2 className="font-display text-4xl">{heading}</h2>
-        <ul className="mt-10 grid gap-8 lg:grid-cols-2">
+    <Section hairline>
+      <Container>
+        <ChapterHead numeral="—" eyebrow="Voices" heading={heading} />
+        <ul className="mt-[56px] grid gap-8 lg:grid-cols-2">
           {items.map((item) => (
-            <li key={`${item.name}-${item.quote}`} className="border-t border-rule pt-6">
-              <blockquote className="font-display text-2xl italic">
+            <li
+              key={`${item.name}-${item.quote}`}
+              className="border-t border-hairline pt-7"
+            >
+              <blockquote className="type-serif-italic text-ink">
                 {item.quote}
               </blockquote>
-              <p className="mt-4 text-sm tracking-[0.08em] uppercase text-ink-soft">
+              <p className="type-meta mt-7 text-muted">
                 {item.name}
                 {item.role ? ` — ${item.role}` : ""}
               </p>
             </li>
           ))}
         </ul>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

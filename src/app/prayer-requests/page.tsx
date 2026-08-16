@@ -12,11 +12,15 @@ export const metadata = createMetadata({
 
 export default function PrayerRequestsPage() {
   return (
-    <main id="main" className="bg-prayer">
+    <main id="main" className="bg-canvas">
       <PrayerHero />
-      <section className="pb-20">
-        <Container width="narrow">
-          <PrayerRequestForm />
+      <section className="section-space section-hairline bg-canvas">
+        <Container>
+          <div className="grid gap-14 lg:grid-cols-12">
+            <div className="lg:col-span-7 lg:col-start-1">
+              <PrayerRequestForm />
+            </div>
+          </div>
         </Container>
       </section>
     </main>

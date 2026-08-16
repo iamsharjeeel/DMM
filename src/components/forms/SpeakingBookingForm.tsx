@@ -312,12 +312,12 @@ export function SpeakingBookingForm() {
           className={controlClassName}
         />
       </FormField>
-      <p className="text-sm text-ink-soft">
+      <p className="font-serif text-sm text-muted">
         This form currently confirms on this page only. Requests are not stored
         or sent until submission handling is implemented.
       </p>
       <div>
-        <Button type="submit" variant="navy" size="lg">
+        <Button type="submit" variant="primary" size="lg">
           {speaking.booking.submitLabel}
         </Button>
       </div>

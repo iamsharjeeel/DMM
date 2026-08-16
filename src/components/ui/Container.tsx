@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 
 type Width = "default" | "narrow" | "wide" | "full";
@@ -14,7 +15,7 @@ export function Container({
   className,
   width = "default",
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   width?: Width;
 }) {

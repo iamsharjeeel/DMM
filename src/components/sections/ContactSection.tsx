@@ -1,28 +1,34 @@
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ChapterHead } from "@/components/ui/ChapterHead";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 import { home } from "@/content/home";
 
 export function ContactSection() {
   return (
-    <div className="border-t border-rule bg-paper">
-      <div className="mx-auto flex max-w-content flex-col gap-8 px-5 py-16 sm:px-8 lg:flex-row lg:items-end lg:justify-between lg:px-12">
-        <div className="max-w-xl">
-          <p className="text-xs font-medium tracking-[0.28em] uppercase text-bronze-dark">
-            Connect
-          </p>
-          <h2 className="mt-3 font-display text-4xl leading-tight">
-            {home.connect.heading}
-          </h2>
-          <p className="mt-4 text-ink-soft">{home.connect.body}</p>
+    <Section hairline>
+      <Container>
+        <div className="grid gap-14 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <ChapterHead
+              numeral="06"
+              eyebrow="Connect"
+              heading={home.connect.heading}
+            />
+            <p className="type-body mt-7">{home.connect.body}</p>
+          </div>
+          <div className="bg-navy-panel px-8 py-10 lg:col-span-5">
+            <div className="flex flex-col gap-4">
+              <ButtonLink href={home.hero.primaryCta.href} variant="primary">
+                {home.hero.primaryCta.label}
+              </ButtonLink>
+              <ButtonLink href={home.hero.secondaryCta.href} variant="invert">
+                {home.hero.secondaryCta.label}
+              </ButtonLink>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={home.hero.primaryCta.href} variant="navy">
-            {home.hero.primaryCta.label}
-          </ButtonLink>
-          <ButtonLink href={home.hero.secondaryCta.href} variant="secondary">
-            {home.hero.secondaryCta.label}
-          </ButtonLink>
-        </div>
-      </div>
-    </div>
+      </Container>
+    </Section>
   );
 }

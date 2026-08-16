@@ -1,25 +1,37 @@
 import { home } from "@/content/home";
-import { ArrowIcon } from "@/components/ui/icons";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { ChapterHead } from "@/components/ui/ChapterHead";
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 export function SpeakingPreview() {
   const { speakingPreview } = home;
 
   return (
-    <Section tone="navy">
-      <Container className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-        <SectionHeading heading={speakingPreview.heading} invert>
-          <p>{speakingPreview.body}</p>
-          <p className="mt-4">{speakingPreview.supporting}</p>
-        </SectionHeading>
-        <div className="lg:justify-self-end">
-          <ButtonLink href={speakingPreview.cta.href} variant="invert" size="lg">
-            {speakingPreview.cta.label}
-            <ArrowIcon />
-          </ButtonLink>
+    <Section hairline>
+      <Container>
+        <div className="grid gap-14 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-7">
+            <ChapterHead
+              numeral="05"
+              eyebrow="Speaking"
+              heading={speakingPreview.heading}
+            />
+            <p className="type-body mt-7">{speakingPreview.body}</p>
+            <p className="type-body mt-7">{speakingPreview.supporting}</p>
+            <div className="mt-[56px]">
+              <ButtonLink href={speakingPreview.cta.href} variant="primary">
+                {speakingPreview.cta.label}
+              </ButtonLink>
+            </div>
+          </div>
+          <div className="lg:col-span-5 lg:flex lg:justify-end">
+            <p className="type-meta text-gold lg:pt-14">
+              <span className="block">Churches ·</span>
+              <span className="mt-3 block">Conferences ·</span>
+              <span className="mt-3 block">Communities</span>
+            </p>
+          </div>
         </div>
       </Container>
     </Section>

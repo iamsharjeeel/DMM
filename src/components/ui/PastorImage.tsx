@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { BrandMonogram } from "@/components/brand/BrandLockup";
 import { site, type PhotographySlot } from "@/config/site";
 import { cn } from "@/lib/cn";
 
@@ -15,6 +16,7 @@ export function PastorImage({
   priority = false,
   className,
   caption,
+  showMonogram = false,
 }: {
   slot: PhotographySlot;
   alt: string;
@@ -22,12 +24,18 @@ export function PastorImage({
   priority?: boolean;
   className?: string;
   caption?: string;
+  showMonogram?: boolean;
 }) {
   const src = site.photography[slot];
 
   return (
-    <figure className={cn("relative", className)}>
-      <div className={cn("relative overflow-hidden bg-navy", aspects[aspect])}>
+    <figure className={cn("relative w-full", className)}>
+      <div
+        className={cn(
+          "relative border border-hairline bg-canvas",
+          aspects[aspect],
+        )}
+      >
         {src ? (
           <Image
             src={src}
@@ -41,25 +49,21 @@ export function PastorImage({
           <div
             role="img"
             aria-label={alt}
-            className="absolute inset-0 flex flex-col justify-between bg-[linear-gradient(160deg,#1b2636_0%,#2c3a4e_52%,#9c7a4a_140%)] p-6 text-paper"
+            className="absolute inset-0 flex flex-col items-center justify-center px-8 text-center"
           >
-            <p className="text-[0.68rem] font-medium tracking-[0.26em] uppercase opacity-80">
-              Photography pending
+            <p className="type-serif-italic max-w-[16rem] text-gold">
+              A portrait of Pastor Mayes, arriving shortly,
             </p>
-            <div>
-              <p className="font-display text-3xl leading-none italic">
-                Pastor Donald Mayes
-              </p>
-              <p className="mt-3 max-w-[16rem] text-sm text-paper/75">
-                Replace this frame with a professional portrait. Keep this
-                aspect ratio.
-              </p>
-            </div>
+            {showMonogram ? (
+              <span className="mt-7 text-gold">
+                <BrandMonogram size={40} />
+              </span>
+            ) : null}
           </div>
         )}
       </div>
       {caption ? (
-        <figcaption className="mt-3 text-sm text-ink-soft">{caption}</figcaption>
+        <figcaption className="mt-3 text-sm text-muted">{caption}</figcaption>
       ) : null}
     </figure>
   );

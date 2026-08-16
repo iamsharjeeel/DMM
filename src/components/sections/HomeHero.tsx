@@ -7,27 +7,17 @@ export function HomeHero() {
   const { hero } = home;
 
   return (
-    <section className="overflow-hidden bg-ivory">
-      <Container className="grid items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:py-24">
+    <section className="section-hairline overflow-hidden bg-canvas">
+      <Container className="grid items-center gap-14 py-[84px] lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:py-[140px]">
         <div className="reveal">
-          <p className="text-xs font-medium tracking-[0.3em] uppercase text-bronze-dark">
-            {hero.eyebrow}
-          </p>
-          <h1 className="mt-5 font-display text-[2.75rem] leading-[0.95] font-medium tracking-tight text-balance sm:text-6xl lg:text-[5.2rem]">
-            {hero.headline}
-          </h1>
-          <p className="mt-8 max-w-xl text-lg text-ink-soft sm:text-xl">
-            {hero.supporting}
-          </p>
-          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={hero.primaryCta.href} variant="navy" size="lg">
+          <p className="type-meta text-gold">{hero.eyebrow}</p>
+          <h1 className="type-display-xl mt-7 text-ink">{hero.headline}</h1>
+          <p className="type-body mt-7">{hero.supporting}</p>
+          <div className="mt-[56px] flex flex-col gap-4 sm:flex-row">
+            <ButtonLink href={hero.primaryCta.href} variant="primary">
               {hero.primaryCta.label}
             </ButtonLink>
-            <ButtonLink
-              href={hero.secondaryCta.href}
-              variant="secondary"
-              size="lg"
-            >
+            <ButtonLink href={hero.secondaryCta.href} variant="secondary">
               {hero.secondaryCta.label}
             </ButtonLink>
           </div>
@@ -37,7 +27,8 @@ export function HomeHero() {
           alt={hero.image.alt}
           aspect="portrait"
           priority
-          className="mx-auto w-full max-w-md lg:max-w-none"
+          showMonogram
+          className="w-full"
         />
       </Container>
     </section>

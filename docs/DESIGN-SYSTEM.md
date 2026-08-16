@@ -1,74 +1,67 @@
 # Design system
 
-Temporary visual system until final brand assets arrive. Change tokens, not component-by-component hex values.
+Editorial luxury system: **The Pastor's Record**. Artisanal-warm cream canvas with dark-navy interludes. Tokens live in `:root` (`src/app/globals.css`). Do not introduce new hex values.
 
-## Palette (`src/app/globals.css`)
+## Palette
 
-| Token | Role |
-| --- | --- |
-| `--brand-ivory` | Page background |
-| `--brand-paper` | Alternate surface |
-| `--brand-ivory-deep` | Mission band |
-| `--brand-prayer` | Prayer page warmth |
-| `--brand-ink` | Primary text |
-| `--brand-ink-soft` | Secondary text |
-| `--brand-navy` | Professional / footer / speaking hero |
-| `--brand-bronze` | Accent, CTA, FCL letters |
+| Token | Hex | Role |
+| --- | --- | --- |
+| `--canvas` | `#f6f1e7` | Page background |
+| `--canvas-soft` | `#efe7d8` | Soft field |
+| `--canvas-deep` | `#e7ddc8` | Rare section tint |
+| `--ink` | `#1d2532` | Headings and primary text |
+| `--ink-soft` | `#2c3646` | Secondary ink |
+| `--body` | `#4a4439` | Body copy |
+| `--muted` | `#867d6f` | Captions, hints |
+| `--gold` | `#b38c4e` | Sole accent |
+| `--gold-deep` | `#93713a` | Gold hover only |
+| `--navy-panel` | `#161c28` | Vision, prayer interludes, footer |
+| `--navy-elevated` | `#222a3a` | Raised navy |
+| `--hairline` | `#dcd2bf` | 1px rules |
+| `--on-navy` | `#f0ead9` | Cream on navy |
+| `--on-navy-muted` | `#a8a293` | Muted cream on navy |
 
-To replace final colors: update the `:root` variables only.
+Gold appears as eyebrow, primary CTA, and one micro-detail per viewport. On navy: cream type, gold filled CTA.
 
 ## Typography
 
-- Display: Cormorant Garamond (`--font-cormorant` / `font-display`)
-- Body: Source Sans 3 (`--font-source-sans` / `font-sans`)
+Loaded from Google Fonts, latin subset.
 
-Replace by changing `src/app/layout.tsx` font imports and the CSS variables.
+| Role | Face | Size / weight / tracking |
+| --- | --- | --- |
+| display-xl | Cormorant Garamond | 64px / 500 / -0.01em |
+| display-lg | Cormorant Garamond | 44px / 500 / -0.01em |
+| display-md | Cormorant Garamond | 30px / 500 |
+| serif-italic | Cormorant Garamond | 20–24px / 400 italic |
+| body | Source Serif 4 | 17px / 400 / 1.65, max 62ch |
+| meta-caps | Jost | 11px / 500 / +0.18em uppercase |
+
+Display type never exceeds weight 500. Lockup monogram is 600 only.
+
+Vertical spacing uses the 28px body leading: 28 / 56 / 84 / 112 / 140.
 
 ## Logo
 
-Current: HTML wordmark + DM monogram in `Wordmark`.
+`BrandLockup` (`src/components/brand/BrandLockup.tsx`): gold hairline square with overlapped DM monogram, plus stacked “Donald Mayes / MINISTRIES” in the header.
 
-Final file path: `public/brand/logo.svg` (`site.assets.logo`). Swap `Wordmark` to `next/image` when the asset exists. Do not invent an elaborate logo.
+Monogram appears in three places only: header lockup, hero portrait reservation, footer.
+
+Final file path remains `public/brand/logo.svg` (`site.assets.logo`) if a supplied mark replaces the lockup later.
 
 ## Photography
 
 Slots in `site.photography`: `hero`, `portrait`, `speaking`.
 
-Place files in `public/images/pastor/` and set the paths in `src/config/site.ts`.
-
-Recommended ratios:
-
-- hero / portrait: 4×5
-- speaking: 4×5 until a landscape environmental portrait exists (component also supports `landscape` 16×10)
-
-Do not use church-building imagery as the hero. Do not generate a fake portrait of Pastor Mayes.
-
-## Spacing and width
-
-- Section padding: `--space-section`
-- Content width: `--max-width-content` (72rem)
-- Narrow reading width: `--max-width-narrow` (40rem)
+Empty slots use a cream portrait reservation frame (hairline, italic gold note). Hero also includes the 40px monogram square. Keep 4×5. Do not generate a fake portrait.
 
 ## Buttons
 
-`Button` / `ButtonLink`: primary bronze, secondary outline, navy, invert on dark bands. Small radius (`2px`). Uppercase tracking.
+Zero radius. Primary: gold fill, navy ink, meta-caps, 16px 32px. Secondary: 1px ink outline (navy on cream, cream on navy). Hover: `--gold-deep` or gold at 5%. No drop shadows.
 
 ## Forms
 
-Paper fields, bronze focus ring, explicit labels, required asterisk + screen-reader text, associated errors.
+Hairline fields, zero radius, meta-caps labels, gold focus ring.
 
-## Sections
+## Hard bans
 
-Whitespace and rules over cards. Avoid boxed grids for every block. Mission/vision is a split band (what we do vs what it hopes to accomplish). FCL uses large letters. Speaking topics are a numbered editorial list.
-
-## Borders and radius
-
-Hairline `--brand-rule`. Radius stays small. No giant SaaS cards or heavy shadows.
-
-## Motion
-
-`.reveal` is a short fade/rise on the hero. Honor `prefers-reduced-motion`. No animation libraries.
-
-## Prayer vs speaking
-
-Speaking: navy, structured, professional. Prayer: warmer ivory (`bg-prayer`), quieter, fewer competing elements.
+No rounded corners, drop shadows, Inter as display, default blue, centered single-column sections, emoji/generic icons, extra accent colors, or gradient backgrounds except a future photograph.

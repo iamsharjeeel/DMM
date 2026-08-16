@@ -45,7 +45,8 @@ npm run start
 
 - Booking and prayer forms validate and confirm in the browser only
 - Submissions are not stored, emailed, or sent anywhere
-- Logo, brand colors, photography, contact email, social URLs, and testimonials are pending
+- Photography, contact email, social URLs, and testimonials are pending
+- Brand kit is proposed and applied; a supplied logo can replace `BrandLockup` later
 - Legal copy requires client/legal review
 
 ## Structure
@@ -53,15 +54,15 @@ npm run start
 ```text
 src/
   app/            routes, metadata, OG images, sitemap, robots
-  components/     layout, sections, forms, UI
+  components/     layout, sections, forms, UI, brand lockup
   content/        client-approved copy
   config/site.ts  ministry name, routes, social, asset paths
   lib/            metadata, JSON-LD, OG helper, validation
 ```
 
-## Brand replacement
+## Brand
 
-Temporary colors and fonts live in `src/app/globals.css` (`:root` tokens). Copy lives in `src/content/`. Photography paths live in `src/config/site.ts`.
+Proposed kit **The Pastor's Record** is applied in `src/app/globals.css` (`:root` tokens) and `BrandLockup`. Copy lives in `src/content/`. Photography paths live in `src/config/site.ts`. See `docs/DESIGN-SYSTEM.md`.
 
 ## Vercel
 

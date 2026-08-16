@@ -23,16 +23,3 @@ export function CloseIcon() {
     </svg>
   );
 }
-
-export function ArrowIcon() {
-  return (
-    <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true">
-      <path
-        d="M0 6h14M9 1l6 5-6 5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-      />
-    </svg>
-  );
-}

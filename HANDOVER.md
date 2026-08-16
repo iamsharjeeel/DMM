@@ -2,7 +2,15 @@
 
 ## Current build state
 
-Phase 1 production-ready informational site. Temporary branding. No backend.
+Phase 1 informational site, restyled as **The Pastor's Record** (editorial luxury: artisanal-warm canvas, navy interludes). No backend.
+
+## What changed (editorial restyle)
+
+- Brand kit applied: cream/navy/gold tokens in `:root`, Cormorant + Source Serif 4 + Jost
+- `BrandLockup` SVG monogram + stacked wordmark (header); monogram only in footer
+- Home, Speaking, and Prayer Requests restyled; copy and section order preserved
+- Portrait reservation frames replace navy-gradient placeholders
+- Forms: square fields, meta-caps labels, gold focus
 
 ## Completed pages
 
@@ -15,32 +23,29 @@ Phase 1 production-ready informational site. Temporary branding. No backend.
 
 ## Implemented functionality
 
-- Sticky header with Home, Speaking, Prayer Requests, and Book Pastor Mayes CTA
+- Sticky header: lockup, meta-caps nav with gold hairline active state, Book Pastor Mayes CTA
 - Accessible mobile menu
-- Footer with motto, nav, copyright, legal links
+- Footer: centered monogram, gold italic motto, NAVIGATE / CONNECT, colophon
 - Speaking booking form: validation, required/optional states, success state
 - Prayer form: conditional follow-up fields, consent, success state
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD
-- Photography and logo placeholders that can be swapped from config/tokens
 
 ## Frontend-only forms
 
 Valid submissions show an on-page confirmation. Nothing is stored, emailed, posted, or logged.
 
-Honest notices are shown on both forms so this is not mistaken for live delivery.
-
 ## Known limitations
 
 - No submission infrastructure
 - Contact email not displayed (unconfirmed)
-- Social icons hidden until URLs are set
+- Social links hidden until URLs are set
 - Testimonials component exists but is hidden (`speaking.testimonials.items` is empty)
 - Legal copy is provisional
+- Pastor photography still pending (designed reservation frames)
 
 ## Pending client assets
 
-- Final logo → `public/brand/logo.svg` (then wire `Wordmark`)
-- Final brand colors → `:root` tokens in `src/app/globals.css`
+- Final logo → `public/brand/logo.svg` (then optionally replace `BrandLockup`)
 - Pastor photography → `public/images/pastor/` and paths in `src/config/site.ts`
 - Confirmed contact email → `site.email`
 - Social URLs → `site.social`
@@ -53,22 +58,10 @@ Honest notices are shown on both forms so this is not mistaken for live delivery
 
 HighLevel, A.B.S., CRM, APIs, webhooks, databases, Supabase, email providers, analytics, marketing pixels.
 
-## Legal copy
-
-Provisional. Requires review once collection and contact details exist.
-
 ## Vercel readiness
 
-Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`.
-
-## Verification (2026-08-16)
-
-- lint: pass (`npm run lint`)
-- typecheck: pass (`npm run typecheck`; layout props do not depend on generated `LayoutProps`)
-- production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
-- production build with `NEXT_PUBLIC_SITE_URL=dmm-omega.vercel.app`: pass (Vercel hostname-only env)
-- route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
+Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL`. `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`.
 
 ## Recommended next action
 
-Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo, colors, and Pastor Mayes photography.
+Collect Pastor Mayes photography and confirm contact/social URLs. Brand tokens are already applied as the proposed kit.

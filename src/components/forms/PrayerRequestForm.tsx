@@ -205,7 +205,7 @@ export function PrayerRequestForm() {
         />
       </FormField>
       <fieldset>
-        <legend className="text-sm font-medium text-ink">
+        <legend className="type-meta text-ink">
           {prayer.form.urgent.label}
         </legend>
         <div className="mt-3">
@@ -230,7 +230,7 @@ export function PrayerRequestForm() {
       />
       {wantsFollowUp ? (
         <div
-          className="space-y-6 border-t border-rule pt-6"
+          className="space-y-6 border-t border-hairline pt-6"
           aria-live="polite"
         >
           <RadioGroup
@@ -253,7 +253,7 @@ export function PrayerRequestForm() {
           </Checkbox>
         </div>
       ) : null}
-      <p className="text-sm text-ink-soft">{prayer.frontendNotice}</p>
+      <p className="font-serif text-sm text-muted">{prayer.frontendNotice}</p>
       <div>
         <Button type="submit" variant="primary" size="lg">
           {prayer.form.submitLabel}
