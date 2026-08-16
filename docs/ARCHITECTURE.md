@@ -24,7 +24,7 @@ Server Components by default.
 Client Components:
 
 - `HeaderNav` — active route
-- `MobileNavigation` — open state, focus trap, escape, scroll lock
+- `MobileNavigation` — open state, focus trap, escape, scroll lock, portal overlay
 - `Reveal` — intersection observer entrance
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
