@@ -1,4 +1,6 @@
 import { cn } from "@/lib/cn";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { GoldRule } from "@/components/ui/GoldRule";
 
 export function SectionHeading({
   eyebrow,
@@ -21,19 +23,15 @@ export function SectionHeading({
       )}
     >
       {eyebrow ? (
-        <p
-          className={cn(
-            "mb-4 text-xs font-medium uppercase tracking-[0.28em]",
-            invert ? "text-bronze" : "text-bronze-dark",
-          )}
-        >
+        <Eyebrow invert={invert} className={align === "center" ? "mx-auto" : undefined}>
           {eyebrow}
-        </p>
+        </Eyebrow>
       ) : null}
+      <GoldRule className={cn("mt-5", align === "center" && "mx-auto")} />
       <h2
         className={cn(
-          "font-display text-4xl leading-[1.1] font-medium tracking-tight sm:text-5xl",
-          invert ? "text-paper" : "text-ink",
+          "display-lg mt-5 text-balance",
+          invert ? "text-cream" : "text-ink",
         )}
       >
         {heading}
@@ -42,7 +40,7 @@ export function SectionHeading({
         <div
           className={cn(
             "mt-5 max-w-2xl text-lg leading-relaxed",
-            invert ? "text-paper/80" : "text-ink-soft",
+            invert ? "text-cream/80" : "text-ink-soft",
             align === "center" && "mx-auto",
           )}
         >

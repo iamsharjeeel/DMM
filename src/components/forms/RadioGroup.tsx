@@ -26,7 +26,7 @@ export function RadioGroup({
       <legend className="text-sm font-medium text-ink">
         {legend}
         {required ? (
-          <span className="text-bronze-dark">
+          <span className="text-forest">
             {" "}
             *
             <span className="sr-only"> required</span>
@@ -44,8 +44,8 @@ export function RadioGroup({
               className={cn(
                 "inline-flex min-h-12 cursor-pointer items-center gap-3 border px-4 py-2",
                 selected
-                  ? "border-bronze bg-ivory-deep"
-                  : "border-rule bg-paper hover:border-bronze/50",
+                  ? "border-forest bg-sage"
+                  : "border-rule bg-transparent hover:border-forest/40",
               )}
             >
               <input
@@ -55,7 +55,7 @@ export function RadioGroup({
                 value={option.value}
                 checked={selected}
                 onChange={() => onChange(option.value)}
-                className="h-4 w-4 accent-bronze"
+                className="h-4 w-4 accent-forest"
               />
               <span>{option.label}</span>
             </label>
@@ -63,7 +63,7 @@ export function RadioGroup({
         })}
       </div>
       {error ? (
-        <p id={errorId} role="alert" className="mt-2 text-sm text-bronze-dark">
+        <p id={errorId} role="alert" className="mt-2 text-sm text-error">
           {error}
         </p>
       ) : null}

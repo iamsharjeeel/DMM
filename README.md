@@ -45,7 +45,8 @@ npm run start
 
 - Booking and prayer forms validate and confirm in the browser only
 - Submissions are not stored, emailed, or sent anywhere
-- Logo, brand colors, photography, contact email, social URLs, and testimonials are pending
+- Logo, photography, contact email, social URLs, and testimonials are pending
+- Brand colors and type follow the locked kit in `docs/DESIGN-SYSTEM.md`
 - Legal copy requires client/legal review
 
 ## Structure
@@ -59,9 +60,9 @@ src/
   lib/            metadata, JSON-LD, OG helper, validation
 ```
 
-## Brand replacement
+## Brand
 
-Temporary colors and fonts live in `src/app/globals.css` (`:root` tokens). Copy lives in `src/content/`. Photography paths live in `src/config/site.ts`.
+Locked colors and fonts live in `src/app/globals.css` (`:root` tokens). See `docs/DESIGN-SYSTEM.md`. Copy lives in `src/content/`. Photography paths live in `src/config/site.ts`.
 
 ## Vercel
 

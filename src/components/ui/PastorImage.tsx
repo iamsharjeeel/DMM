@@ -15,6 +15,7 @@ export function PastorImage({
   priority = false,
   className,
   caption,
+  framed = true,
 }: {
   slot: PhotographySlot;
   alt: string;
@@ -22,37 +23,54 @@ export function PastorImage({
   priority?: boolean;
   className?: string;
   caption?: string;
+  framed?: boolean;
 }) {
   const src = site.photography[slot];
 
   return (
-    <figure className={cn("relative", className)}>
-      <div className={cn("relative overflow-hidden bg-navy", aspects[aspect])}>
+    <figure className={cn("relative min-w-0", className)}>
+      {framed ? (
+        <>
+          <span
+            aria-hidden="true"
+            className="absolute -top-2.5 -left-2.5 hidden h-14 w-14 border-t border-l border-gold sm:block"
+          />
+          <span
+            aria-hidden="true"
+            className="absolute -right-2.5 -bottom-2.5 hidden h-14 w-14 border-r border-b border-gold sm:block"
+          />
+        </>
+      ) : null}
+      <div
+        className={cn(
+          "relative overflow-hidden bg-forest",
+          aspects[aspect],
+          src && "img-zoom",
+        )}
+      >
         {src ? (
           <Image
             src={src}
             alt={alt}
             fill
             priority={priority}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 46vw, 560px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px"
             className="object-cover"
           />
         ) : (
           <div
             role="img"
             aria-label={alt}
-            className="absolute inset-0 flex flex-col justify-between bg-[linear-gradient(160deg,#1b2636_0%,#2c3a4e_52%,#9c7a4a_140%)] p-6 text-paper"
+            className="absolute inset-0 flex flex-col justify-between p-6 text-cream sm:p-7"
           >
-            <p className="text-[0.68rem] font-medium tracking-[0.26em] uppercase opacity-80">
-              Photography pending
-            </p>
+            <p className="eyebrow text-cream/60">Photography forthcoming</p>
             <div>
-              <p className="font-display text-3xl leading-none italic">
+              <p className="font-display text-3xl leading-none italic sm:text-4xl">
                 Pastor Donald Mayes
               </p>
-              <p className="mt-3 max-w-[16rem] text-sm text-paper/75">
-                Replace this frame with a professional portrait. Keep this
-                aspect ratio.
+              <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-cream/70">
+                A reserved portrait frame until ministry photography is in
+                place.
               </p>
             </div>
           </div>

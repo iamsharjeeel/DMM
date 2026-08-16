@@ -74,7 +74,7 @@ Navigation stays: **Home | Speaking | Prayer Requests | Book Pastor Mayes**
 ## Design principles
 
 - Typography, whitespace, hierarchy over cards and decoration
-- Temporary brand tokens that can be replaced without a redesign
+- Locked brand tokens in `src/app/globals.css`; do not scatter hex values
 - Subtle motion only; honor `prefers-reduced-motion`
 - Accessibility is required, not optional
 

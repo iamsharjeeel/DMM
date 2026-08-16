@@ -1,37 +1,39 @@
 import { home } from "@/content/home";
 import { Container } from "@/components/ui/Container";
+import { GoldRule } from "@/components/ui/GoldRule";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function MissionVision() {
   return (
     <section>
       <div className="grid lg:grid-cols-2">
-        <div className="bg-ivory-deep">
-          <Container width="full" className="section-space lg:pr-16">
-            <p className="text-xs font-medium tracking-[0.28em] uppercase text-bronze-dark">
-              What we do
-            </p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">
-              {home.mission.heading}
-            </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed">
-              {home.mission.body}
-            </p>
-            <p className="mt-6 font-display text-2xl italic text-ink-soft">
-              {home.mission.supporting}
-            </p>
+        <div className="bg-sage">
+          <Container width="full" className="section-space max-w-none lg:pr-16 xl:pr-20">
+            <Reveal>
+              <p className="eyebrow text-forest">What we do</p>
+              <GoldRule className="mt-5" />
+              <h2 className="display-lg mt-5">{home.mission.heading}</h2>
+              <p className="mt-6 max-w-xl text-xl leading-relaxed">
+                {home.mission.body}
+              </p>
+              <p className="mt-6 font-display text-2xl italic text-ink-soft sm:text-[1.85rem]">
+                {home.mission.supporting}
+              </p>
+            </Reveal>
           </Container>
         </div>
-        <div className="bg-navy text-paper">
-          <Container width="full" className="section-space lg:pl-16">
-            <p className="text-xs font-medium tracking-[0.28em] uppercase text-bronze">
-              What that work hopes to accomplish
-            </p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl">
-              {home.vision.heading}
-            </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-paper/85">
-              {home.vision.body}
-            </p>
+        <div className="tone-forest">
+          <Container width="full" className="section-space relative max-w-none lg:pl-16 xl:pl-20">
+            <Reveal>
+              <p className="eyebrow text-cream/60">
+                What that work hopes to accomplish
+              </p>
+              <GoldRule className="mt-5" />
+              <h2 className="display-lg mt-5 text-cream">{home.vision.heading}</h2>
+              <p className="mt-6 max-w-xl text-xl leading-relaxed text-cream/80">
+                {home.vision.body}
+              </p>
+            </Reveal>
           </Container>
         </div>
       </div>

@@ -317,7 +317,7 @@ export function SpeakingBookingForm() {
         or sent until submission handling is implemented.
       </p>
       <div>
-        <Button type="submit" variant="navy" size="lg">
+        <Button type="submit" variant="primary" size="lg">
           {speaking.booking.submitLabel}
         </Button>
       </div>

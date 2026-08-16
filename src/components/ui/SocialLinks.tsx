@@ -28,7 +28,7 @@ export function SocialLinks({ invert = false }: { invert?: boolean }) {
             href={link.href}
             className={
               invert
-                ? "text-sm text-paper/80 underline-offset-4 hover:text-paper hover:underline"
+                ? "text-sm text-cream/70 underline-offset-4 hover:text-cream hover:underline"
                 : "text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline"
             }
           >

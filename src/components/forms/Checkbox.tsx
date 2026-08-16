@@ -24,7 +24,7 @@ export function Checkbox({
         htmlFor={id}
         className={cn(
           "flex cursor-pointer items-start gap-3 text-base",
-          error && "text-bronze-dark",
+          error && "text-error",
         )}
       >
         <input
@@ -35,12 +35,12 @@ export function Checkbox({
           aria-invalid={Boolean(error)}
           aria-describedby={errorId}
           onChange={(event) => onChange(event.target.checked)}
-          className="mt-1 h-5 w-5 shrink-0 accent-bronze"
+          className="mt-1 h-5 w-5 shrink-0 accent-forest"
         />
         <span>{children}</span>
       </label>
       {error ? (
-        <p id={errorId} role="alert" className="mt-2 text-sm text-bronze-dark">
+        <p id={errorId} role="alert" className="mt-2 text-sm text-error">
           {error}
         </p>
       ) : null}
