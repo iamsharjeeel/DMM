@@ -49,7 +49,7 @@ Optional:
 NEXT_PUBLIC_SITE_URL=https://your-production-domain
 ```
 
-Use it for canonical URLs, sitemap, and Open Graph. Do not add CRM, API, or database variables for Phase 1.
+Use it for canonical URLs, sitemap, and Open Graph. A hostname without a protocol (for example `dmm-omega.vercel.app`) is accepted and normalized to HTTPS. Do not add CRM, API, or database variables for Phase 1.
 
 ## 8. Domain
 
