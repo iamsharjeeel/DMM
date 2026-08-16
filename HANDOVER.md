@@ -62,6 +62,14 @@ HighLevel, A.B.S., CRM, APIs, webhooks, databases, Supabase, email providers, an
 
 Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL`. `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`.
 
+## Verification (2026-08-16)
+
+- lint: pass (`npm run lint`)
+- typecheck: pass (`npm run typecheck`)
+- production build: pass (`npm run build`, Next.js 16.3.1)
+- breakpoints: 1440 / 768 / 390 — numerals collapse into the eyebrow below `lg`; portrait frames are full width on small screens
+- routes: `/`, `/speaking`, `/prayer-requests` restyled with BrandLockup, gold chapter marks, and square buttons
+
 ## Recommended next action
 
 Collect Pastor Mayes photography and confirm contact/social URLs. Brand tokens are already applied as the proposed kit.
