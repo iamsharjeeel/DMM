@@ -2,6 +2,10 @@
 
 ## 2026-08-17
 
+- Replaced the DM letters in the Wordmark box with the supplied white geometric mark
+- Installed HighLevel external tracking site-wide and routed booking and prayer form submits into the CRM
+- Added production security headers and form field length limits
+- Switched the Cloud Agent install command to `npm ci`
 - Added the Loving Everyone Always audio archive at `/episodes`, with RSS import, search, sort, filters, and a pinned native player
 - Added a Listen item to primary navigation
 - Limited the episode index to five rows per page with a list-flip pager, and moved the gold active rule off the archive number

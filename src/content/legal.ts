@@ -3,22 +3,22 @@ import { site } from "@/config/site";
 export const legal = {
   privacy: {
     title: "Privacy Policy",
-    updated: "August 16, 2026",
+    updated: "August 17, 2026",
     intro:
-      "This Privacy Policy describes how Donald Mayes Ministries currently treats information in connection with this website. It is provisional and requires legal review once final contact details, branding, and any submission infrastructure are in place.",
+      "This Privacy Policy describes how Donald Mayes Ministries currently treats information in connection with this website. It is provisional and requires legal review once final contact details and branding are in place.",
     sections: [
       {
         heading: "What this website currently collects",
         paragraphs: [
-          "Phase 1 of this website is informational. The speaking and prayer forms on this site are frontend experiences only. Completing a form does not send, store, email, or otherwise transmit the information you enter.",
-          "We do not currently operate a database, CRM, email processor, or other backend collection system for this website.",
+          "This website uses HighLevel external tracking so Donald Mayes Ministries can understand visits and receive form submissions for ministry follow-up.",
+          "HighLevel may process page URLs, UTM parameters, and the fields you enter in the speaking booking form and the prayer request form, including prayer request text.",
         ],
       },
       {
         heading: "What we do not do with form entries",
         paragraphs: [
-          "Form entries are not saved in your browser by this website, are not placed in page URLs, and are not sent to analytics or third-party services by this website.",
-          "Until a submission system is implemented, please do not rely on these forms to deliver a booking or prayer request.",
+          "This website does not save form entries in your browser, place them in page URLs, or write them to the console.",
+          "Submitting a booking or prayer form is how you send that information to Donald Mayes Ministries through HighLevel.",
         ],
       },
       {
@@ -36,14 +36,14 @@ export const legal = {
       {
         heading: "Future updates",
         paragraphs: [
-          "If Donald Mayes Ministries later collects prayer requests, booking inquiries, or other personal information, this policy will be revised to describe what is collected, why it is collected, how long it is kept, who can access it, and how to request changes or deletion. Until then, do not treat this page as a description of an active data-collection program.",
+          "This policy will be revised as contact details, branding, retention practices, and any later scheduling tools are finalized. Do not treat this page as a complete legal description of HighLevel's own processing until it has been reviewed.",
         ],
       },
     ],
   },
   terms: {
     title: "Terms",
-    updated: "August 16, 2026",
+    updated: "August 17, 2026",
     intro:
       "These Terms govern use of the Donald Mayes Ministries website. They are provisional and require legal review before they should be treated as final.",
     sections: [
@@ -56,7 +56,7 @@ export const legal = {
       {
         heading: "Forms",
         paragraphs: [
-          "The booking and prayer forms currently confirm on the page only. Submitting a form does not create a commitment by Donald Mayes Ministries and does not transmit your information to our team until a future submission process is connected.",
+          "The booking and prayer forms send the information you enter to Donald Mayes Ministries through HighLevel so the ministry can follow up. Submitting a form does not create a speaking engagement or other commitment.",
         ],
       },
       {

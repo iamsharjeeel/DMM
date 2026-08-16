@@ -64,6 +64,16 @@ export const site = {
   },
 } as const;
 
+export const highLevelTracking = {
+  scriptSrc: "https://link.msgsndr.com/js/external-tracking.js",
+  defaultTrackingId: "tk_21e62a71c8824e2bb559ef6c1136f256",
+} as const;
+
+export function getHighLevelTrackingId() {
+  const fromEnv = process.env.NEXT_PUBLIC_GHL_TRACKING_ID?.trim();
+  return fromEnv || highLevelTracking.defaultTrackingId;
+}
+
 export type SiteConfig = typeof site;
 export type SocialNetwork = keyof typeof site.social;
 export type PhotographySlot = keyof typeof site.photography;

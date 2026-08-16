@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { controlClassName, FormField } from "@/components/forms/FormField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
-import { isValidEmail, requiredText } from "@/lib/validation";
+import { isValidEmail, requiredText, tooLong, fieldMax } from "@/lib/validation";
 import type { FieldErrors, SpeakingBookingValues } from "@/types/forms";
 
 const empty: SpeakingBookingValues = {
@@ -54,6 +54,30 @@ function validate(values: SpeakingBookingValues): FieldErrors<SpeakingBookingVal
 
   if (name) errors.name = name;
   if (organization) errors.organization = organization;
+  const nameLength = tooLong(values.name, fieldMax.name, "Name");
+  if (nameLength) errors.name = nameLength;
+  const organizationLength = tooLong(
+    values.organization,
+    fieldMax.organization,
+    "Organization",
+  );
+  if (organizationLength) errors.organization = organizationLength;
+  const emailLength = tooLong(values.email, fieldMax.email, "Email");
+  if (emailLength) errors.email = emailLength;
+  const phoneLength = tooLong(values.phone, fieldMax.phone, "Phone");
+  if (phoneLength) errors.phone = phoneLength;
+  const eventNameLength = tooLong(values.eventName, fieldMax.eventName, "Event name");
+  if (eventNameLength) errors.eventName = eventNameLength;
+  const eventLocationLength = tooLong(
+    values.eventLocation,
+    fieldMax.eventLocation,
+    "Event location",
+  );
+  if (eventLocationLength) errors.eventLocation = eventLocationLength;
+  const detailsLength = tooLong(values.details, fieldMax.details, "Event details");
+  if (detailsLength) errors.details = detailsLength;
+  const referralLength = tooLong(values.referral, fieldMax.referral, "Referral");
+  if (referralLength) errors.referral = referralLength;
   if (!values.email.trim()) {
     errors.email = "Email is required.";
   } else if (!isValidEmail(values.email)) {
@@ -109,9 +133,9 @@ export function SpeakingBookingForm() {
     return (
       <div ref={successRef}>
         <SuccessState
-          heading="Your booking request is ready on this page"
-          body="Thank you for your interest in inviting Pastor Donald Mayes. This confirmation is the frontend experience only."
-          notice="Booking requests are not stored or sent yet. When submission handling is connected, our team will follow up from this form."
+          heading={speaking.booking.confirmation.heading}
+          body={speaking.booking.confirmation.body}
+          notice={speaking.booking.confirmation.notice}
           onReset={() => {
             setValues(empty);
             setErrors({});
@@ -126,6 +150,8 @@ export function SpeakingBookingForm() {
   return (
     <form
       ref={formRef}
+      id={speaking.booking.formId}
+      name={speaking.booking.formId}
       noValidate
       onSubmit={handleSubmit}
       className="grid gap-6"
@@ -135,6 +161,7 @@ export function SpeakingBookingForm() {
           <input
             name="name"
             autoComplete="name"
+            maxLength={fieldMax.name}
             value={values.name}
             onChange={(event) => update("name", event.target.value)}
             className={controlClassName}
@@ -149,6 +176,7 @@ export function SpeakingBookingForm() {
           <input
             name="organization"
             autoComplete="organization"
+            maxLength={fieldMax.organization}
             value={values.organization}
             onChange={(event) => update("organization", event.target.value)}
             className={controlClassName}
@@ -159,6 +187,7 @@ export function SpeakingBookingForm() {
             name="email"
             type="email"
             autoComplete="email"
+            maxLength={fieldMax.email}
             value={values.email}
             onChange={(event) => update("email", event.target.value)}
             className={controlClassName}
@@ -169,6 +198,7 @@ export function SpeakingBookingForm() {
             name="phone"
             type="tel"
             autoComplete="tel"
+            maxLength={fieldMax.phone}
             value={values.phone}
             onChange={(event) => update("phone", event.target.value)}
             className={controlClassName}
@@ -182,6 +212,7 @@ export function SpeakingBookingForm() {
         >
           <input
             name="eventName"
+            maxLength={fieldMax.eventName}
             value={values.eventName}
             onChange={(event) => update("eventName", event.target.value)}
             className={controlClassName}
@@ -210,6 +241,7 @@ export function SpeakingBookingForm() {
       >
         <input
           name="eventLocation"
+          maxLength={fieldMax.eventLocation}
           value={values.eventLocation}
           onChange={(event) => update("eventLocation", event.target.value)}
           className={controlClassName}
@@ -245,6 +277,7 @@ export function SpeakingBookingForm() {
             name="attendance"
             type="number"
             min={1}
+            max={9999999}
             inputMode="numeric"
             value={values.attendance}
             onChange={(event) => update("attendance", event.target.value)}
@@ -295,6 +328,7 @@ export function SpeakingBookingForm() {
         <textarea
           name="details"
           rows={6}
+          maxLength={fieldMax.details}
           value={values.details}
           onChange={(event) => update("details", event.target.value)}
           className={`${controlClassName} min-h-40 py-3`}
@@ -307,14 +341,14 @@ export function SpeakingBookingForm() {
       >
         <input
           name="referral"
+          maxLength={fieldMax.referral}
           value={values.referral}
           onChange={(event) => update("referral", event.target.value)}
           className={controlClassName}
         />
       </FormField>
       <p className="text-xs leading-relaxed text-ink-soft">
-        This form currently confirms on this page only. Requests are not stored
-        or sent until submission handling is implemented.
+        {speaking.booking.notice}
       </p>
       <div>
         <Button type="submit" variant="primary" size="lg">

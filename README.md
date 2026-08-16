@@ -12,7 +12,7 @@ Central message: **Loving Everyone Always.**
 - Tailwind CSS 4
 - Vercel-ready static generation
 
-No backend, database, CRM, or form delivery in Phase 1.
+No backend, database, or custom APIs in Phase 1. HighLevel external tracking captures page views and form submits.
 
 ## Setup
 
@@ -21,7 +21,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Optional: set `NEXT_PUBLIC_SITE_URL` in `.env.local` to the public site URL.
+Optional: set `NEXT_PUBLIC_SITE_URL` in `.env.local` to the public site URL. `NEXT_PUBLIC_GHL_TRACKING_ID` is optional; the HighLevel tracking ID already lives in `src/config/site.ts`.
 
 ## Commands
 
@@ -47,9 +47,9 @@ npm run import:episodes
 
 ## Current limitations
 
-- Booking and prayer forms validate and confirm in the browser only
-- Submissions are not stored, emailed, or sent anywhere
-- Logo, photography, contact email, social URLs, and testimonials are pending
+- Booking and prayer forms validate in the browser, confirm on the page, and send through HighLevel
+- Prayer text is not stored in the browser or placed in the page address
+- Photography, contact email, social URLs, and testimonials are pending
 - Brand colors and type follow the locked kit in `docs/DESIGN-SYSTEM.md`
 - Legal copy requires client/legal review
 
@@ -72,7 +72,7 @@ Locked colors and fonts live in `src/app/globals.css` (`:root` tokens). See `doc
 
 ## Vercel
 
-Import the GitHub repo into Vercel. Framework: Next.js. Optional env: `NEXT_PUBLIC_SITE_URL`.
+Import the GitHub repo into Vercel. Framework: Next.js. Optional env: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GHL_TRACKING_ID`.
 
 See `docs/DEPLOYMENT.md`.
 

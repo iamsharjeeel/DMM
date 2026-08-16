@@ -16,7 +16,7 @@ Locked **Modern Heritage Ministry** system. Change tokens in `src/app/globals.cs
 | `--brand-muted` | `#6E746F` | Brand muted; small secondary text uses `--brand-ink-soft` for contrast |
 | `--brand-error` | `#6F3A32` | Form errors only (functional, not a brand accent) |
 
-Gold stays restrained: 1px rules, portrait L-corners, DM ring. Not button fills, not body copy, not eyebrows.
+Gold stays restrained: 1px rules, portrait L-corners, Wordmark gold ring. Not button fills, not body copy, not eyebrows.
 
 ## Typography
 
@@ -43,7 +43,7 @@ Ivory / cream / sage / forest. Hairline `--brand-rule`. Radius stays 1–2px. No
 ## Components
 
 - `Button` / `ButtonLink`: primary forest, secondary forest outline, invert on forest, ghost underline
-- `Wordmark`: forest DM mark with gold ring; invert on footer
+- `Wordmark`: forest square with the white geometric mark and gold ring; invert on footer
 - `PastorImage`: 4×5 portrait reservation with gold L-corners; swap via `site.photography`
 - Episode archive: index rows, sage discovery band, forest pinned player
 - `SectionHeading`, `Eyebrow`, `GoldRule`, `PullQuote`, `Reveal`
@@ -59,4 +59,4 @@ Light and dark alternate. Dense lists follow a quieter band. Speaking uses fores
 
 ## Logo and photography
 
-Wordmark until `public/brand/logo.svg` exists. Photography paths in `src/config/site.ts`. Do not generate a likeness of Pastor Mayes.
+The supplied geometric mark lives at `public/brand/logo.svg` (white strokes, transparent background) and is centered in the Wordmark box. Photography paths live in `src/config/site.ts`. Do not generate a likeness of Pastor Mayes.

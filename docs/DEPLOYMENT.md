@@ -47,9 +47,12 @@ Optional:
 
 ```text
 NEXT_PUBLIC_SITE_URL=https://your-production-domain
+NEXT_PUBLIC_GHL_TRACKING_ID=
 ```
 
-Use it for canonical URLs, sitemap, and Open Graph. A hostname without a protocol (for example `dmm-omega.vercel.app`) is accepted and normalized to HTTPS. Do not add CRM, API, or database variables for Phase 1.
+Use `NEXT_PUBLIC_SITE_URL` for canonical URLs, sitemap, and Open Graph. A hostname without a protocol (for example `dmm-omega.vercel.app`) is accepted and normalized to HTTPS.
+
+`NEXT_PUBLIC_GHL_TRACKING_ID` is optional. The HighLevel tracking ID is already set in `src/config/site.ts`. Only set the env var to override it. It is a public client ID, not a secret. Do not add webhooks, APIs, or database variables.
 
 ## 8. Domain
 
@@ -69,7 +72,9 @@ Merging to the production branch (usually `main`) deploys production.
 - Listen archive loads, filters, and the pinned player updates
 - Speaking `#booking` is reachable from **Book Pastor Mayes**
 - Prayer conditional fields work
-- Forms show confirmation without claiming email delivery
+- Booking and prayer forms show confirmation and send through HighLevel
 - `/sitemap.xml` and `/robots.txt` resolve
 - Social share images load
 - No social icons appear until URLs are configured
+- Wordmark mark is white and centered in the header and footer boxes
+- Response headers include nosniff, referrer policy, and CSP

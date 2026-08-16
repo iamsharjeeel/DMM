@@ -93,6 +93,15 @@ export const speaking = {
     supporting:
       "Tell us a little about your event and our team will follow up with you.",
     submitLabel: "Submit Booking Request",
+    formId: "speaking-booking",
+    confirmation: {
+      heading: "Your booking request has been received",
+      body: "Thank you for your interest in inviting Pastor Donald Mayes. Our team will follow up with you.",
+      notice:
+        "This booking form is a temporary request form. A scheduling calendar will replace it. Your details are received by Donald Mayes Ministries for follow-up.",
+    },
+    notice:
+      "Submitting this form sends your request to Donald Mayes Ministries so the team can follow up. A scheduling calendar will replace this form.",
   },
   seo: {
     title: "Invite Pastor Donald Mayes to Speak",

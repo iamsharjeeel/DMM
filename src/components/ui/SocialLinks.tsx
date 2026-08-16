@@ -26,6 +26,8 @@ export function SocialLinks({ invert = false }: { invert?: boolean }) {
         <li key={link.network}>
           <a
             href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
             className={
               invert
                 ? "text-sm text-cream/70 underline-offset-4 hover:text-cream hover:underline"

@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { HighLevelTracking } from "@/components/layout/HighLevelTracking";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { site } from "@/config/site";
@@ -60,6 +61,7 @@ export const viewport: Viewport = {
   themeColor: "#183A32",
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
@@ -75,6 +77,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <HighLevelTracking />
       </body>
     </html>
   );

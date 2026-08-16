@@ -54,9 +54,12 @@ export const prayer = {
     heading: "Your Prayer Request Has Been Received",
     body: "Thank you for trusting us with your request. Our ministry will be praying with you.",
     motto: site.motto,
+    notice:
+      "Your prayer request has been sent to Donald Mayes Ministries so we can pray with you. Prayer text is not stored in your browser or placed in the page address.",
   },
+  formId: "prayer-request",
   frontendNotice:
-    "This form currently confirms on this page only. Requests are not stored or sent until submission handling is implemented.",
+    "Submitting this form sends your prayer request to Donald Mayes Ministries so we can pray with you. Prayer text is not stored in your browser or placed in the page address.",
   seo: {
     title: "Prayer Requests",
     description:

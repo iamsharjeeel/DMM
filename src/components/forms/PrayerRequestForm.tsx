@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/forms/Checkbox";
 import { controlClassName, FormField } from "@/components/forms/FormField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
-import { isValidEmail, requiredText } from "@/lib/validation";
+import { isValidEmail, requiredText, tooLong, fieldMax } from "@/lib/validation";
 import type {
   ContactMethod,
   FieldErrors,
@@ -30,6 +30,15 @@ function validate(values: PrayerRequestValues): FieldErrors<PrayerRequestValues>
   const errors: FieldErrors<PrayerRequestValues> = {};
   const request = requiredText(values.request, "Your prayer request");
   if (request) errors.request = request;
+  const requestLength = tooLong(values.request, fieldMax.request, "Your prayer request");
+  if (requestLength) errors.request = requestLength;
+
+  const nameLength = tooLong(values.name, fieldMax.name, "Name");
+  if (nameLength) errors.name = nameLength;
+  const emailLength = tooLong(values.email, fieldMax.email, "Email");
+  if (emailLength) errors.email = emailLength;
+  const phoneLength = tooLong(values.phone, fieldMax.phone, "Phone");
+  if (phoneLength) errors.phone = phoneLength;
 
   if (values.email && !isValidEmail(values.email)) {
     errors.email = "Enter a valid email address.";
@@ -127,7 +136,7 @@ export function PrayerRequestForm() {
           heading={prayer.confirmation.heading}
           body={prayer.confirmation.body}
           motto={prayer.confirmation.motto}
-          notice={prayer.frontendNotice}
+          notice={prayer.confirmation.notice}
           onReset={() => {
             setValues(empty);
             setErrors({});
@@ -142,6 +151,8 @@ export function PrayerRequestForm() {
   return (
     <form
       ref={formRef}
+      id={prayer.formId}
+      name={prayer.formId}
       noValidate
       onSubmit={handleSubmit}
       className="grid gap-7"
@@ -150,6 +161,7 @@ export function PrayerRequestForm() {
         <input
           name="name"
           autoComplete="name"
+          maxLength={fieldMax.name}
           value={values.name}
           onChange={(event) => update("name", event.target.value)}
           className={controlClassName}
@@ -166,6 +178,7 @@ export function PrayerRequestForm() {
           name="email"
           type="email"
           autoComplete="email"
+          maxLength={fieldMax.email}
           value={values.email}
           onChange={(event) => update("email", event.target.value)}
           className={controlClassName}
@@ -185,6 +198,7 @@ export function PrayerRequestForm() {
           name="phone"
           type="tel"
           autoComplete="tel"
+          maxLength={fieldMax.phone}
           value={values.phone}
           onChange={(event) => update("phone", event.target.value)}
           className={controlClassName}
@@ -199,6 +213,7 @@ export function PrayerRequestForm() {
         <textarea
           name="request"
           rows={8}
+          maxLength={fieldMax.request}
           value={values.request}
           onChange={(event) => update("request", event.target.value)}
           className={`${controlClassName} min-h-48 py-3`}

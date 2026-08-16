@@ -35,7 +35,7 @@ No route handlers. No server actions. No fake fetch calls. Episode RSS is import
 
 ## Component hierarchy
 
-- `layout.tsx` → SkipLink, JSON-LD, Header, children, Footer
+- `layout.tsx` → SkipLink, JSON-LD, Header, children, Footer, HighLevelTracking
 - Pages compose section components
 - Sections read from `src/content/*`
 - Shared primitives in `src/components/ui/`
@@ -53,13 +53,17 @@ Copy is separated from JSX:
 - `src/content/episodes.ts`
 - `src/content/episodes.catalogue.json` (generated from RSS)
 
-Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`.
+Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`. HighLevel script src and default tracking ID: `highLevelTracking` in the same file.
 
 ## Forms
 
-Client-side validation only. Success is local React state. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
+Client-side validation with native `<form>` submit. Success is local React state after `preventDefault`, so the visitor stays on the page. HighLevel external tracking captures the submit. Form ids: `speaking-booking`, `prayer-request`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
 
-Do not add persistence or network code here without an explicit later project.
+Do not persist prayer text to localStorage, URLs, or the console. Do not add webhooks, APIs, or a HighLevel calendar unless instructed.
+
+## HighLevel
+
+`src/components/layout/HighLevelTracking.tsx` loads `https://link.msgsndr.com/js/external-tracking.js` with `next/script` (`afterInteractive`) and `data-tracking-id`. Default ID is in `src/config/site.ts`. Optional override: `NEXT_PUBLIC_GHL_TRACKING_ID`. This is a public client ID, not a secret.
 
 ## Metadata
 
@@ -78,5 +82,9 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
 - Social links render only when URLs are non-null
-- Forms disclose that delivery is not connected
+- Forms disclose that HighLevel receives the submission for ministry follow-up
 - Episode catalogue refreshes only through `npm run import:episodes`
+
+## Security
+
+Classification: Frontend / Marketing. Production headers are set in `next.config.ts` (nosniff, referrer policy, permissions policy, SAMEORIGIN framing, CSP allowing Next.js plus HighLevel `link.msgsndr.com`). The HighLevel tracking ID is a public client ID. Prayer text is not written to localStorage, URLs, or the console. This app has no owned form POST endpoint.
