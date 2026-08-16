@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-source-sans), "Source Sans 3", ui-sans-serif, system-ui,
+    sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", ui-serif, Georgia,
+    serif;
+  --color-ivory: var(--brand-ivory);
+  --color-ivory-deep: var(--brand-ivory-deep);
+  --color-paper: var(--brand-paper);
+  --color-ink: var(--brand-ink);
+  --color-ink-soft: var(--brand-ink-soft);
+  --color-navy: var(--brand-navy);
+  --color-navy-deep: var(--brand-navy-deep);
+  --color-bronze: var(--brand-bronze);
+  --color-bronze-dark: var(--brand-bronze-dark);
+  --color-rule: var(--brand-rule);
+  --color-prayer: var(--brand-prayer);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --max-width-content: 72rem;
+  --max-width-narrow: 40rem;
+  --max-width-wide: 80rem;
+}
+
+:root {
+  --brand-ivory: #f6f1e8;
+  --brand-ivory-deep: #ece4d4;
+  --brand-paper: #fbf8f2;
+  --brand-ink: #1c1917;
+  --brand-ink-soft: #57534e;
+  --brand-navy: #1b2636;
+  --brand-navy-deep: #121922;
+  --brand-bronze: #9c7a4a;
+  --brand-bronze-dark: #7c5f38;
+  --brand-rule: #d9d0c1;
+  --brand-prayer: #f4eee4;
+  --header-height: 4.5rem;
+  --space-section: clamp(4.5rem, 8vw, 7.5rem);
+  --shadow-soft: 0 18px 40px rgb(27 38 54 / 0.08);
+  --motion-fast: 160ms;
+  --motion-med: 320ms;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  background: var(--brand-ivory);
+  color: var(--brand-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brand-bronze) 28%, white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-bronze);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.section-space {
+  padding-block: var(--space-section);
+}
+
+.reveal {
+  animation: rise 0.7s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
