@@ -59,14 +59,14 @@ Provisional. Requires review once collection and contact details exist.
 
 ## Vercel readiness
 
-Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEXT_PUBLIC_SITE_URL`.
+Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`.
 
 ## Verification (2026-08-16)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`; layout props do not depend on generated `LayoutProps`)
 - production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
-- production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
+- production build with `NEXT_PUBLIC_SITE_URL=dmm-omega.vercel.app`: pass (Vercel hostname-only env)
 - route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
 
 ## Recommended next action

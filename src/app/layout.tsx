@@ -6,7 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { site } from "@/config/site";
-import { getSiteUrl } from "@/lib/site-url";
+import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
 
 const display = Cormorant_Garamond({
@@ -24,7 +24,7 @@ const sans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(getSiteUrl()),
+  metadataBase: getMetadataBase(),
   title: {
     default: `${site.name} | ${site.motto}`,
     template: `%s | ${site.name}`,
