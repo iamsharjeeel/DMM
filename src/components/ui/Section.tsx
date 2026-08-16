@@ -9,14 +9,13 @@ export function Section({
   children: React.ReactNode;
   className?: string;
   id?: string;
-  tone?: "ivory" | "paper" | "navy" | "prayer" | "deep";
+  tone?: "ivory" | "cream" | "sage" | "forest";
 }) {
   const tones = {
     ivory: "bg-ivory text-ink",
-    paper: "bg-paper text-ink",
-    navy: "bg-navy text-paper",
-    prayer: "bg-prayer text-ink",
-    deep: "bg-ivory-deep text-ink",
+    cream: "bg-cream text-ink",
+    sage: "bg-sage text-ink",
+    forest: "tone-forest",
   } as const;
 
   return (

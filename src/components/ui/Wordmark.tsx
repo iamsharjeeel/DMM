@@ -13,25 +13,25 @@ export function Wordmark({
     <Link
       href={site.routes.home}
       className={cn(
-        "group flex items-center gap-3 no-underline",
-        invert ? "text-paper" : "text-ink",
+        "group flex min-w-0 items-center gap-3 no-underline",
+        invert ? "text-cream" : "text-ink",
       )}
     >
       <span
         aria-hidden="true"
         className={cn(
-          "grid h-10 w-10 place-items-center border text-[0.7rem] font-medium tracking-[0.18em]",
-          invert
-            ? "border-paper/30 text-paper"
-            : "border-bronze/50 text-bronze-dark",
+          "relative grid h-10 w-10 shrink-0 place-items-center text-[0.68rem] font-semibold tracking-[0.18em]",
+            invert
+                ? "bg-cream/10 text-cream ring-1 ring-gold/80"
+            : "bg-forest text-cream ring-1 ring-gold/80",
         )}
       >
         DM
       </span>
-      <span className="flex flex-col leading-none">
+      <span className="flex min-w-0 flex-col leading-none">
         <span
           className={cn(
-            "font-display text-[1.15rem] font-medium tracking-tight",
+            "font-display text-[1.2rem] tracking-tight",
             compact && "text-base",
           )}
         >
@@ -39,8 +39,8 @@ export function Wordmark({
         </span>
         <span
           className={cn(
-            "mt-1 text-[0.68rem] font-medium tracking-[0.22em] uppercase",
-            invert ? "text-paper/70" : "text-ink-soft",
+            "mt-1 text-[0.64rem] font-semibold tracking-[0.2em] uppercase",
+            invert ? "text-cream/70" : "text-ink-soft",
           )}
         >
           Ministries

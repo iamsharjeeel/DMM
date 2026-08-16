@@ -37,7 +37,7 @@ export function FormField({
       <label htmlFor={id} className="block text-sm font-medium text-ink">
         {label}
         {required ? (
-          <span className="text-bronze-dark">
+          <span className="text-forest">
             {" "}
             *
             <span className="sr-only"> required</span>
@@ -56,13 +56,13 @@ export function FormField({
       <div
         className={cn(
           error &&
-            "[&_input]:border-bronze-dark [&_select]:border-bronze-dark [&_textarea]:border-bronze-dark",
+            "[&_input]:border-error [&_select]:border-error [&_textarea]:border-error",
         )}
       >
         {field}
       </div>
       {error ? (
-        <p id={errorId} role="alert" className="text-sm text-bronze-dark">
+        <p id={errorId} role="alert" className="text-sm text-error">
           {error}
         </p>
       ) : null}
@@ -71,4 +71,4 @@ export function FormField({
 }
 
 export const controlClassName =
-  "min-h-12 w-full rounded-sm border border-rule bg-paper px-3 py-2 text-base text-ink transition-colors focus:border-bronze focus:outline-none";
+  "min-h-12 w-full rounded-sm border border-rule bg-ivory px-3.5 py-2.5 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-forest focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--brand-forest)_16%,transparent)] focus:outline-none";

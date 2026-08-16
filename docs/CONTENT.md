@@ -17,8 +17,7 @@ Do not paraphrase these into generic ministry marketing.
 ## Temporary placeholders
 
 - Text wordmark + DM monogram (final logo not supplied)
-- Ivory / charcoal / navy / bronze token palette
-- Photography frames labeled “Photography pending”
+- Photography frames labeled “Photography forthcoming”
 - Generated OG images using motto/headlines
 - Suggested domain fallback `https://donaldmayesministries.com` for metadata when env is unset
 - Form “To be discussed” topic option (operational, not a ministry topic)
@@ -28,7 +27,6 @@ Do not paraphrase these into generic ministry marketing.
 ## Client inputs still required
 
 - Final logo
-- Final colors
 - Pastor Mayes photography
 - Confirmed public email
 - Facebook / Instagram / YouTube URLs

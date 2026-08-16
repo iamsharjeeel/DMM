@@ -13,10 +13,11 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1b2636",
-          color: "#f6f1e8",
-          fontSize: 12,
+          background: "#183A32",
+          color: "#FFFDF8",
+          fontSize: 11,
           letterSpacing: "0.08em",
+          fontWeight: 600,
         }}
       >
         DM

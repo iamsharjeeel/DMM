@@ -2,20 +2,20 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { GoldRule } from "@/components/ui/GoldRule";
 
 export default function NotFound() {
   return (
     <main id="main" className="bg-ivory">
-      <Container width="narrow" className="py-24 text-center">
-        <p className="text-xs tracking-[0.28em] uppercase text-bronze-dark">
-          Page not found
-        </p>
-        <h1 className="mt-4 font-display text-5xl">This page is not here.</h1>
+      <Container width="narrow" className="py-24">
+        <p className="eyebrow text-forest">Page not found</p>
+        <GoldRule className="mt-5" />
+        <h1 className="display-lg mt-5">This page is not here.</h1>
         <p className="mt-6 text-lg text-ink-soft">
           The page you requested is not part of the {site.name} website.
         </p>
-        <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-          <ButtonLink href={site.routes.home} variant="navy">
+        <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <ButtonLink href={site.routes.home} variant="primary">
             Return home
           </ButtonLink>
           <ButtonLink href={site.routes.prayer} variant="secondary">
@@ -23,7 +23,10 @@ export default function NotFound() {
           </ButtonLink>
         </div>
         <p className="mt-8">
-          <Link href={site.routes.speaking} className="text-bronze-dark underline">
+          <Link
+            href={site.routes.speaking}
+            className="text-forest underline underline-offset-4 hover:text-forest-deep"
+          >
             Invite Pastor Mayes to speak
           </Link>
         </p>

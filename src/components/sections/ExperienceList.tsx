@@ -1,5 +1,6 @@
 import { home } from "@/content/home";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -9,17 +10,22 @@ export function ExperienceList() {
   return (
     <Section>
       <Container>
-        <SectionHeading heading={experience.heading} />
-        <ol className="mt-12 grid gap-x-12 sm:grid-cols-2">
+        <Reveal>
+          <SectionHeading heading={experience.heading} />
+        </Reveal>
+        <ol className="mt-12 grid gap-x-16 sm:grid-cols-2">
           {experience.items.map((item, index) => (
             <li
               key={item}
               className="flex gap-5 border-t border-rule py-5"
             >
-              <span className="w-8 shrink-0 text-sm tracking-[0.16em] text-bronze-dark">
+              <span
+                aria-hidden="true"
+                className="w-10 shrink-0 font-display text-xl italic text-forest"
+              >
                 {String(index + 1).padStart(2, "0")}
               </span>
-              <span className="text-lg leading-snug">{item}</span>
+              <span className="pt-0.5 text-lg leading-snug">{item}</span>
             </li>
           ))}
         </ol>

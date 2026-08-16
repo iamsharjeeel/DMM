@@ -2,6 +2,9 @@
 
 ## 2026-08-16
 
+- Applied the locked Modern Heritage Ministry system: Deep Forest, Heritage Gold, Instrument Serif, and Manrope across every page
+- Rebuilt layout, section composition, forms, motion, and OG/icons around design tokens and shared primitives
+- Portaled the mobile menu overlay so it is not clipped by the sticky header
 - Built Phase 1 Next.js site: Home, Speaking, Prayer Requests, Privacy, Terms, and 404
 - Added centralized temporary brand tokens, content files, and site config
 - Implemented accessible frontend-only booking and prayer forms with confirmation states

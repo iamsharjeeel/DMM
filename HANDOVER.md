@@ -2,7 +2,7 @@
 
 ## Current build state
 
-Phase 1 production-ready informational site. Temporary branding. No backend.
+Phase 1 informational site with the locked **Modern Heritage Ministry** visual system applied. No backend.
 
 ## Completed pages
 
@@ -15,13 +15,14 @@ Phase 1 production-ready informational site. Temporary branding. No backend.
 
 ## Implemented functionality
 
-- Sticky header with Home, Speaking, Prayer Requests, and Book Pastor Mayes CTA
-- Accessible mobile menu
-- Footer with motto, nav, copyright, legal links
+- Sticky header with Home, Speaking, Prayer Requests, and Book Pastor Mayes CTA; active nav state
+- Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
+- Footer with motto, nav, booking CTA, copyright, legal links
 - Speaking booking form: validation, required/optional states, success state
 - Prayer form: conditional follow-up fields, consent, success state
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD
 - Photography and logo placeholders that can be swapped from config/tokens
+- Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
 
 ## Frontend-only forms
 
@@ -40,7 +41,6 @@ Honest notices are shown on both forms so this is not mistaken for live delivery
 ## Pending client assets
 
 - Final logo → `public/brand/logo.svg` (then wire `Wordmark`)
-- Final brand colors → `:root` tokens in `src/app/globals.css`
 - Pastor photography → `public/images/pastor/` and paths in `src/config/site.ts`
 - Confirmed contact email → `site.email`
 - Social URLs → `site.social`
@@ -48,6 +48,8 @@ Honest notices are shown on both forms so this is not mistaken for live delivery
 - Production domain → `NEXT_PUBLIC_SITE_URL`
 - Legal review of Privacy and Terms
 - Real form submission (separate future project)
+
+Brand colors and type are no longer pending: they follow the locked kit in `docs/DESIGN-SYSTEM.md`.
 
 ## Intentionally not implemented
 
@@ -64,11 +66,11 @@ Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEX
 ## Verification (2026-08-16)
 
 - lint: pass (`npm run lint`)
-- typecheck: pass (`npm run typecheck`; layout props do not depend on generated `LayoutProps`)
+- typecheck: pass (`npm run typecheck`)
 - production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
-- production build with `NEXT_PUBLIC_SITE_URL=dmm-omega.vercel.app`: pass (Vercel hostname-only env)
-- route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
+- route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images, icon return 200; unknown path returns 404; `#booking` present; testimonials hidden
+- visual: desktop, tablet, and 390px mobile; booking and prayer forms validate and confirm; mobile menu is a full-screen overlay
 
 ## Recommended next action
 
-Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo, colors, and Pastor Mayes photography.
+Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo and Pastor Mayes photography.

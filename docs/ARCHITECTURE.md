@@ -10,7 +10,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | --- | --- | --- |
 | `/` | `src/app/page.tsx` | Home / About |
 | `/speaking` | `src/app/speaking/page.tsx` | Includes `#booking` |
-| `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer page tone |
+| `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer ivory/cream page |
 | `/privacy` | `src/app/privacy/page.tsx` | |
 | `/terms` | `src/app/terms/page.tsx` | |
 | 404 | `src/app/not-found.tsx` | |
@@ -23,7 +23,9 @@ Server Components by default.
 
 Client Components:
 
-- `MobileNavigation` — open state, focus, escape, scroll lock
+- `HeaderNav` — active route
+- `MobileNavigation` — open state, focus trap, escape, scroll lock, portal overlay
+- `Reveal` — intersection observer entrance
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
 
@@ -34,6 +36,7 @@ No route handlers. No server actions. No fake fetch calls.
 - `layout.tsx` → SkipLink, JSON-LD, Header, children, Footer
 - Pages compose section components
 - Sections read from `src/content/*`
+- Shared primitives in `src/components/ui/`
 - Forms use shared field primitives
 
 ## Content architecture
@@ -62,11 +65,12 @@ JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person only
 
 ## Design tokens
 
-All temporary brand values are CSS custom properties in `src/app/globals.css`. Tailwind `@theme inline` maps them to utilities (`bg-ivory`, `text-navy`, `font-display`, `max-w-content`).
+Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind `@theme inline` maps them to utilities (`bg-forest`, `text-ink`, `font-display`, `max-w-content`).
 
 ## Important decisions
 
-- No shadcn/SaaS card system — editorial layout
+- Editorial layout over card grids
+- Heritage Gold is decorative only
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
 - Social links render only when URLs are non-null
