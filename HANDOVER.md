@@ -69,6 +69,14 @@ Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEX
 - production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
 - route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
 
+## Cloud Agent environment
+
+- Config: `.cursor/environment.json` (repository-managed, highest precedence)
+- Install: `npm ci` (deterministic, idempotent)
+- Terminal: `dev-server` runs `npm run dev` (Next.js on port 3000)
+- No secrets required; `NEXT_PUBLIC_SITE_URL` optional
+- Verified end to end: install, lint, typecheck, build, all routes (200), 404, prayer + booking forms
+
 ## Recommended next action
 
 Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo, colors, and Pastor Mayes photography.
