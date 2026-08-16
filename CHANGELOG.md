@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-08-17
+
+- Added the Loving Everyone Always audio archive at `/episodes`, with RSS import, search, sort, filters, and a pinned native player
+- Added a Listen item to primary navigation
+
 ## 2026-08-16
 
 - Applied the locked Modern Heritage Ministry system: Deep Forest, Heritage Gold, Instrument Serif, and Manrope across every page

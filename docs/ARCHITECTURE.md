@@ -9,6 +9,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | Path | File | Notes |
 | --- | --- | --- |
 | `/` | `src/app/page.tsx` | Home / About |
+| `/episodes` | `src/app/episodes/page.tsx` | Loving Everyone Always archive |
 | `/speaking` | `src/app/speaking/page.tsx` | Includes `#booking` |
 | `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer ivory/cream page |
 | `/privacy` | `src/app/privacy/page.tsx` | |
@@ -28,8 +29,9 @@ Client Components:
 - `Reveal` — intersection observer entrance
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
+- `EpisodesArchive` — search, filters, selection, native audio
 
-No route handlers. No server actions. No fake fetch calls.
+No route handlers. No server actions. No fake fetch calls. Episode RSS is imported by `scripts/import-episodes.mjs`, not fetched at request time.
 
 ## Component hierarchy
 
@@ -48,8 +50,10 @@ Copy is separated from JSX:
 - `src/content/prayer.ts`
 - `src/content/legal.ts`
 - `src/content/navigation.ts`
+- `src/content/episodes.ts`
+- `src/content/episodes.catalogue.json` (generated from RSS)
 
-Site-wide values: `src/config/site.ts`.
+Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`.
 
 ## Forms
 
@@ -61,7 +65,7 @@ Do not add persistence or network code here without an explicit later project.
 
 `createMetadata()` sets title, description, canonical, Open Graph, and Twitter fields. `metadataBase` comes from `getSiteUrl()` (`NEXT_PUBLIC_SITE_URL`, then Vercel URL, then `https://donaldmayesministries.com`).
 
-JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person only from documented facts.
+JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person only from documented facts. `/episodes` adds PodcastSeries from the imported catalogue.
 
 ## Design tokens
 
@@ -75,3 +79,4 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 - Testimonials component is real but hidden while the array is empty
 - Social links render only when URLs are non-null
 - Forms disclose that delivery is not connected
+- Episode catalogue refreshes only through `npm run import:episodes`

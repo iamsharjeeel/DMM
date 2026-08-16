@@ -181,6 +181,10 @@ body {
   .img-zoom:hover img {
     transform: scale(1.035);
   }
+
+  .episode-row:hover .episode-title {
+    color: var(--brand-forest);
+  }
 }
 
 .reveal {
@@ -224,7 +228,10 @@ body {
   .reveal,
   .reveal[data-ready],
   .hero-enter,
-  .img-zoom img {
+  .img-zoom img,
+  .episode-row,
+  .episode-title,
+  .archive-results {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

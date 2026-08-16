@@ -2,11 +2,12 @@
 
 ## Current build state
 
-Phase 1 informational site with the locked **Modern Heritage Ministry** visual system applied. No backend.
+Phase 1 informational site with the locked **Modern Heritage Ministry** visual system applied. No backend. Includes the Loving Everyone Always audio archive at `/episodes`.
 
 ## Completed pages
 
 - `/` Home / About
+- `/episodes` Audio archive
 - `/speaking`
 - `/prayer-requests`
 - `/privacy`
@@ -15,14 +16,24 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 
 ## Implemented functionality
 
-- Sticky header with Home, Speaking, Prayer Requests, and Book Pastor Mayes CTA; active nav state
+- Sticky header with Home, Listen, Speaking, Prayer Requests, and Book Pastor Mayes CTA; active nav state
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
 - Footer with motto, nav, booking CTA, copyright, legal links
 - Speaking booking form: validation, required/optional states, success state
 - Prayer form: conditional follow-up fields, consent, success state
-- SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD
+- `/episodes` searchable, sortable RSS-backed catalogue with a pinned native audio player
+- SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - Photography and logo placeholders that can be swapped from config/tokens
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
+
+## Audio archive
+
+- Source feed: `https://anchor.fm/s/328aea1c/podcast/rss`
+- Importer: `npm run import:episodes` writes `src/content/episodes.catalogue.json`
+- Render logic reads the committed JSON only; the importer is not part of the Vercel build
+- Default selected episode is *After Easter Now What?*
+- Playback uses the RSS enclosure URL in a single `<audio>` element; errors show “Playback is being connected”
+- RSS owner email is not displayed
 
 ## Frontend-only forms
 
@@ -37,6 +48,7 @@ Honest notices are shown on both forms so this is not mistaken for live delivery
 - Social icons hidden until URLs are set
 - Testimonials component exists but is hidden (`speaking.testimonials.items` is empty)
 - Legal copy is provisional
+- Episode artwork currently uses the show image from RSS for every row
 
 ## Pending client assets
 
@@ -63,14 +75,13 @@ Provisional. Requires review once collection and contact details exist.
 
 Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`.
 
-## Verification (2026-08-16)
+## Verification (2026-08-17)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
-- production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
-- route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images, icon return 200; unknown path returns 404; `#booking` present; testimonials hidden
-- visual: desktop, tablet, and 390px mobile; booking and prayer forms validate and confirm; mobile menu is a full-screen overlay
+- production build: pass (`npm run build`, Next.js 16.3.1, `/episodes` static)
+- routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
 
 ## Recommended next action
 
-Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo and Pastor Mayes photography.
+Import the repo into Vercel and attach the production domain when it is confirmed. In parallel, collect logo and Pastor Mayes photography. Re-run `npm run import:episodes` when new messages are published.

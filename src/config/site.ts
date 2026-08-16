@@ -51,11 +51,16 @@ export const site = {
   },
   routes: {
     home: "/",
+    episodes: "/episodes",
     speaking: "/speaking",
     prayer: "/prayer-requests",
     privacy: "/privacy",
     terms: "/terms",
     booking: "/speaking#booking",
+  },
+  podcast: {
+    name: "Loving Everyone Always",
+    rssUrl: "https://anchor.fm/s/328aea1c/podcast/rss",
   },
 } as const;
 

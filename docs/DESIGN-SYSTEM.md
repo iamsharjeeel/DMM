@@ -38,13 +38,14 @@ Utilities: `.display-xl`, `.display-lg`, `.display-md`, `.eyebrow`.
 
 ## Surfaces and radius
 
-Ivory / cream / sage / forest. Hairline `--brand-rule`. Radius stays 1–2px. No SaaS cards or heavy shadows. Forest bands use a faint grain overlay.
+Ivory / cream / sage / forest. Hairline `--brand-rule`. Radius stays 1–2px. No SaaS cards or heavy shadows. Forest bands use a faint grain overlay. The `/episodes` player uses the same forest grain; gold marks the active archive row and artwork corners only.
 
 ## Components
 
 - `Button` / `ButtonLink`: primary forest, secondary forest outline, invert on forest, ghost underline
 - `Wordmark`: forest DM mark with gold ring; invert on footer
 - `PastorImage`: 4×5 portrait reservation with gold L-corners; swap via `site.photography`
+- Episode archive: index rows, sage discovery band, forest pinned player
 - `SectionHeading`, `Eyebrow`, `GoldRule`, `PullQuote`, `Reveal`
 - Forms: ivory fields, forest focus ring, explicit labels, associated errors
 
@@ -54,7 +55,7 @@ Hero fade/rise. `Reveal` for below-fold entrance. Button lift. Portrait zoom on 
 
 ## Page rhythm
 
-Light and dark alternate. Dense lists follow a quieter band. Speaking uses forest for professional weight. Prayer stays ivory/cream, quieter, no dark hero.
+Light and dark alternate. Dense lists follow a quieter band. Speaking uses forest for professional weight. Prayer stays ivory/cream, quieter, no dark hero. The episode archive is an editorial index with a forest listening object, not a streaming dashboard.
 
 ## Logo and photography
 

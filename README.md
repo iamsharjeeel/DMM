@@ -31,15 +31,19 @@ npm run lint
 npm run typecheck
 npm run build
 npm run start
+npm run import:episodes
 ```
 
 ## Pages
 
 - `/` Home / About
+- `/episodes` Loving Everyone Always audio archive
 - `/speaking` Speaking + booking form
 - `/prayer-requests` Prayer request form
 - `/privacy` Privacy Policy (provisional)
 - `/terms` Terms (provisional)
+
+`/episodes` reads the committed RSS catalogue in `src/content/episodes.catalogue.json`. Refresh it with `npm run import:episodes`.
 
 ## Current limitations
 
@@ -54,10 +58,12 @@ npm run start
 ```text
 src/
   app/            routes, metadata, OG images, sitemap, robots
-  components/     layout, sections, forms, UI
-  content/        client-approved copy
+  components/     layout, sections, forms, episodes, UI
+  content/        client-approved copy and the episode catalogue JSON
   config/site.ts  ministry name, routes, social, asset paths
-  lib/            metadata, JSON-LD, OG helper, validation
+  lib/            metadata, JSON-LD, OG helper, validation, episode helpers
+scripts/
+  import-episodes.mjs  RSS importer for the audio archive
 ```
 
 ## Brand

@@ -55,19 +55,21 @@ Editorial and human. Not SaaS, not flashy, not aggressive.
 
 ## Phase 1 objectives
 
-Three primary pages:
+Four primary pages:
 
 1. **Home / About** — Who is Donald Mayes, what the ministry is, how to connect
-2. **Speaking** — professional speaker one-sheet + booking form
-3. **Prayer Requests** — personal, warm, simple prayer form
+2. **Listen** — Loving Everyone Always audio archive
+3. **Speaking** — professional speaker one-sheet + booking form
+4. **Prayer Requests** — personal, warm, simple prayer form
 
 Plus Privacy, Terms, and 404.
 
-Navigation stays: **Home | Speaking | Prayer Requests | Book Pastor Mayes**
+Navigation stays: **Home | Listen | Speaking | Prayer Requests | Book Pastor Mayes**
 
 ## Page purposes
 
 - Home answers identity, message, and connection quickly
+- Listen is the Loving Everyone Always audio archive: find a message and play it
 - Speaking is conversion-aware without feeling sales-heavy
 - Prayer must feel different: calm, safe, human. Not a lead form
 

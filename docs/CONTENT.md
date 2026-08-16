@@ -11,8 +11,10 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Speaking headline, body, five topics, audience list, booking intro
 - Prayer headline, supporting lines, form labels, confirmation copy
 - Footer copyright: © 2026 Donald Mayes Ministries, LLC. All Rights Reserved.
+- Listen page framing copy in `src/content/episodes.ts`
+- Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
-Do not paraphrase these into generic ministry marketing.
+Do not paraphrase these into generic ministry marketing. Do not rewrite RSS episode titles or descriptions.
 
 ## Temporary placeholders
 

@@ -10,7 +10,7 @@ export function HeaderNav() {
   const pathname = usePathname();
 
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-8 lg:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-6 xl:gap-8 lg:flex">
       {primaryNav.map((item) => {
         const current =
           item.href === "/"
