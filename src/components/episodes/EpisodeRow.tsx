@@ -24,7 +24,7 @@ export function EpisodeRow({
     <article
       aria-current={selected ? "true" : undefined}
       className={cn(
-        "episode-row flex min-h-[76px] items-center gap-3 border-b border-l-2 py-3 sm:min-h-[88px] sm:gap-4 lg:min-h-[96px] lg:py-3.5",
+        "episode-row flex min-h-[76px] items-center gap-3 border-b border-l-2 py-3 pl-4 sm:min-h-[88px] sm:gap-4 sm:pl-5 lg:min-h-[96px] lg:py-3.5",
         selected
           ? "border-l-gold bg-cream"
           : "border-l-transparent bg-transparent",

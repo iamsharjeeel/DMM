@@ -191,3 +191,51 @@ export function resultCountLabel(shown: number, total: number) {
   }
   return `${shown} of ${total} conversations`;
 }
+
+export const ARCHIVE_PAGE_SIZE = 5;
+
+export function pageCount(total: number, pageSize = ARCHIVE_PAGE_SIZE) {
+  if (total <= 0) {
+    return 0;
+  }
+  return Math.ceil(total / pageSize);
+}
+
+export function clampPage(
+  page: number,
+  total: number,
+  pageSize = ARCHIVE_PAGE_SIZE,
+) {
+  const last = Math.max(0, pageCount(total, pageSize) - 1);
+  return Math.min(Math.max(0, page), last);
+}
+
+export function slicePage<T>(
+  items: T[],
+  page: number,
+  pageSize = ARCHIVE_PAGE_SIZE,
+) {
+  const start = clampPage(page, items.length, pageSize) * pageSize;
+  return items.slice(start, start + pageSize);
+}
+
+export function pageForIndex(index: number, pageSize = ARCHIVE_PAGE_SIZE) {
+  if (index < 0) {
+    return 0;
+  }
+  return Math.floor(index / pageSize);
+}
+
+export function pageRangeLabel(
+  page: number,
+  total: number,
+  pageSize = ARCHIVE_PAGE_SIZE,
+) {
+  if (total <= 0) {
+    return "0 of 0";
+  }
+  const current = clampPage(page, total, pageSize);
+  const start = current * pageSize + 1;
+  const end = Math.min((current + 1) * pageSize, total);
+  return `${start}–${end} of ${total}`;
+}

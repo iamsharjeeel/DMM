@@ -220,6 +220,23 @@ body {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .archive-results {
+    animation: archive-flip var(--duration-med) var(--ease-out) both;
+  }
+}
+
+@keyframes archive-flip {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

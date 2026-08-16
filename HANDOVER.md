@@ -21,7 +21,7 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 - Footer with motto, nav, booking CTA, copyright, legal links
 - Speaking booking form: validation, required/optional states, success state
 - Prayer form: conditional follow-up fields, consent, success state
-- `/episodes` searchable, sortable RSS-backed catalogue with a pinned native audio player
+- `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - Photography and logo placeholders that can be swapped from config/tokens
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
@@ -32,6 +32,7 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 - Importer: `npm run import:episodes` writes `src/content/episodes.catalogue.json`
 - Render logic reads the committed JSON only; the importer is not part of the Vercel build
 - Default selected episode is *After Easter Now What?*
+- The archive index shows five rows per page, with previous/next list-flip for the rest
 - Playback uses the RSS enclosure URL in a single `<audio>` element; errors show “Playback is being connected”
 - RSS owner email is not displayed
 

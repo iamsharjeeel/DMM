@@ -38,6 +38,11 @@ export const episodesPage = {
   empty:
     "No conversations match these filters. Clear the archive filters to begin again.",
   indexLabel: "Episode archive",
+  pager: {
+    label: "Archive pages",
+    previous: "Previous list",
+    next: "Next list",
+  },
   player: {
     publisher: "Loving Everyone Always",
     ministry: site.name,

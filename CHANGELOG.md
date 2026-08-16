@@ -4,6 +4,7 @@
 
 - Added the Loving Everyone Always audio archive at `/episodes`, with RSS import, search, sort, filters, and a pinned native player
 - Added a Listen item to primary navigation
+- Limited the episode index to five rows per page with a list-flip pager, and moved the gold active rule off the archive number
 
 ## 2026-08-16
 
