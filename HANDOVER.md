@@ -64,7 +64,8 @@ Ready for GitHub → Vercel import. No required backend env vars. Optional: `NEX
 ## Verification (2026-08-16)
 
 - lint: pass (`npm run lint`)
-- typecheck: pass (`npm run typecheck`)
+- typecheck: pass (`npm run typecheck`; layout props do not depend on generated `LayoutProps`)
+- production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
 - production build: pass (`npm run build`, Next.js 16.3.1, all listed routes static)
 - route check: `/`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, sitemap, robots, OG images return 200; unknown path returns 404; `#booking` present; no testimonials rendered
 

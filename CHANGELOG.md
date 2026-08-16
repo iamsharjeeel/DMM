@@ -6,4 +6,4 @@
 - Added centralized temporary brand tokens, content files, and site config
 - Implemented accessible frontend-only booking and prayer forms with confirmation states
 - Added metadata, sitemap, robots, JSON-LD, and generated Open Graph images
-- Documented Vercel deployment, pending client assets, and agent operating rules
+- Added Cursor Cloud environment config (`.cursor/environment.json`)
