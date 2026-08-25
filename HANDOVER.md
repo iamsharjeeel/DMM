@@ -150,9 +150,16 @@ Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: 
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
-- form schema tests: pass (`npm run test`)
+- form schema/webhook tests: pass (`npm test`)
+- form API e2e: pass (`npm run test:forms-api`) — origin, JSON, size, honeypot, rate limit, source headers
 - production build: pass (`npm run build`, Next.js 16.3.1; `/api/forms/[form]` is dynamic)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/booking`, `/privacy`, `/terms`
+- Chromium: homepage passes at 1440, 1280, 1024, 768, 430, 390, and 375px with no horizontal overflow
+- Production visual QA: official logo, both locked portraits, CTA alignment, footer, and mobile navigation pass
+- Booking QA: HighLevel calendar load, dynamic resize, date/time interaction, minimal chrome, and 430/390/375px layouts pass
+- Native forms: prayer and speaking success only after `/api/forms/[form]` 200; mock webhook received `source: prayer-request` and `source: speaking-booking`
+- Favicon: `/icon.png`, `/apple-icon.png`, and `/favicon.ico` serve the official heart mark
+- Scroll profile: native scrolling, zero sampled long frames/tasks, approximately 16.8ms worst frame delta
 - Chromium: homepage passes at 1440, 1280, 1024, 768, 430, 390, and 375px with no horizontal overflow
 - Production visual QA: official logo, both locked portraits, CTA alignment, footer, and mobile navigation pass
 - Booking QA: HighLevel calendar load, dynamic resize, date/time interaction, minimal chrome, and 430/390/375px layouts pass
