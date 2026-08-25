@@ -9,7 +9,7 @@ import { Wordmark } from "@/components/ui/Wordmark";
 
 export function Footer() {
   return (
-    <footer className="tone-blue">
+    <footer data-site-shell className="tone-blue">
       <Container className="relative py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)_minmax(0,0.9fr)] lg:gap-16">
           <div>

@@ -85,6 +85,10 @@ body {
   overflow-x: clip;
 }
 
+body:has(.booking-page) > [data-site-shell] {
+  display: none;
+}
+
 ::selection {
   background: color-mix(in srgb, var(--brand-blue) 20%, var(--brand-ivory));
   color: var(--brand-charcoal);

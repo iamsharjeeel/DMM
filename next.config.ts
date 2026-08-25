@@ -8,6 +8,7 @@ const contentSecurityPolicy = [
   "media-src 'self' https:",
   "font-src 'self'",
   "connect-src 'self' https://link.msgsndr.com https://*.msgsndr.com https://*.leadconnectorhq.com",
+  "frame-src 'self' https://*.leadconnectorhq.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "object-src 'none'",
@@ -20,7 +21,8 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   {
     key: "Permissions-Policy",
-    value: "camera=(), microphone=(), geolocation=()",
+    value:
+      'camera=(), microphone=(), geolocation=(), payment=(self "https://api.leadconnectorhq.com")',
   },
   { key: "Content-Security-Policy", value: contentSecurityPolicy },
 ];

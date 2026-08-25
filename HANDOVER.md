@@ -10,6 +10,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - `/episodes` Audio archive
 - `/speaking`
 - `/prayer-requests`
+- `/booking` direct-link prayer-call calendar
 - `/privacy`
 - `/terms`
 - App `not-found`
@@ -24,6 +25,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
+- `/booking` embeds the HighLevel prayer-call calendar with responsive minimal DMM chrome
 - Header, footer, and mobile navigation use the transparent official DMM mark beside the Donald Mayes Ministries text identity
 - Home hero uses the locked pulpit image; Meet Pastor uses the locked yellow-jacket portrait
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
@@ -53,7 +55,7 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 
 ## Known limitations
 
-- No HighLevel calendar embed yet
+- Speaking still uses the temporary native booking form
 - Contact email not displayed (unconfirmed)
 - Social icons hidden until URLs are set
 - Testimonials component exists but is hidden (`speaking.testimonials.items` is empty)
@@ -68,7 +70,7 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
 - Production domain → `NEXT_PUBLIC_SITE_URL`
 - Legal review of Privacy and Terms
-- HighLevel calendar to replace the temporary booking form
+- HighLevel speaking calendar to replace the temporary booking form
 
 Brand colors and type follow the locked DMM blue, restrained red, warm neutral, Instrument Serif, and Manrope system in `docs/DESIGN-SYSTEM.md`.
 
@@ -86,7 +88,7 @@ Brand colors and type follow the locked DMM blue, restrained red, warm neutral, 
 
 ## Intentionally not implemented
 
-A.B.S., extra CRM systems, APIs, webhooks, databases, Supabase, email providers, marketing pixels, HighLevel calendar embed.
+A.B.S., extra CRM systems, APIs, webhooks, databases, Supabase, email providers, marketing pixels, HighLevel speaking-calendar replacement.
 
 ## Legal copy
 

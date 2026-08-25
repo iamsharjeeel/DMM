@@ -40,6 +40,7 @@ npm run import:episodes
 - `/episodes` Loving Everyone Always audio archive
 - `/speaking` Speaking + booking form
 - `/prayer-requests` Prayer request form
+- `/booking` Direct-link HighLevel prayer-call calendar
 - `/privacy` Privacy Policy (provisional)
 - `/terms` Terms (provisional)
 
@@ -49,7 +50,7 @@ npm run import:episodes
 
 - Booking and prayer forms validate in the browser, confirm on the page, and send through HighLevel
 - Prayer text is not stored in the browser or placed in the page address
-- Photography, contact email, social URLs, and testimonials are pending
+- Contact email, social URLs, and testimonials are pending
 - Brand colors and type follow the locked kit in `docs/DESIGN-SYSTEM.md`
 - Legal copy requires client/legal review
 

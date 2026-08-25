@@ -12,6 +12,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | `/episodes` | `src/app/episodes/page.tsx` | Loving Everyone Always archive |
 | `/speaking` | `src/app/speaking/page.tsx` | Includes `#booking` |
 | `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer ivory/cream page |
+| `/booking` | `src/app/booking/page.tsx` | Direct-link HighLevel prayer-call calendar |
 | `/privacy` | `src/app/privacy/page.tsx` | |
 | `/terms` | `src/app/terms/page.tsx` | |
 | 404 | `src/app/not-found.tsx` | |
@@ -64,6 +65,8 @@ Do not persist prayer text to localStorage, URLs, or the console. Do not add web
 ## HighLevel
 
 `src/components/layout/HighLevelTracking.tsx` loads `https://link.msgsndr.com/js/external-tracking.js` with `next/script` (`afterInteractive`) and `data-tracking-id`. Default ID is in `src/config/site.ts`. Optional override: `NEXT_PUBLIC_GHL_TRACKING_ID`. This is a public client ID, not a secret.
+
+`src/components/booking/HighLevelCalendar.tsx` loads the prayer-call calendar iframe and the HighLevel resize script once with `next/script`. `/booking` uses minimal route-specific chrome and is intentionally absent from primary navigation and the sitemap.
 
 ## Metadata
 

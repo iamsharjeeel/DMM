@@ -11,6 +11,7 @@
 - Removed header blur, full-section grain blending, and CSS smooth scrolling to reduce scroll repaint work
 - Integrated the official transparent DMM mark and locked Pastor Mayes hero and portrait photography
 - Refined homepage containers, image crops, section spacing, and CTA alignment across desktop, tablet, and mobile
+- Added the direct-link `/booking` prayer-call calendar with minimal DMM chrome and responsive HighLevel embedding
 
 ## 2026-08-17
 
