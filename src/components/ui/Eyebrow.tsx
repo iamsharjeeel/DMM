@@ -13,7 +13,7 @@ export function Eyebrow({
     <p
       className={cn(
         "eyebrow",
-        invert ? "text-cream/70" : "text-forest",
+        invert ? "text-cream/70" : "text-blue",
         className,
       )}
     >

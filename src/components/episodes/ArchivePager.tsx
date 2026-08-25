@@ -28,7 +28,7 @@ export function ArchivePager({
         className={cn(
           "text-[0.6875rem] font-semibold tracking-[0.16em] uppercase underline-offset-4",
           canPrevious
-            ? "text-forest hover:underline"
+            ? "text-blue hover:underline"
             : "cursor-not-allowed text-ink-soft",
         )}
       >
@@ -47,7 +47,7 @@ export function ArchivePager({
         className={cn(
           "text-[0.6875rem] font-semibold tracking-[0.16em] uppercase underline-offset-4",
           canNext
-            ? "text-forest hover:underline"
+            ? "text-blue hover:underline"
             : "cursor-not-allowed text-ink-soft",
         )}
       >

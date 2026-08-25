@@ -21,8 +21,8 @@ function FilterChip({
       className={cn(
         "rounded-sm border px-3 py-2 text-[0.6875rem] font-semibold tracking-[0.16em] uppercase transition-[color,background-color,border-color,opacity] duration-[180ms] motion-reduce:transition-none",
         pressed
-          ? "border-gold bg-cream text-forest"
-          : "border-forest/20 bg-cream text-ink hover:border-forest",
+          ? "border-red bg-cream text-blue"
+          : "border-blue/20 bg-cream text-ink hover:border-blue",
       )}
     >
       {children}
@@ -62,13 +62,13 @@ export function DiscoveryBand({
   const copy = episodesPage.discovery;
 
   return (
-    <section className="border-y border-rule bg-sage">
+    <section className="border-y border-rule bg-mist">
       <Container
         width="wide"
         className="grid gap-8 py-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] lg:items-start lg:gap-16 lg:py-10"
       >
         <div>
-          <p className="eyebrow text-forest">{copy.label}</p>
+          <p className="eyebrow text-blue">{copy.label}</p>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
             {copy.support}
           </p>
@@ -145,7 +145,7 @@ export function DiscoveryBand({
               </div>
             </fieldset>
           </div>
-          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-forest/10 pt-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-t border-blue/10 pt-4">
             <p
               className="text-[0.6875rem] font-semibold tracking-[0.16em] text-ink-soft uppercase"
               aria-live="polite"
@@ -156,7 +156,7 @@ export function DiscoveryBand({
               type="button"
               onClick={onClear}
               disabled={!canClear}
-              className="text-[0.6875rem] font-semibold tracking-[0.16em] text-forest uppercase underline-offset-4 hover:underline disabled:text-ink-soft disabled:no-underline"
+              className="text-[0.6875rem] font-semibold tracking-[0.16em] text-blue uppercase underline-offset-4 hover:underline disabled:text-ink-soft disabled:no-underline"
             >
               {copy.clear}
             </button>

@@ -2,14 +2,14 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 
 export default function NotFound() {
   return (
     <main id="main" className="bg-ivory">
       <Container width="narrow" className="py-24">
-        <p className="eyebrow text-forest">Page not found</p>
-        <GoldRule className="mt-5" />
+        <p className="eyebrow text-blue">Page not found</p>
+        <AccentRule className="mt-5" />
         <h1 className="display-lg mt-5">This page is not here.</h1>
         <p className="mt-6 text-lg text-ink-soft">
           The page you requested is not part of the {site.name} website.
@@ -25,7 +25,7 @@ export default function NotFound() {
         <p className="mt-8">
           <Link
             href={site.routes.speaking}
-            className="text-forest underline underline-offset-4 hover:text-forest-deep"
+            className="text-blue underline underline-offset-4 hover:text-blue-hover"
           >
             Invite Pastor Mayes to speak
           </Link>

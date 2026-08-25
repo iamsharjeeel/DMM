@@ -5,8 +5,11 @@ import { followUpOptions, prayer } from "@/content/prayer";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/forms/Checkbox";
 import { controlClassName, FormField } from "@/components/forms/FormField";
+import { HoneypotField } from "@/components/forms/HoneypotField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
+import { submitNativeForm } from "@/lib/forms/submit-client";
+import { FORM_GENERIC_ERROR } from "@/lib/forms/types";
 import { isValidEmail, requiredText, tooLong, fieldMax } from "@/lib/validation";
 import type {
   ContactMethod,
@@ -87,9 +90,16 @@ export function PrayerRequestForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<FieldErrors<PrayerRequestValues>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
+  const startedAtRef = useRef<number | null>(null);
   const wantsFollowUp = values.followUp === "yes";
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   useEffect(() => {
     if (submitted) {
@@ -114,8 +124,11 @@ export function PrayerRequestForm() {
     }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting) {
+      return;
+    }
     const nextErrors = validate(values);
     setErrors(nextErrors);
     const first = focusOrder.find((key) => nextErrors[key]);
@@ -126,7 +139,29 @@ export function PrayerRequestForm() {
       node?.focus();
       return;
     }
-    setSubmitted(true);
+    const website =
+      formRef.current?.querySelector<HTMLInputElement>('[name="website"]')
+        ?.value ?? "";
+    setSubmitting(true);
+    setSubmitError(null);
+    const result = await submitNativeForm("prayer-request", {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      request: values.request,
+      urgent: values.urgent,
+      followUp: values.followUp,
+      contactMethod: values.followUp === "yes" ? values.contactMethod : "",
+      consent: values.followUp === "yes" ? values.consent : false,
+      website,
+      startedAt: startedAtRef.current ?? undefined,
+    });
+    setSubmitting(false);
+    if (result.ok) {
+      setSubmitted(true);
+      return;
+    }
+    setSubmitError(FORM_GENERIC_ERROR);
   }
 
   if (submitted) {
@@ -141,6 +176,8 @@ export function PrayerRequestForm() {
             setValues(empty);
             setErrors({});
             setSubmitted(false);
+            setSubmitError(null);
+            startedAtRef.current = Date.now();
           }}
           resetLabel="Share another request"
         />
@@ -155,8 +192,10 @@ export function PrayerRequestForm() {
       name={prayer.formId}
       noValidate
       onSubmit={handleSubmit}
-      className="grid gap-7"
+      aria-busy={submitting}
+      className="relative grid gap-7"
     >
+      <HoneypotField />
       <FormField id="name" label={prayer.form.name.label} error={errors.name}>
         <input
           name="name"
@@ -269,10 +308,26 @@ export function PrayerRequestForm() {
         </div>
       ) : null}
       <p className="text-xs leading-relaxed text-ink-soft">{prayer.frontendNotice}</p>
+      {submitError ? (
+        <p role="alert" className="text-sm text-error">
+          {submitError}
+        </p>
+      ) : null}
       <div>
-        <Button type="submit" variant="primary" size="lg">
-          {prayer.form.submitLabel}
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          disabled={submitting}
+          aria-busy={submitting}
+        >
+          {submitting ? "Submitting…" : prayer.form.submitLabel}
         </Button>
+        {submitting ? (
+          <span role="status" className="sr-only">
+            Submitting…
+          </span>
+        ) : null}
       </div>
     </form>
   );

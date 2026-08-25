@@ -1,6 +1,6 @@
 import { archiveStatus, episodesPage } from "@/content/episodes";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 import type { EpisodeCatalogue } from "@/lib/episodes";
 
 export function ArchiveIntro({ catalogue }: { catalogue: EpisodeCatalogue }) {
@@ -14,8 +14,8 @@ export function ArchiveIntro({ catalogue }: { catalogue: EpisodeCatalogue }) {
         className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-start lg:gap-16 lg:py-20"
       >
         <div className="measure">
-          <p className="eyebrow text-forest">{episodesPage.eyebrow}</p>
-          <GoldRule className="mt-5" />
+          <p className="eyebrow text-blue">{episodesPage.eyebrow}</p>
+          <AccentRule className="mt-5" />
           <h1 className="display-lg mt-6 text-balance">
             {headline.before}
             <em className="italic">{headline.italic}</em>

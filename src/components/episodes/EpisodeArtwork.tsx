@@ -20,21 +20,21 @@ export function EpisodeArtwork({
         <>
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -top-2 -left-2 hidden h-8 w-8 border-t border-l border-gold sm:block"
+            className="pointer-events-none absolute -top-2 -left-2 hidden h-8 w-8 border-t border-l border-red sm:block"
           />
           <span
             aria-hidden="true"
-            className="pointer-events-none absolute -right-2 -bottom-2 hidden h-8 w-8 border-r border-b border-gold sm:block"
+            className="pointer-events-none absolute -right-2 -bottom-2 hidden h-8 w-8 border-r border-b border-red sm:block"
           />
         </>
       ) : null}
-      <div className="img-zoom absolute inset-0 overflow-hidden bg-forest-deep">
+      <div className="img-zoom absolute inset-0 overflow-hidden bg-blue-deep">
         <Image
           src={src}
           alt=""
           fill
           sizes={sizes}
-          priority={priority}
+          preload={priority}
           className="object-cover"
         />
       </div>

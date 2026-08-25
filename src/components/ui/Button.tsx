@@ -6,11 +6,11 @@ type ButtonSize = "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-forest text-cream hover:bg-forest-deep focus-visible:outline-forest",
+    "bg-red text-cream hover:bg-red-deep focus-visible:outline-red",
   secondary:
-    "border border-forest/25 bg-transparent text-forest hover:border-forest hover:bg-cream",
+    "border border-blue/30 bg-transparent text-blue hover:border-blue hover:bg-mist/55",
   ghost:
-    "text-forest underline-offset-[6px] hover:underline",
+    "text-blue underline-offset-[6px] hover:underline",
   invert:
     "border border-cream/40 bg-transparent text-cream hover:border-cream hover:bg-cream/10",
 };

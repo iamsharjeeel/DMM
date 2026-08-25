@@ -11,10 +11,10 @@ export function PlayControl({
   playing: boolean;
   label: string;
   onClick: () => void;
-  tone?: "light" | "forest";
+  tone?: "light" | "blue";
   filled?: boolean;
 }) {
-  const forest = tone === "forest";
+  const blue = tone === "blue";
 
   return (
     <button
@@ -24,16 +24,16 @@ export function PlayControl({
       onClick={onClick}
       className={cn(
         "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition-[background-color,border-color,color,transform] duration-[180ms] ease-[cubic-bezier(0.25,1,0.5,1)] motion-reduce:transition-none",
-        forest &&
+        blue &&
           !filled &&
           "border border-cream/45 text-cream hover:border-cream hover:bg-cream/10",
-        forest &&
+        blue &&
           filled &&
-          "bg-cream text-forest ring-1 ring-gold hover:bg-cream",
-        !forest &&
+          "bg-cream text-blue ring-1 ring-red hover:bg-cream",
+        !blue &&
           !filled &&
-          "border border-forest/30 text-forest hover:border-forest hover:bg-cream",
-        !forest && filled && "bg-forest text-cream hover:bg-forest-deep",
+          "border border-blue/30 text-blue hover:border-blue hover:bg-cream",
+        !blue && filled && "bg-blue text-cream hover:bg-blue-hover",
       )}
     >
       {playing ? <PauseIcon /> : <PlayIcon />}
