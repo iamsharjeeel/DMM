@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-08-25
+
+- Added a Real Stories homepage section and dedicated `/stories/[slug]` pages from source testimonies
+
 ## 2026-08-17
 
 - Replaced the DM letters in the Wordmark box with the supplied white geometric mark

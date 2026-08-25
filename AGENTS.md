@@ -48,7 +48,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `npm run lint`
 - `npm run typecheck`
 - `npm run build`
-- Verify routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
+- Verify routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/stories/ed`
 - Update `CHANGELOG.md`
 - Update `HANDOVER.md`
 - Update docs when architecture, content, or setup changes

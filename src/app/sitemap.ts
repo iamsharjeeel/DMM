@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/config/site";
+import { stories } from "@/content/stories";
 import { getSiteUrl } from "@/lib/site-url";
+import { getStoryPath } from "@/lib/stories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
@@ -13,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
+    ...stories.map((story) => ({
+      url: `${base}${getStoryPath(story.slug)}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     {
       url: `${base}${site.routes.episodes}`,
       lastModified: now,

@@ -46,6 +46,7 @@ Ivory / cream / sage / forest. Hairline `--brand-rule`. Radius stays 1–2px. No
 - `Wordmark`: forest square with the white geometric mark and gold ring; invert on footer
 - `PastorImage`: 4×5 portrait reservation with gold L-corners; swap via `site.photography`
 - Episode archive: index rows, sage discovery band, forest pinned player
+- Home stories: cream editorial collection after Who We Serve; featured/secondary/more layout, no photographs unless supplied
 - `SectionHeading`, `Eyebrow`, `GoldRule`, `PullQuote`, `Reveal`
 - Forms: ivory fields, forest focus ring, explicit labels, associated errors
 

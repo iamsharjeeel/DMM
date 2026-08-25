@@ -9,6 +9,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | Path | File | Notes |
 | --- | --- | --- |
 | `/` | `src/app/page.tsx` | Home / About |
+| `/stories/[slug]` | `src/app/stories/[slug]/page.tsx` | Seven source testimonies; static params |
 | `/episodes` | `src/app/episodes/page.tsx` | Loving Everyone Always archive |
 | `/speaking` | `src/app/speaking/page.tsx` | Includes `#booking` |
 | `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer ivory/cream page |
@@ -37,6 +38,7 @@ No route handlers. No server actions. No fake fetch calls. Episode RSS is import
 
 - `layout.tsx` → SkipLink, JSON-LD, Header, children, Footer, HighLevelTracking
 - Pages compose section components
+- Story pages use `src/components/stories/`
 - Sections read from `src/content/*`
 - Shared primitives in `src/components/ui/`
 - Forms use shared field primitives
@@ -46,6 +48,7 @@ No route handlers. No server actions. No fake fetch calls. Episode RSS is import
 Copy is separated from JSX:
 
 - `src/content/home.ts`
+- `src/content/stories.ts`
 - `src/content/speaking.ts`
 - `src/content/prayer.ts`
 - `src/content/legal.ts`
@@ -53,7 +56,7 @@ Copy is separated from JSX:
 - `src/content/episodes.ts`
 - `src/content/episodes.catalogue.json` (generated from RSS)
 
-Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`. HighLevel script src and default tracking ID: `highLevelTracking` in the same file.
+Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`. HighLevel script src and default tracking ID: `highLevelTracking` in the same file. Story lookup helpers: `src/lib/stories.ts`.
 
 ## Forms
 
@@ -81,6 +84,7 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 - Heritage Gold is decorative only
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
+- Home stories section is editorial, not a testimonial widget; copy lives in `src/content/stories.ts`
 - Social links render only when URLs are non-null
 - Forms disclose that HighLevel receives the submission for ministry follow-up
 - Episode catalogue refreshes only through `npm run import:episodes`

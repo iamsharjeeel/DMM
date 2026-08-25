@@ -8,6 +8,7 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Motto: Loving Everyone Always.
 - Mission, vision, FCL values, audience wording
 - Home hero, Meet Pastor Mayes biography paragraphs, experience list
+- Stories of reconciliation, restoration, and transformation in `src/content/stories.ts`
 - Speaking headline, body, five topics, audience list, booking intro, confirmation, and the temporary-form notice
 - Prayer headline, supporting lines, form labels, confirmation copy, and the HighLevel capture notice
 - Footer copyright: © 2026 Donald Mayes Ministries, LLC. All Rights Reserved.
@@ -30,11 +31,13 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 - Pastor Mayes photography
 - Confirmed public email
 - Facebook / Instagram / YouTube URLs
-- Testimonials (do not invent)
+- Testimonials for the speaking page (do not invent)
 - Production domain if different
 - Legal review
 - HighLevel calendar to replace the temporary booking form
 
 ## Hidden until supplied
 
-`Testimonials` reads `speaking.testimonials.items`. Empty array → section not shown.
+`Testimonials` on `/speaking` reads `speaking.testimonials.items`. Empty array → section not shown.
+
+Home stories in `src/content/stories.ts` are source testimonies. Do not invent quotes, outcomes, or photographs. Do not rewrite them into marketing language.

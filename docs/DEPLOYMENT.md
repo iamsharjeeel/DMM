@@ -21,7 +21,7 @@ npm run build
 npm run start
 ```
 
-Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`.
+Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, and a story page such as `/stories/ed`.
 
 ## 4. Push to GitHub
 
@@ -68,7 +68,7 @@ Merging to the production branch (usually `main`) deploys production.
 
 ## 11. Post-deployment checks
 
-- Home motto and Pastor Mayes sections render
+- Home motto, Pastor Mayes sections, and the stories collection render
 - Listen archive loads, filters, and the pinned player updates
 - Speaking `#booking` is reachable from **Book Pastor Mayes**
 - Prayer conditional fields work

@@ -7,6 +7,7 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 ## Completed pages
 
 - `/` Home / About
+- `/stories/[slug]` Seven source testimonies
 - `/episodes` Audio archive
 - `/speaking`
 - `/prayer-requests`
@@ -22,6 +23,7 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 - Speaking booking form: validation, required/optional states, success state; captured by HighLevel as `speaking-booking`
 - Prayer form: conditional follow-up fields, consent, success state; captured by HighLevel as `prayer-request`
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
+- Home stories section after Who We Serve: Ed featured, Tim and Yolanda secondary, four more compact stories; each opens `/stories/[slug]`
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
 - Wordmark uses the supplied white geometric mark in the forest/gold box (header, footer, mobile menu)
@@ -36,6 +38,10 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 - The archive index shows five rows per page, with previous/next list-flip for the rest
 - Playback uses the RSS enclosure URL in a single `<audio>` element; errors show “Playback is being connected”
 - RSS owner email is not displayed
+
+## Stories
+
+Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Ed is featured; Tim Moore and Yolanda Bryant are secondary; Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James are compact. Full copy is on `/stories/[slug]`. Do not invent quotes, outcomes, or photographs.
 
 ## Forms and HighLevel
 
@@ -66,6 +72,7 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 - Confirmed contact email → `site.email`
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
+- Story photographs are not used; do not generate them
 - Production domain → `NEXT_PUBLIC_SITE_URL`
 - Legal review of Privacy and Terms
 - HighLevel calendar to replace the temporary booking form
@@ -134,7 +141,7 @@ Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname o
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
 - production build: pass (`npm run build`, Next.js 16.3.1, `/episodes` static)
-- routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
+- routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/stories/ed`
 
 ## Recommended next action
 

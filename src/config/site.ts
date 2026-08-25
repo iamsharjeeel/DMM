@@ -57,6 +57,7 @@ export const site = {
     privacy: "/privacy",
     terms: "/terms",
     booking: "/speaking#booking",
+    stories: "/#stories",
   },
   podcast: {
     name: "Loving Everyone Always",

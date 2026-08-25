@@ -37,6 +37,7 @@ npm run import:episodes
 ## Pages
 
 - `/` Home / About
+- `/stories/[slug]` Source testimonies (linked from Home; not in primary nav)
 - `/episodes` Loving Everyone Always audio archive
 - `/speaking` Speaking + booking form
 - `/prayer-requests` Prayer request form

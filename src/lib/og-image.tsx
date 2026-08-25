@@ -6,7 +6,7 @@ export const ogSize = {
   height: 630,
 };
 
-export function createOgImage(title: string, kicker = site.name) {
+export function createOgImage(title: string, kicker: string = site.name) {
   return new ImageResponse(
     (
       <div
