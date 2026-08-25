@@ -1,4 +1,8 @@
-export const allowedForms = ["prayer-request", "speaking-booking"] as const;
+export const allowedForms = [
+  "prayer-request",
+  "speaking-booking",
+  "speaking-meta-lead",
+] as const;
 
 export type AllowedForm = (typeof allowedForms)[number];
 

@@ -12,7 +12,7 @@ export function SuccessState({
   heading: string;
   body: string;
   motto?: string;
-  notice: string;
+  notice?: string;
   onReset: () => void;
   resetLabel: string;
 }) {
@@ -29,7 +29,9 @@ export function SuccessState({
       ) : (
         <p className="mt-6 font-display text-2xl italic">{site.motto}</p>
       )}
-      <p className="mt-8 text-sm text-ink-soft">{notice}</p>
+      {notice ? (
+        <p className="mt-8 text-sm text-ink-soft">{notice}</p>
+      ) : null}
       <Button variant="secondary" className="mt-8" onClick={onReset}>
         {resetLabel}
       </Button>

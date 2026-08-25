@@ -1,6 +1,12 @@
 export type FollowUpChoice = "yes" | "no" | "";
 export type ContactMethod = "email" | "phone" | "text" | "";
 export type EventFormat = "in-person" | "virtual" | "";
+export type SpeakingLeadFormatValue =
+  | "In person"
+  | "Virtual"
+  | "Either"
+  | "Not sure yet"
+  | "";
 
 export type SpeakingBookingValues = {
   name: string;
@@ -16,6 +22,21 @@ export type SpeakingBookingValues = {
   topic: string;
   details: string;
   referral: string;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
+};
+
+export type SpeakingLeadValues = {
+  name: string;
+  organization: string;
+  email: string;
+  eventType: string;
+  phone: string;
+  eventTimeframe: string;
+  eventLocation: string;
+  format: SpeakingLeadFormatValue;
+  topic: string;
+  details: string;
   smsMarketingConsent: boolean;
   smsNonMarketingConsent: boolean;
 };

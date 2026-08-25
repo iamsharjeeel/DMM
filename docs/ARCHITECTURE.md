@@ -17,6 +17,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | `/privacy` | `src/app/privacy/page.tsx` | Privacy Policy |
 | `/terms` | `src/app/terms/page.tsx` | Terms of Service |
 | `/sms-terms` | `src/app/sms-terms/page.tsx` | SMS Messaging Terms |
+| `/invite-pastor-mayes` | `src/app/invite-pastor-mayes/page.tsx` | Paid speaking landing; `noindex, follow`; omitted from sitemap |
 | 404 | `src/app/not-found.tsx` | |
 
 Special files: `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `twitter-image.tsx`, `icon.png`, `apple-icon.png`, `favicon.ico`.
@@ -32,6 +33,7 @@ Client Components:
 - `Reveal` — intersection observer entrance
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
+- `SpeakingLeadForm` — paid `/invite-pastor-mayes` inquiry form
 - `EpisodesArchive` — search, filters, selection, native audio
 
 Route handler: `POST /api/forms/[form]` for native prayer and speaking forms. No server actions. Episode RSS is imported by `scripts/import-episodes.mjs`, not fetched at request time.
@@ -39,6 +41,7 @@ Route handler: `POST /api/forms/[form]` for native prayer and speaking forms. No
 ## Component hierarchy
 
 - `layout.tsx` → GTM noscript/script, SkipLink, JSON-LD, Header, children, Footer, HighLevelTracking
+- `/booking` and `/invite-pastor-mayes` hide `[data-site-shell]` and render their own chrome
 - Pages compose section components
 - Story pages use `src/components/stories/`
 - Sections read from `src/content/*`
@@ -52,6 +55,7 @@ Copy is separated from JSX:
 - `src/content/home.ts`
 - `src/content/stories.ts`
 - `src/content/speaking.ts`
+- `src/content/speaking-landing.ts`
 - `src/content/prayer.ts`
 - `src/content/legal.ts`
 - `src/content/navigation.ts`
@@ -62,7 +66,9 @@ Site-wide values: `src/config/site.ts`. Compliance identity and SMS consent copy
 
 ## Forms
 
-Client-side validation remains UX only. Native `<form>` elements `preventDefault`, POST JSON to `POST /api/forms/prayer-request` or `POST /api/forms/speaking-booking`, and show success only after the server confirms HighLevel delivery. See `docs/FORMS.md`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method. Two optional SMS consent checkboxes are independent of follow-up preference and are never preselected.
+Client-side validation remains UX only. Native `<form>` elements `preventDefault`, POST JSON to `POST /api/forms/prayer-request`, `/api/forms/speaking-booking`, or `/api/forms/speaking-meta-lead`, and show success only after the server confirms HighLevel delivery. See `docs/FORMS.md`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method. Two optional SMS consent checkboxes are independent of follow-up preference and are never preselected.
+
+`/invite-pastor-mayes` uses a shorter speaking lead form. Required fields are name, organization, email, and event type. Attribution is read from the current URL at submit time and is limited to an allowlist.
 
 Do not persist prayer text to localStorage, URLs, or the console. Do not call the HighLevel webhook from the browser. `/booking` stays a native HighLevel calendar embed.
 
@@ -76,13 +82,13 @@ Do not persist prayer text to localStorage, URLs, or the console. Do not call th
 
 `createMetadata()` sets title, description, canonical, Open Graph, Twitter, optional social title, Open Graph type, and optional noindex. Canonical URLs, `metadataBase`, sitemap, robots, and JSON-LD IDs always use `https://donaldmayesministries.com` via `getCanonicalSiteUrl()` / `getCanonicalUrl()`. `getSiteUrl()` remains a runtime helper for non-SEO origin checks (native forms).
 
-Preview deployments (`VERCEL_ENV === "preview"`) are `noindex, nofollow` in root metadata and `robots.txt`. Production remains indexable. `/booking` is `noindex, follow` and is omitted from the sitemap.
+Preview deployments (`VERCEL_ENV === "preview"`) are `noindex, nofollow` in root metadata and `robots.txt`. Production remains indexable. `/booking` and `/invite-pastor-mayes` are `noindex, follow` and are omitted from the sitemap.
 
 JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person from documented facts, using the official logo, Pastor Mayes portrait, confirmed email, and phone. `/episodes` adds PodcastSeries linked to those same entity IDs, with `hasPart` PodcastEpisode entries from the imported catalogue.
 
 `www.donaldmayesministries.com` and `dmm-omega.vercel.app` permanently redirect to the apex origin.
 
-Google Tag Manager container `GTM-WQ272CGD` loads globally (`GoogleTagManager` in the root layout). Do not add a separate GA4 snippet or custom `dataLayer` events in application code.
+Google Tag Manager container `GTM-WQ272CGD` loads globally (`GoogleTagManager` in the root layout). Do not add a separate GA4 snippet or hardcoded Meta Pixel. `/invite-pastor-mayes` pushes non-PII `dataLayer` events (`dmm_speaking_lp_view`, `dmm_speaking_lp_form_start`, `dmm_speaking_lp_submit_success`, `dmm_speaking_lp_submit_error`) so GTM can later send Meta conversions.
 
 ## Design tokens
 

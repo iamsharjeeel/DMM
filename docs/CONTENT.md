@@ -10,6 +10,7 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Home hero, Meet Pastor Mayes biography paragraphs, experience list
 - Stories of reconciliation, restoration, and transformation in `src/content/stories.ts`
 - Speaking headline, body, five topics, audience list, booking intro, confirmation, and the temporary-form notice
+- Paid speaking landing copy in `src/content/speaking-landing.ts`
 - Prayer headline, supporting lines, form labels, confirmation copy, and the HighLevel capture notice
 - Prayer-call booking heading and supporting copy
 - Footer copyright: © 2026 Donald Mayes Ministries LLC. All Rights Reserved.

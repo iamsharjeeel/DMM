@@ -85,7 +85,8 @@ body {
   overflow-x: clip;
 }
 
-body:has(.booking-page) > [data-site-shell] {
+body:has(.booking-page) > [data-site-shell],
+body:has(.speaking-landing-page) > [data-site-shell] {
   display: none;
 }
 

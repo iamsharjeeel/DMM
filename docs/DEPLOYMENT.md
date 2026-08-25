@@ -21,7 +21,7 @@ npm run build
 npm run start
 ```
 
-Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/sms-terms`, and a story page such as `/stories/ed`.
+Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/sms-terms`, `/invite-pastor-mayes`, and a story page such as `/stories/ed`.
 
 ## 4. Push to GitHub
 
@@ -86,6 +86,7 @@ Merging to the production branch (usually `main`) deploys production.
 - `/booking` HighLevel calendar still loads
 - `/sitemap.xml` and `/robots.txt` resolve
 - `/privacy`, `/terms`, and `/sms-terms` publish the current legal pages
+- `/invite-pastor-mayes` loads with isolated chrome, `noindex, follow`, and is absent from `/sitemap.xml`
 - Canonical tags, Open Graph URLs, and JSON-LD IDs use `https://donaldmayesministries.com`
 - GTM container `GTM-WQ272CGD` is present in the document with HighLevel tracking still loading
 - Social share images load

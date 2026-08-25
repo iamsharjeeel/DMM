@@ -162,3 +162,65 @@ test("rejects invalid speaking enums and dates", () => {
     "invalid",
   );
 });
+
+const speakingLeadBase = {
+  name: "Alex Rivera",
+  organization: "Hope Church",
+  email: "alex@example.com",
+  eventType: "Church",
+};
+
+test("accepts a short speaking lead with optional fields empty", () => {
+  const parsed = parseNativeForm("speaking-meta-lead", speakingLeadBase);
+  assert.equal(parsed.status, "ok");
+  if (parsed.status === "ok") {
+    assert.equal(parsed.payload.smsMarketingConsent, false);
+    assert.equal(parsed.payload.smsNonMarketingConsent, false);
+    assert.equal("landingPath" in parsed.payload, true);
+    if ("landingPath" in parsed.payload) {
+      assert.equal(parsed.payload.landingPath, "/invite-pastor-mayes");
+    }
+    assert.equal("eventName" in parsed.payload, false);
+  }
+});
+
+test("forwards allowlisted speaking-lead attribution and rejects extras", () => {
+  const parsed = parseNativeForm("speaking-meta-lead", {
+    ...speakingLeadBase,
+    utm_source: "facebook",
+    utm_medium: "paid",
+    utm_campaign: "speaking-2026",
+    fbclid: "abc123",
+    format: "In person",
+    topic: "To be discussed",
+  });
+  assert.equal(parsed.status, "ok");
+  if (parsed.status === "ok" && "utm_source" in parsed.payload) {
+    assert.equal(parsed.payload.utm_source, "facebook");
+    assert.equal(parsed.payload.fbclid, "abc123");
+    assert.equal(parsed.payload.format, "In person");
+    assert.equal(parsed.payload.topic, "To be discussed");
+  }
+
+  assert.equal(
+    parseNativeForm("speaking-meta-lead", {
+      ...speakingLeadBase,
+      gclid: "not-allowed",
+    }).status,
+    "invalid",
+  );
+  assert.equal(
+    parseNativeForm("speaking-meta-lead", {
+      ...speakingLeadBase,
+      format: "hybrid",
+    }).status,
+    "invalid",
+  );
+  assert.equal(
+    parseNativeForm("speaking-meta-lead", {
+      ...speakingLeadBase,
+      name: "",
+    }).status,
+    "invalid",
+  );
+});

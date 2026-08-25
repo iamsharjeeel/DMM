@@ -15,6 +15,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - `/privacy`
 - `/terms`
 - `/sms-terms`
+- `/invite-pastor-mayes` paid speaking landing (`noindex, follow`; not in sitemap)
 - App `not-found`
 
 ## Implemented functionality
@@ -23,12 +24,13 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
 - Footer with motto, nav, booking CTA, copyright, legal links, email, and phone
 - Speaking booking form: validation, required/optional states, optional SMS consent, success state after confirmed HighLevel delivery (`speaking-booking`)
+- Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events, optional SMS consent
 - Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`
 - SEO metadata, canonical URLs locked to `https://donaldmayesministries.com`, OG/Twitter images using the official logo, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
-- Google Tag Manager container `GTM-WQ272CGD` on every page (`GoogleTagManager` in the root layout); no application-level GA4 snippet or custom `dataLayer` events
+- Google Tag Manager container `GTM-WQ272CGD` on every page (`GoogleTagManager` in the root layout); `/invite-pastor-mayes` also pushes non-PII `dataLayer` conversion events
 - `/booking` embeds the HighLevel prayer-call calendar with responsive minimal DMM chrome
 - Header, footer, and mobile navigation use the transparent official DMM mark beside the Donald Mayes Ministries text identity
 - Home hero uses the locked pulpit image; Meet Pastor uses the locked yellow-jacket portrait
@@ -50,7 +52,7 @@ Source testimonies live in `src/content/stories.ts`. The homepage section sits a
 
 ## Forms and HighLevel
 
-Valid submissions `preventDefault`, POST JSON to `/api/forms/prayer-request` or `/api/forms/speaking-booking`, and show confirmation only after the server receives a 2xx from the HighLevel webhook. Header `source` is set server-side from the allowlisted form name. SMS consent booleans are forwarded as submitted; the server appends `smsConsentCapturedAt`, `smsConsentSource`, and `smsConsentVersion`.
+Valid submissions `preventDefault`, POST JSON to `/api/forms/prayer-request`, `/api/forms/speaking-booking`, or `/api/forms/speaking-meta-lead`, and show confirmation only after the server receives a 2xx from the HighLevel webhook. Header `source` is set server-side from the allowlisted form name. SMS consent booleans are forwarded as submitted; the server appends `smsConsentCapturedAt`, `smsConsentSource`, and `smsConsentVersion`.
 
 Prayer text is not written to localStorage, URLs, or the console. Form values are not logged.
 
@@ -76,6 +78,7 @@ The speaking page booking form is temporary until a HighLevel speaking calendar 
 - Confirm `donaldmayesministries.com` DNS in Vercel
 - Counsel review of Privacy, Terms, and SMS Terms
 - HighLevel A2P workflows must send marketing SMS only when `smsMarketingConsent === true` and non-marketing SMS only when `smsNonMarketingConsent === true`
+- Map GTM `dmm_speaking_lp_*` events to Meta once a Pixel ID is supplied; do not hardcode a Pixel in the app
 - HighLevel speaking calendar to replace the temporary booking form
 
 Brand colors and type follow the locked DMM blue, restrained red, warm neutral, Instrument Serif, and Manrope system in `docs/DESIGN-SYSTEM.md`.
@@ -160,7 +163,7 @@ Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
 - form schema/webhook tests: pass (`npm test`)
-- production build: pass (`npm run build`, Next.js 16.3.1; `/sms-terms` static)
+- production build: pass (`npm run build`, Next.js 16.3.1; `/sms-terms` and `/invite-pastor-mayes` static)
 
 ## Verification (2026-08-25)
 

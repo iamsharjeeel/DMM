@@ -7,6 +7,7 @@ export const fieldMax = {
   organization: 160,
   eventName: 160,
   eventLocation: 200,
+  eventTimeframe: 160,
   attendance: 7,
   details: 4000,
   referral: 200,

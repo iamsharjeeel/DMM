@@ -46,6 +46,7 @@ npm run import:episodes
 - `/privacy` Privacy Policy
 - `/terms` Terms of Service
 - `/sms-terms` SMS Messaging Terms
+- `/invite-pastor-mayes` Paid speaking landing (noindex; not in the sitemap)
 
 `/episodes` reads the committed RSS catalogue in `src/content/episodes.catalogue.json`. Refresh it with `npm run import:episodes`.
 

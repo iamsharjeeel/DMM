@@ -182,6 +182,23 @@ try {
   });
   expect("invalid enum 400", badEnum.status === 400);
 
+  const validLead = await post("/api/forms/speaking-meta-lead", {
+    body: {
+      name: speaking.name,
+      organization: speaking.organization,
+      email: speaking.email,
+      eventType: speaking.eventType,
+      utm_source: "facebook",
+      fbclid: "testclick",
+    },
+    ip: nextIp(),
+  });
+  expect("valid speaking lead 200", validLead.status === 200 && validLead.json?.ok === true);
+  const leadHook = received.at(-1);
+  expect("speaking lead source header", leadHook?.source === "speaking-meta-lead");
+  expect("speaking lead attribution forwarded", leadHook?.json?.utm_source === "facebook");
+  expect("speaking lead landing path", leadHook?.json?.landingPath === "/invite-pastor-mayes");
+
   const badBool = await post("/api/forms/prayer-request", {
     body: { ...prayer, urgent: "yes" },
     ip: nextIp(),

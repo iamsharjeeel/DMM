@@ -58,6 +58,7 @@ export const site = {
     privacy: "/privacy",
     terms: "/terms",
     smsTerms: "/sms-terms",
+    invitePastorMayes: "/invite-pastor-mayes",
     booking: "/speaking#booking",
     prayerCall: "/booking",
     stories: "/#stories",

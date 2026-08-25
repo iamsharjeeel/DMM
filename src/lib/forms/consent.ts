@@ -11,7 +11,9 @@ export function attachSmsConsentMetadata<T extends Record<string, unknown>>(
     smsConsentSource:
       form === "prayer-request"
         ? "website-prayer-request"
-        : "website-speaking-request",
+        : form === "speaking-meta-lead"
+          ? "website-speaking-meta-lead"
+          : "website-speaking-request",
     smsConsentVersion: compliance.consentVersion,
   };
 }

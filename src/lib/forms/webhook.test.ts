@@ -50,4 +50,9 @@ test("appends server-derived SMS consent metadata", () => {
     smsMarketingConsent: true,
   });
   assert.equal(speaking.smsConsentSource, "website-speaking-request");
+
+  const lead = attachSmsConsentMetadata("speaking-meta-lead", {
+    smsMarketingConsent: false,
+  });
+  assert.equal(lead.smsConsentSource, "website-speaking-meta-lead");
 });

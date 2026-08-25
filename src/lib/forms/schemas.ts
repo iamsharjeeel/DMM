@@ -1,5 +1,11 @@
 import { z } from "zod";
 import { eventTypes, speakingTopicOptions } from "../../content/speaking";
+import { speakingLeadFormats } from "../../content/speaking-landing";
+import {
+  ATTRIBUTION_MAX_LENGTH,
+  compactAttribution,
+  type LandingAttribution,
+} from "./attribution";
 import {
   normalizeEmail,
   normalizeMultiline,
@@ -152,6 +158,79 @@ const speakingSchema = z
     }
   });
 
+const optionalAttribution = z
+  .string()
+  .max(ATTRIBUTION_MAX_LENGTH)
+  .optional()
+  .transform((value) => trimText(value ?? "").slice(0, ATTRIBUTION_MAX_LENGTH));
+
+const speakingLeadSchema = z
+  .object({
+    name: z
+      .string()
+      .max(fieldMax.name)
+      .transform(trimText)
+      .refine((value) => value.length > 0),
+    organization: z
+      .string()
+      .max(fieldMax.organization)
+      .transform(trimText)
+      .refine((value) => value.length > 0),
+    email: requiredEmail,
+    eventType: z.enum(eventTypes),
+    phone: z
+      .string()
+      .max(fieldMax.phone)
+      .optional()
+      .transform((value) => trimText(value ?? "")),
+    eventTimeframe: z
+      .string()
+      .max(fieldMax.eventTimeframe)
+      .optional()
+      .transform((value) => trimText(value ?? "")),
+    eventLocation: z
+      .string()
+      .max(fieldMax.eventLocation)
+      .optional()
+      .transform((value) => trimText(value ?? "")),
+    format: z
+      .string()
+      .max(40)
+      .optional()
+      .transform((value) => trimText(value ?? ""))
+      .refine(
+        (value) =>
+          value === "" ||
+          (speakingLeadFormats as readonly string[]).includes(value),
+      ),
+    topic: z
+      .string()
+      .max(80)
+      .optional()
+      .transform((value) => trimText(value ?? ""))
+      .refine(
+        (value) =>
+          value === "" ||
+          (speakingTopicOptions as readonly string[]).includes(value),
+      ),
+    details: z
+      .string()
+      .max(fieldMax.details)
+      .optional()
+      .transform((value) => normalizeMultiline(value ?? "")),
+    smsMarketingConsent: smsConsent,
+    smsNonMarketingConsent: smsConsent,
+    utm_source: optionalAttribution,
+    utm_medium: optionalAttribution,
+    utm_campaign: optionalAttribution,
+    utm_content: optionalAttribution,
+    utm_term: optionalAttribution,
+    fbclid: optionalAttribution,
+    landingPath: z.string().max(64).optional(),
+    ...protectionFields,
+  })
+  .strict();
+
 export type PrayerForwardPayload = {
   name: string;
   email: string;
@@ -183,10 +262,31 @@ export type SpeakingForwardPayload = {
   smsNonMarketingConsent: boolean;
 };
 
+export type SpeakingLeadForwardPayload = {
+  name: string;
+  organization: string;
+  email: string;
+  eventType: string;
+  phone: string;
+  eventTimeframe: string;
+  eventLocation: string;
+  format: string;
+  topic: string;
+  details: string;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
+} & LandingAttribution;
+
 export type ParsedNativeForm =
   | { status: "invalid" }
   | { status: "ignored" }
-  | { status: "ok"; payload: PrayerForwardPayload | SpeakingForwardPayload };
+  | {
+      status: "ok";
+      payload:
+        | PrayerForwardPayload
+        | SpeakingForwardPayload
+        | SpeakingLeadForwardPayload;
+    };
 
 function shouldIgnore(website: string | undefined, startedAt: number | undefined) {
   if (trimText(website ?? "")) {
@@ -226,30 +326,64 @@ export function parseNativeForm(form: AllowedForm, input: unknown): ParsedNative
     return { status: "ok", payload };
   }
 
-  const parsed = speakingSchema.safeParse(input);
+  if (form === "speaking-booking") {
+    const parsed = speakingSchema.safeParse(input);
+    if (!parsed.success) {
+      return { status: "invalid" };
+    }
+    if (shouldIgnore(parsed.data.website, parsed.data.startedAt)) {
+      return { status: "ignored" };
+    }
+    const attendance = parseAttendance(parsed.data.attendance ?? "");
+    const payload: SpeakingForwardPayload = {
+      name: parsed.data.name,
+      organization: parsed.data.organization,
+      email: parsed.data.email,
+      phone: parsed.data.phone,
+      eventName: parsed.data.eventName,
+      eventDate: parsed.data.eventDate,
+      eventLocation: parsed.data.eventLocation,
+      eventType: parsed.data.eventType,
+      attendance: attendance ?? "",
+      format: parsed.data.format,
+      topic: parsed.data.topic,
+      details: parsed.data.details,
+      referral: parsed.data.referral,
+      smsMarketingConsent: parsed.data.smsMarketingConsent,
+      smsNonMarketingConsent: parsed.data.smsNonMarketingConsent,
+    };
+    return { status: "ok", payload };
+  }
+
+  const parsed = speakingLeadSchema.safeParse(input);
   if (!parsed.success) {
     return { status: "invalid" };
   }
   if (shouldIgnore(parsed.data.website, parsed.data.startedAt)) {
     return { status: "ignored" };
   }
-  const attendance = parseAttendance(parsed.data.attendance ?? "");
-  const payload: SpeakingForwardPayload = {
+  const payload: SpeakingLeadForwardPayload = {
     name: parsed.data.name,
     organization: parsed.data.organization,
     email: parsed.data.email,
-    phone: parsed.data.phone,
-    eventName: parsed.data.eventName,
-    eventDate: parsed.data.eventDate,
-    eventLocation: parsed.data.eventLocation,
     eventType: parsed.data.eventType,
-    attendance: attendance ?? "",
+    phone: parsed.data.phone,
+    eventTimeframe: parsed.data.eventTimeframe,
+    eventLocation: parsed.data.eventLocation,
     format: parsed.data.format,
     topic: parsed.data.topic,
     details: parsed.data.details,
-    referral: parsed.data.referral,
     smsMarketingConsent: parsed.data.smsMarketingConsent,
     smsNonMarketingConsent: parsed.data.smsNonMarketingConsent,
+    ...compactAttribution({
+      utm_source: parsed.data.utm_source,
+      utm_medium: parsed.data.utm_medium,
+      utm_campaign: parsed.data.utm_campaign,
+      utm_content: parsed.data.utm_content,
+      utm_term: parsed.data.utm_term,
+      fbclid: parsed.data.fbclid,
+      landingPath: parsed.data.landingPath,
+    }),
   };
   return { status: "ok", payload };
 }

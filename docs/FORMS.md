@@ -20,6 +20,7 @@ Allowlisted in `src/lib/forms/types.ts`:
 
 - `prayer-request`
 - `speaking-booking`
+- `speaking-meta-lead`
 
 Unknown `[form]` values return 404.
 
@@ -27,11 +28,12 @@ Outbound header, derived server-side:
 
 - `source: prayer-request`
 - `source: speaking-booking`
+- `source: speaking-meta-lead`
 
 Server-derived SMS consent metadata is also appended before forwarding:
 
 - `smsConsentCapturedAt` (ISO timestamp)
-- `smsConsentSource` (`website-prayer-request` or `website-speaking-request`)
+- `smsConsentSource` (`website-prayer-request`, `website-speaking-request`, or `website-speaking-meta-lead`)
 - `smsConsentVersion` (`2026-08-26`)
 
 Client-supplied timestamps or source strings are not authoritative.
@@ -44,6 +46,8 @@ Prayer and speaking forms collect two independent optional checkboxes:
 - `smsNonMarketingConsent`
 
 Both default to `false`. Missing values are stored as `false`. Providing a phone number, submitting a form, requesting follow-up, choosing Text, or checking general contact permission does not constitute SMS consent.
+
+The paid speaking landing form (`speaking-meta-lead`) uses the same two SMS fields. It also forwards allowlisted attribution when present: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`, and `landingPath` (`/invite-pastor-mayes`). Unknown query keys are dropped.
 
 HighLevel workflows must only send:
 
