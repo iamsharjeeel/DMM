@@ -147,7 +147,8 @@ Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname o
 - typecheck: pass (`npm run typecheck`)
 - production build: pass (`npm run build`, Next.js 16.3.1, all routes static)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
-- Chromium: desktop 1440×900 and mobile 390×844 pass for navigation, forms, episodes, images, CTAs, and responsive layout
+- Chromium: homepage passes at 1440, 1280, 1024, 768, 430, 390, and 375px with no horizontal overflow
+- Production visual QA: official logo, both locked portraits, CTA alignment, footer, and mobile navigation pass
 - Scroll profile: native scrolling, zero sampled long frames/tasks, approximately 16.8ms worst frame delta
 
 ## Recommended next action
