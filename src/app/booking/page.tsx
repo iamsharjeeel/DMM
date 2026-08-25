@@ -13,6 +13,7 @@ export const metadata = createMetadata({
   title: "Schedule a Prayer Call",
   description,
   path: site.routes.prayerCall,
+  noindex: true,
 });
 
 export default function BookingPage() {

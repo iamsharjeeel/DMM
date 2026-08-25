@@ -2,11 +2,16 @@ import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Manrope } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
+import {
+  GoogleTagManagerNoscript,
+  GoogleTagManagerScript,
+} from "@/components/layout/GoogleTagManager";
 import { Header } from "@/components/layout/Header";
 import { HighLevelTracking } from "@/components/layout/HighLevelTracking";
 import { JsonLd } from "@/components/layout/JsonLd";
 import { SkipLink } from "@/components/ui/SkipLink";
 import { site } from "@/config/site";
+import { rootRobots } from "@/lib/metadata";
 import { getMetadataBase } from "@/lib/site-url";
 import "./globals.css";
 
@@ -33,12 +38,8 @@ export const metadata: Metadata = {
   description: site.mission,
   applicationName: site.name,
   authors: [{ name: site.pastorName }],
-  keywords: [
-    "Donald Mayes Ministries",
-    "Pastor Donald Mayes",
-    "Loving Everyone Always",
-    "practical biblical living",
-  ],
+  creator: site.name,
+  publisher: site.name,
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -51,10 +52,7 @@ export const metadata: Metadata = {
     title: `${site.name} | ${site.motto}`,
     description: site.mission,
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: rootRobots(),
 };
 
 export const viewport: Viewport = {
@@ -71,7 +69,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable}`}>
+      <GoogleTagManagerScript />
       <body className="min-h-screen bg-ivory font-sans text-ink antialiased">
+        <GoogleTagManagerNoscript />
         <SkipLink />
         <JsonLd />
         <Header />

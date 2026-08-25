@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { attachSmsConsentMetadata } from "@/lib/forms/consent";
 import { logFormEvent } from "@/lib/forms/log";
 import { allowFormSubmission } from "@/lib/forms/rate-limit";
 import { parseNativeForm } from "@/lib/forms/schemas";
@@ -92,7 +93,10 @@ export async function POST(
   }
 
   try {
-    const forwarded = await forwardFormWebhook(form, parsed.payload);
+    const forwarded = await forwardFormWebhook(
+      form,
+      attachSmsConsentMetadata(form, { ...parsed.payload }),
+    );
     if (!forwarded.ok) {
       logFormEvent({ requestId, form, result: "error", status: 502 });
       return jsonResponse({ ok: false, error: FORM_GENERIC_ERROR }, 502);

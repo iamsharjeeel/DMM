@@ -37,6 +37,8 @@ test("accepts a valid prayer request", () => {
     assert.equal(parsed.payload.email, "jordan@example.com");
     assert.equal("website" in parsed.payload, false);
     assert.equal("startedAt" in parsed.payload, false);
+    assert.equal(parsed.payload.smsMarketingConsent, false);
+    assert.equal(parsed.payload.smsNonMarketingConsent, false);
   }
 });
 
@@ -77,6 +79,36 @@ test("rejects invalid prayer email and unknown fields", () => {
   );
 });
 
+test("accepts independent SMS consent combinations and never infers true", () => {
+  const combinations = [
+    [false, false],
+    [true, false],
+    [false, true],
+    [true, true],
+  ] as const;
+
+  for (const [marketing, nonMarketing] of combinations) {
+    const parsed = parseNativeForm("prayer-request", {
+      ...prayerBase,
+      smsMarketingConsent: marketing,
+      smsNonMarketingConsent: nonMarketing,
+    });
+    assert.equal(parsed.status, "ok");
+    if (parsed.status === "ok") {
+      assert.equal(parsed.payload.smsMarketingConsent, marketing);
+      assert.equal(parsed.payload.smsNonMarketingConsent, nonMarketing);
+    }
+  }
+
+  assert.equal(
+    parseNativeForm("prayer-request", {
+      ...prayerBase,
+      smsMarketingConsent: "true",
+    }).status,
+    "invalid",
+  );
+});
+
 test("ignores populated honeypot without forwarding payload", () => {
   const parsed = parseNativeForm("prayer-request", {
     ...prayerBase,
@@ -95,6 +127,8 @@ test("accepts a valid speaking request and attendance number", () => {
   if (parsed.status === "ok" && "attendance" in parsed.payload) {
     assert.equal(parsed.payload.email, "alex@example.com");
     assert.equal(parsed.payload.attendance, "80");
+    assert.equal(parsed.payload.smsMarketingConsent, false);
+    assert.equal(parsed.payload.smsNonMarketingConsent, false);
   }
 });
 

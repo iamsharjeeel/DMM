@@ -1,6 +1,6 @@
 export const site = {
   name: "Donald Mayes Ministries",
-  legalName: "Donald Mayes Ministries, LLC",
+  legalName: "Donald Mayes Ministries LLC",
   pastorName: "Pastor Donald Mayes",
   pastorShortName: "Pastor Mayes",
   motto: "Loving Everyone Always.",
@@ -34,7 +34,8 @@ export const site = {
     ],
   },
   copyrightYear: 2026,
-  email: null as string | null,
+  email: "info@donaldmayesministries.com",
+  phone: "+1 773-787-5028",
   social: {
     facebook: null as string | null,
     instagram: null as string | null,
@@ -56,6 +57,7 @@ export const site = {
     prayer: "/prayer-requests",
     privacy: "/privacy",
     terms: "/terms",
+    smsTerms: "/sms-terms",
     booking: "/speaking#booking",
     prayerCall: "/booking",
     stories: "/#stories",
@@ -64,6 +66,10 @@ export const site = {
     name: "Loving Everyone Always",
     rssUrl: "https://anchor.fm/s/328aea1c/podcast/rss",
   },
+} as const;
+
+export const googleTagManager = {
+  containerId: "GTM-WQ272CGD",
 } as const;
 
 export const highLevelTracking = {

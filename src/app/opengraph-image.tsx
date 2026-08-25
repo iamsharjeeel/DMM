@@ -1,6 +1,7 @@
 import { site } from "@/config/site";
 import { createOgImage, ogSize } from "@/lib/og-image";
 
+export const runtime = "nodejs";
 export const alt = `${site.name} — ${site.motto}`;
 export const size = ogSize;
 export const contentType = "image/png";

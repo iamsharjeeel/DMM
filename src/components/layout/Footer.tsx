@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { compliance } from "@/config/compliance";
 import { site } from "@/config/site";
 import { footerNav, headerCta, legalNav } from "@/content/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
@@ -41,8 +42,23 @@ export function Footer() {
           <div>
             <p className="eyebrow text-cream/60">Connect</p>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/70">
-              Invite Pastor Mayes to speak, or share a prayer request. Public
-              email and social profiles will appear here once they are confirmed.
+              Invite Pastor Mayes to speak, or share a prayer request.
+            </p>
+            <p className="mt-4">
+              <a
+                href={compliance.emailHref}
+                className="text-cream/80 transition-colors hover:text-cream hover:underline"
+              >
+                {compliance.email}
+              </a>
+            </p>
+            <p className="mt-2">
+              <a
+                href={compliance.phoneHref}
+                className="text-cream/80 transition-colors hover:text-cream hover:underline"
+              >
+                {compliance.phone}
+              </a>
             </p>
             <div className="mt-6">
               <ButtonLink href={headerCta.href} variant="invert" size="md">

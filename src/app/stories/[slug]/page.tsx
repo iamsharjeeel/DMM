@@ -30,9 +30,11 @@ export async function generateMetadata({ params }: StoryPageProps) {
   }
 
   return createMetadata({
-    title: `${story.name}: ${story.title}`,
-    description: story.preview,
+    title: story.title,
+    description: story.seoDescription,
     path: getStoryPath(story.slug),
+    socialTitle: `${story.name}: ${story.title}`,
+    openGraphType: "article",
   });
 }
 

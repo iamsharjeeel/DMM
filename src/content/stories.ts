@@ -15,6 +15,7 @@ export type Story = {
   descriptor?: string;
   title: string;
   preview: string;
+  seoDescription: string;
   body: readonly string[];
   pullQuote?: string;
   placement: StoryPlacement;
@@ -38,7 +39,9 @@ export const stories: readonly Story[] = [
     name: "Ed",
     title: "Learning to Begin Again",
     preview:
-      "After spending 22 years in prison and coming from a background connected to the Aryan Nation, Ed entered a very different season of his life as a new Christian. Donald began meeting with him personally for Bible study and discipleship. After one particularly difficult day, Ed wrote Donald to say that he had opened his Bible and landed on James 4.",
+      "After 22 years in prison and a past connected to the Aryan Nation, Ed entered a new season of life as a Christian. Through personal Bible study and discipleship with Donald, he began confronting anger, temptation, self-doubt, and what it meant to trust God when his old patterns pulled in another direction.",
+    seoDescription:
+      "Ed’s story follows a new believer rebuilding life after 22 years in prison through Bible study, discipleship, reconciliation, and faith.",
     body: [
       "After spending 22 years in prison and coming from a background connected to the Aryan Nation, Ed entered a very different season of his life as a new Christian.",
       "Donald began meeting with him personally for Bible study and discipleship. After one particularly difficult day, Ed wrote Donald to say that he had opened his Bible and landed on James 4. The passage gave him a practical way to think about anger, temptation, humility, and trusting God when his thoughts were pulling him elsewhere.",
@@ -54,7 +57,9 @@ export const stories: readonly Story[] = [
     descriptor: "Executive Director, Springfield Right to Life",
     title: "A Friendship Across Church Traditions",
     preview:
-      "Tim Moore describes faith as something that has accompanied him from childhood through grief, doubt, marriage, family, service, and decades of Christian life. His story eventually crossed paths with Donald Mayes when Donald became chaplain for Springfield Right to Life. Tim is Catholic. Donald came from a different church tradition.",
+      "Tim Moore's faith has carried him through grief, doubt, marriage, family, and decades of service. His friendship with Donald began when Donald served as chaplain for Springfield Right to Life. Though they came from different church traditions, they built a lasting friendship around faith, encouragement, and service.",
+    seoDescription:
+      "Tim Moore shares a lifelong journey of faith and a friendship with Pastor Donald Mayes that crossed church traditions through service and encouragement.",
     body: [
       "Tim Moore describes faith as something that has accompanied him from childhood through grief, doubt, marriage, family, service, and decades of Christian life.",
       "His story eventually crossed paths with Donald Mayes when Donald became chaplain for Springfield Right to Life.",
@@ -70,7 +75,9 @@ export const stories: readonly Story[] = [
     name: "Yolanda Bryant",
     title: "She Said Yes",
     preview:
-      "In December 2000, Yolanda Bryant was walking down Clark Street during her lunch break when she experienced a moment she still remembers clearly: a call to take her relationship with God seriously. Her first response was service. She bought Christmas cards and gifts, went to a nursing home, and asked for the names of residents who rarely received visitors.",
+      "Yolanda Bryant traces a major turning point in her faith to December 2000, when she felt called to take her relationship with God seriously and immediately began serving others. She later met Donald at a back-to-school outreach, where his way of caring for people stood out to her. Donald eventually became one of her spiritual mentors.",
+    seoDescription:
+      "Yolanda Bryant shares how a turning point in faith led to service, spiritual growth, and mentorship with Pastor Donald Mayes.",
     body: [
       "In December 2000, Yolanda Bryant was walking down Clark Street during her lunch break when she experienced a moment she still remembers clearly: a call to take her relationship with God seriously.",
       "Her first response was service.",
@@ -87,6 +94,8 @@ export const stories: readonly Story[] = [
     title: "A Different Life Became Possible",
     preview:
       "Herbert Huyler describes years involving gangs, sexual immorality, substance abuse, and eventually heavy dependence on alcohol. His mother called him every Sunday for roughly two years and continued asking the same question: was he ready to change his life and accept Christ?",
+    seoDescription:
+      "Herbert Huyler shares his journey from substance abuse to faith, recovery, Scripture study, mentoring, and service to others.",
     body: [
       "Herbert Huyler describes years involving gangs, sexual immorality, substance abuse, and eventually heavy dependence on alcohol.",
       "His mother called him every Sunday for roughly two years and continued asking the same question: was he ready to change his life and accept Christ?",
@@ -103,6 +112,8 @@ export const stories: readonly Story[] = [
     title: "Returning to What Was Planted Early",
     preview:
       "Charles grew up with a praying mother and a strong Pentecostal church community. He also knew Donald Mayes and his family from childhood. As he became older, Charles began making decisions without much thought about the faith he had been raised in.",
+    seoDescription:
+      "Charles Reiffit reflects on returning to the faith foundation of his childhood and passing that foundation on to his own family.",
     body: [
       "Charles grew up with a praying mother and a strong Pentecostal church community. He also knew Donald Mayes and his family from childhood.",
       "As he became older, Charles began making decisions without much thought about the faith he had been raised in. Some of those decisions took him off course.",
@@ -118,6 +129,8 @@ export const stories: readonly Story[] = [
     title: "The Prayer Meeting Changed Her First",
     preview:
       "Pastor Jessie Herring did not initially want to lead a three-hour Friday-night prayer meeting. Friday was her night to go out, and the assignment interfered with the life she was living. She agreed anyway.",
+    seoDescription:
+      "Pastor Jessie Herring shares how a reluctant prayer meeting became a turning point in her own faith, prayer life, and family.",
     body: [
       "Pastor Jessie Herring did not initially want to lead a three-hour Friday-night prayer meeting. Friday was her night to go out, and the assignment interfered with the life she was living.",
       "She agreed anyway.",
@@ -136,6 +149,8 @@ export const stories: readonly Story[] = [
     title: "The Second Time, He Answered for Himself",
     preview:
       "John James grew up in church in what is now Ford Heights, Illinois. His mother and grandmother made church, prayer, music, and stories about God's faithfulness part of everyday life. At age twelve, his pastor lined up the young people and asked each whether they wanted to give their lives to Christ.",
+    seoDescription:
+      "John James “JJ” remembers choosing faith for himself at age twelve and the family foundation that shaped his Christian life.",
     body: [
       "John James grew up in church in what is now Ford Heights, Illinois. His mother and grandmother made church, prayer, music, and stories about God's faithfulness part of everyday life.",
       "At age twelve, his pastor lined up the young people and asked each whether they wanted to give their lives to Christ.",

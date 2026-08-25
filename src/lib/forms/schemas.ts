@@ -8,6 +8,11 @@ import {
 import { MIN_FORM_FILL_MS, type AllowedForm } from "./types";
 import { fieldMax, isValidEmail } from "../validation";
 
+const smsConsent = z
+  .boolean()
+  .optional()
+  .transform((value) => value === true);
+
 const protectionFields = {
   website: z.string().max(200).optional(),
   startedAt: z.number().finite().optional(),
@@ -72,6 +77,8 @@ const prayerSchema = z
     followUp: z.enum(["yes", "no"]),
     contactMethod: z.enum(["", "email", "phone", "text"]),
     consent: z.boolean(),
+    smsMarketingConsent: smsConsent,
+    smsNonMarketingConsent: smsConsent,
     ...protectionFields,
   })
   .strict()
@@ -130,6 +137,8 @@ const speakingSchema = z
       .transform(normalizeMultiline)
       .refine((value) => value.length > 0),
     referral: z.string().max(fieldMax.referral).transform(trimText),
+    smsMarketingConsent: smsConsent,
+    smsNonMarketingConsent: smsConsent,
     ...protectionFields,
   })
   .strict()
@@ -152,6 +161,8 @@ export type PrayerForwardPayload = {
   followUp: "yes" | "no";
   contactMethod: "" | "email" | "phone" | "text";
   consent: boolean;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
 };
 
 export type SpeakingForwardPayload = {
@@ -168,6 +179,8 @@ export type SpeakingForwardPayload = {
   topic: string;
   details: string;
   referral: string;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
 };
 
 export type ParsedNativeForm =
@@ -207,6 +220,8 @@ export function parseNativeForm(form: AllowedForm, input: unknown): ParsedNative
       followUp,
       contactMethod: followUp === "no" ? "" : parsed.data.contactMethod,
       consent: followUp === "no" ? false : parsed.data.consent,
+      smsMarketingConsent: parsed.data.smsMarketingConsent,
+      smsNonMarketingConsent: parsed.data.smsNonMarketingConsent,
     };
     return { status: "ok", payload };
   }
@@ -233,6 +248,8 @@ export function parseNativeForm(form: AllowedForm, input: unknown): ParsedNative
     topic: parsed.data.topic,
     details: parsed.data.details,
     referral: parsed.data.referral,
+    smsMarketingConsent: parsed.data.smsMarketingConsent,
+    smsNonMarketingConsent: parsed.data.smsNonMarketingConsent,
   };
   return { status: "ok", payload };
 }

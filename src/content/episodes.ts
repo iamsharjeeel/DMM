@@ -3,9 +3,9 @@ import type { EpisodeCatalogue } from "@/lib/episodes";
 
 export const episodesPage = {
   seo: {
-    title: "Listen",
+    title: "Loving Everyone Always Podcast",
     description:
-      "A growing collection of biblical reflections, practical encouragement, and conversations for everyday life.",
+      "Listen to Loving Everyone Always with Pastor Donald Mayes—biblical reflections and practical encouragement on faith, love, reconciliation, and everyday Christian living.",
   },
   eyebrow: "Loving Everyone Always · Audio Archive",
   headline: {

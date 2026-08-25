@@ -1,12 +1,12 @@
 import { LegalPage } from "@/components/sections/LegalPage";
-import { legal } from "@/content/legal";
 import { createMetadata } from "@/lib/metadata";
+import { site } from "@/config/site";
 
 export const metadata = createMetadata({
-  title: legal.privacy.title,
+  title: "Privacy Policy",
   description:
-    "Provisional privacy policy for the Donald Mayes Ministries website. Form submissions are not collected in Phase 1.",
-  path: "/privacy",
+    "Read how Donald Mayes Ministries LLC collects, uses, protects, and handles personal information, including prayer requests, speaking inquiries, website data, and SMS consent.",
+  path: site.routes.privacy,
 });
 
 export default function PrivacyPage() {

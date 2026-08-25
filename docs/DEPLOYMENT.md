@@ -21,7 +21,7 @@ npm run build
 npm run start
 ```
 
-Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, and a story page such as `/stories/ed`.
+Confirm `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/sms-terms`, and a story page such as `/stories/ed`.
 
 ## 4. Push to GitHub
 
@@ -54,21 +54,23 @@ Server-only. Never use a `NEXT_PUBLIC_` prefix. Paste the HighLevel inbound webh
 Optional:
 
 ```text
-NEXT_PUBLIC_SITE_URL=https://your-production-domain
+NEXT_PUBLIC_SITE_URL=https://donaldmayesministries.com
 NEXT_PUBLIC_GHL_TRACKING_ID=
 ```
 
-Use `NEXT_PUBLIC_SITE_URL` for canonical URLs, sitemap, and Open Graph. A hostname without a protocol (for example `dmm-omega.vercel.app`) is accepted and normalized to HTTPS.
+Canonical SEO URLs, sitemap, robots, Open Graph, and JSON-LD always use `https://donaldmayesministries.com`. `NEXT_PUBLIC_SITE_URL` is not required for that. It may still be set for native-form origin allowlisting.
 
 `NEXT_PUBLIC_GHL_TRACKING_ID` is optional. The HighLevel tracking ID is already set in `src/config/site.ts`. Only set the env var to override it. It is a public client ID, not a secret.
 
+The Google Tag Manager container ID (`GTM-WQ272CGD`) lives in `src/config/site.ts`. Do not add a separate GA4 Measurement ID in application env vars.
+
 ## 8. Domain
 
-Attach the final domain in Vercel when the client confirms it. Then set `NEXT_PUBLIC_SITE_URL` to that origin (no trailing slash).
+Attach `donaldmayesministries.com` in Vercel. `www.donaldmayesministries.com` and `dmm-omega.vercel.app` permanently redirect to the apex origin.
 
 ## 9. Preview deployments
 
-Pull requests get preview URLs automatically after the GitHub integration is connected.
+Pull requests get preview URLs automatically after the GitHub integration is connected. Preview builds emit `noindex, nofollow` metadata and a disallow-all `robots.txt`.
 
 ## 10. Production
 
@@ -83,6 +85,9 @@ Merging to the production branch (usually `main`) deploys production.
 - Booking and prayer forms show confirmation only after `/api/forms/[form]` reports success
 - `/booking` HighLevel calendar still loads
 - `/sitemap.xml` and `/robots.txt` resolve
+- `/privacy`, `/terms`, and `/sms-terms` publish the current legal pages
+- Canonical tags, Open Graph URLs, and JSON-LD IDs use `https://donaldmayesministries.com`
+- GTM container `GTM-WQ272CGD` is present in the document with HighLevel tracking still loading
 - Social share images load
 - No social icons appear until URLs are configured
 - Wordmark mark is white and centered in the header and footer boxes

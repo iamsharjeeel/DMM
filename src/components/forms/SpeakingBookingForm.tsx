@@ -4,8 +4,10 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import { eventTypes, speaking, speakingTopicOptions } from "@/content/speaking";
 import { Button } from "@/components/ui/Button";
 import { controlClassName, FormField } from "@/components/forms/FormField";
+import { FormLegalFooter } from "@/components/forms/FormLegalFooter";
 import { HoneypotField } from "@/components/forms/HoneypotField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
+import { SmsConsentFields } from "@/components/forms/SmsConsentFields";
 import { SuccessState } from "@/components/forms/SuccessState";
 import { submitNativeForm } from "@/lib/forms/submit-client";
 import { FORM_GENERIC_ERROR } from "@/lib/forms/types";
@@ -26,6 +28,8 @@ const empty: SpeakingBookingValues = {
   topic: "",
   details: "",
   referral: "",
+  smsMarketingConsent: false,
+  smsNonMarketingConsent: false,
 };
 
 const fieldOrder: Array<keyof SpeakingBookingValues> = [
@@ -155,6 +159,8 @@ export function SpeakingBookingForm() {
       topic: values.topic,
       details: values.details,
       referral: values.referral,
+      smsMarketingConsent: values.smsMarketingConsent,
+      smsNonMarketingConsent: values.smsNonMarketingConsent,
       website,
       startedAt: startedAtRef.current ?? undefined,
     });
@@ -248,6 +254,17 @@ export function SpeakingBookingForm() {
             className={controlClassName}
           />
         </FormField>
+      </div>
+      <SmsConsentFields
+        variant="speaking"
+        marketing={values.smsMarketingConsent}
+        nonMarketing={values.smsNonMarketingConsent}
+        onMarketingChange={(checked) => update("smsMarketingConsent", checked)}
+        onNonMarketingChange={(checked) =>
+          update("smsNonMarketingConsent", checked)
+        }
+      />
+      <div className="grid gap-6 md:grid-cols-2">
         <FormField
           id="eventName"
           label="Event name"
@@ -394,6 +411,7 @@ export function SpeakingBookingForm() {
       <p className="text-xs leading-relaxed text-ink-soft">
         {speaking.booking.notice}
       </p>
+      <FormLegalFooter />
       {submitError ? (
         <p role="alert" className="text-sm text-error">
           {submitError}

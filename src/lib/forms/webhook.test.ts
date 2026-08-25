@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
+import { attachSmsConsentMetadata } from "./consent";
 import { forwardFormWebhook, getConfiguredWebhookUrl } from "./webhook";
 
 test("rejects missing and untrusted webhook URLs", () => {
@@ -32,4 +33,21 @@ test("does not retry a failed webhook POST", async () => {
   process.env.GHL_FORM_WEBHOOK_URL = previous;
   assert.equal(result.ok, false);
   assert.equal(calls, 1);
+});
+
+test("appends server-derived SMS consent metadata", () => {
+  const payload = attachSmsConsentMetadata("prayer-request", {
+    smsMarketingConsent: false,
+    smsNonMarketingConsent: true,
+  });
+  assert.equal(payload.smsConsentSource, "website-prayer-request");
+  assert.equal(payload.smsConsentVersion, "2026-08-26");
+  assert.equal(typeof payload.smsConsentCapturedAt, "string");
+  assert.equal(payload.smsNonMarketingConsent, true);
+  assert.equal(payload.smsMarketingConsent, false);
+
+  const speaking = attachSmsConsentMetadata("speaking-booking", {
+    smsMarketingConsent: true,
+  });
+  assert.equal(speaking.smsConsentSource, "website-speaking-request");
 });

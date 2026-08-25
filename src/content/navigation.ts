@@ -17,4 +17,5 @@ export const footerNav = primaryNav;
 export const legalNav = [
   { href: site.routes.privacy, label: "Privacy Policy" },
   { href: site.routes.terms, label: "Terms" },
+  { href: site.routes.smsTerms, label: "SMS Terms" },
 ] as const;

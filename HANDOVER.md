@@ -2,7 +2,7 @@
 
 ## Current build state
 
-Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel.
+Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`.
 
 ## Completed pages
 
@@ -14,19 +14,21 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - `/booking` direct-link prayer-call calendar
 - `/privacy`
 - `/terms`
+- `/sms-terms`
 - App `not-found`
 
 ## Implemented functionality
 
 - Sticky header with Home, Listen, Speaking, Prayer Requests, and Book Pastor Mayes CTA; active nav state
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
-- Footer with motto, nav, booking CTA, copyright, legal links
-- Speaking booking form: validation, required/optional states, success state after confirmed HighLevel delivery (`speaking-booking`)
-- Prayer form: conditional follow-up fields, consent, success state after confirmed HighLevel delivery (`prayer-request`)
+- Footer with motto, nav, booking CTA, copyright, legal links, email, and phone
+- Speaking booking form: validation, required/optional states, optional SMS consent, success state after confirmed HighLevel delivery (`speaking-booking`)
+- Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
-- Home stories section after Who We Serve: Ed featured, Tim Moore and Yolanda Bryant secondary, four more compact stories; each opens `/stories/[slug]`
-- SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
+- Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`
+- SEO metadata, canonical URLs locked to `https://donaldmayesministries.com`, OG/Twitter images using the official logo, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
+- Google Tag Manager container `GTM-WQ272CGD` on every page (`GoogleTagManager` in the root layout); no application-level GA4 snippet or custom `dataLayer` events
 - `/booking` embeds the HighLevel prayer-call calendar with responsive minimal DMM chrome
 - Header, footer, and mobile navigation use the transparent official DMM mark beside the Donald Mayes Ministries text identity
 - Home hero uses the locked pulpit image; Meet Pastor uses the locked yellow-jacket portrait
@@ -44,11 +46,11 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 
 ## Stories
 
-Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Ed is featured; Tim Moore and Yolanda Bryant are secondary; Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James are compact. Full copy is on `/stories/[slug]`. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
+Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Ed is featured with a one-paragraph preview and pull quote; Tim Moore and Yolanda Bryant are secondary with short previews; Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James are compact (no paragraph). Full copy is on `/stories/[slug]`. Story SEO titles use the story title plus the ministry template; meta descriptions use `seoDescription`, not the homepage preview. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
 
 ## Forms and HighLevel
 
-Valid submissions `preventDefault`, POST JSON to `/api/forms/prayer-request` or `/api/forms/speaking-booking`, and show confirmation only after the server receives a 2xx from the HighLevel webhook. Header `source` is set server-side from the allowlisted form name.
+Valid submissions `preventDefault`, POST JSON to `/api/forms/prayer-request` or `/api/forms/speaking-booking`, and show confirmation only after the server receives a 2xx from the HighLevel webhook. Header `source` is set server-side from the allowlisted form name. SMS consent booleans are forwarded as submitted; the server appends `smsConsentCapturedAt`, `smsConsentSource`, and `smsConsentVersion`.
 
 Prayer text is not written to localStorage, URLs, or the console. Form values are not logged.
 
@@ -61,21 +63,19 @@ The speaking page booking form is temporary until a HighLevel speaking calendar 
 ## Known limitations
 
 - Speaking still uses the temporary native booking form
-- Contact email not displayed (unconfirmed)
 - Social icons hidden until URLs are set
 - Testimonials component exists but is hidden (`speaking.testimonials.items` is empty)
-- Legal copy is provisional
 - Episode artwork currently uses the show image from RSS for every row
 - Client-side App Router navigations may under-count page views compared to full loads
 
 ## Pending client assets
 
-- Confirmed contact email → `site.email`
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
 - Story photographs are not used; do not generate them
-- Production domain → `NEXT_PUBLIC_SITE_URL`
-- Legal review of Privacy and Terms
+- Confirm `donaldmayesministries.com` DNS in Vercel
+- Counsel review of Privacy, Terms, and SMS Terms
+- HighLevel A2P workflows must send marketing SMS only when `smsMarketingConsent === true` and non-marketing SMS only when `smsNonMarketingConsent === true`
 - HighLevel speaking calendar to replace the temporary booking form
 
 Brand colors and type follow the locked DMM blue, restrained red, warm neutral, Instrument Serif, and Manrope system in `docs/DESIGN-SYSTEM.md`.
@@ -94,11 +94,11 @@ Brand colors and type follow the locked DMM blue, restrained red, warm neutral, 
 
 ## Intentionally not implemented
 
-A.B.S., extra CRM systems, databases, Supabase, email providers, marketing pixels, HighLevel speaking-calendar replacement.
+A.B.S., extra CRM systems, databases, Supabase, email providers, HighLevel speaking-calendar replacement, GA4/Ads IDs in application code.
 
 ## Legal copy
 
-Provisional. Requires review once collection and contact details exist.
+Published production Privacy Policy, Terms of Service, and SMS Messaging Terms. Counsel review is still recommended.
 
 ## Cloud Agent environment
 
@@ -115,33 +115,35 @@ Frontend / Marketing with a same-origin native-form API. No auth or database.
 
 ### Controls Implemented
 
-- HTTPS via `getSiteUrl()` / `metadataBase` (hostname-only values are prefixed with `https://`)
-- Production headers in `next.config.ts`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: SAMEORIGIN`, `X-Permitted-Cross-Domain-Policies: none`, HSTS in production, CSP (`frame-ancestors 'self'`, `form-action 'self'`, HighLevel script/frame hosts allowed, no `unsafe-eval`)
+- HTTPS via canonical `https://donaldmayesministries.com` for SEO URLs; `getSiteUrl()` remains for native-form origin allowlisting
+- Production headers in `next.config.ts`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: SAMEORIGIN`, `X-Permitted-Cross-Domain-Policies: none`, HSTS in production, CSP (`frame-ancestors 'self'`, `form-action 'self'`, HighLevel script/frame hosts allowed, Google Tag Manager hosts allowed, no `unsafe-eval`)
 - Form required/type/length/enum validation on the client and authoritative Zod validation on the server
 - Native `maxLength` on text fields; 32 KB JSON body limit; `application/json` only
 - Same-origin checks, honeypot, supplemental timing signal, and in-memory form rate limits
 - React escaping; JSON-LD uses `JSON.stringify` of our data only
-- Prayer text is not written to localStorage, URLs, or the console
+- Prayer text is not written to localStorage, URLs, the console, or `dataLayer`
 - `.gitignore` excludes `.env*`; `.env.example` has names only
 - HighLevel tracking ID is a public client ID, overridable via `NEXT_PUBLIC_GHL_TRACKING_ID`
+- GTM container ID `GTM-WQ272CGD` is a public client ID in `src/config/site.ts`
 - External social links (when URLs exist) use `rel="noopener noreferrer"`
 
 ### External / Platform Controls
 
 - Vercel HTTPS and HSTS on production
 - HighLevel receives page views via external tracking and native-form JSON via the server webhook forwarder
+- Google Tag Manager is installed as tag-management infrastructure; do not assume Google Analytics is active unless it is configured inside that container
 - Application-layer form rate limiting is in-memory (not globally reliable on serverless); enable Vercel WAF rate limiting too
 
 ### Remaining Security Considerations
 
 - CSP allows `'unsafe-inline'` scripts/styles because Next.js hydration requires it without a nonce pipeline
 - No CAPTCHA/Turnstile on the public forms (low-friction ministry forms; HighLevel is the receiver)
-- Legal copy is provisional and needs review
+- Legal copy is published; counsel review is still recommended
 - Client-side App Router navigations may under-count HighLevel page views versus full loads
 
 ### Manual Configuration Required
 
-- `NEXT_PUBLIC_SITE_URL` for the confirmed production origin
+- `NEXT_PUBLIC_SITE_URL` is optional and is not used for canonical SEO
 - `GHL_FORM_WEBHOOK_URL` on Vercel Production and Preview (server-only HighLevel inbound webhook)
 - Optional `NEXT_PUBLIC_GHL_TRACKING_ID` only to override the ID already in `src/config/site.ts`
 - After deploy: confirm test speaking and prayer JSON payloads in HighLevel
@@ -151,7 +153,14 @@ This site is not “100% secure.” Security depends on Vercel, HighLevel, depen
 
 ## Vercel readiness
 
-Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`. HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`.
+Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (runtime origin checks; canonical SEO is always `https://donaldmayesministries.com`). HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`. GTM container ID is `GTM-WQ272CGD` in `src/config/site.ts`.
+
+## Verification (2026-08-26)
+
+- lint: pass (`npm run lint`)
+- typecheck: pass (`npm run typecheck`)
+- form schema/webhook tests: pass (`npm test`)
+- production build: pass (`npm run build`, Next.js 16.3.1; `/sms-terms` static)
 
 ## Verification (2026-08-25)
 

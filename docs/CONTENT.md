@@ -12,7 +12,8 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Speaking headline, body, five topics, audience list, booking intro, confirmation, and the temporary-form notice
 - Prayer headline, supporting lines, form labels, confirmation copy, and the HighLevel capture notice
 - Prayer-call booking heading and supporting copy
-- Footer copyright: © 2026 Donald Mayes Ministries, LLC. All Rights Reserved.
+- Footer copyright: © 2026 Donald Mayes Ministries LLC. All Rights Reserved.
+- Confirmed contact: info@donaldmayesministries.com, +1 773-787-5028
 - Listen page framing copy in `src/content/episodes.ts`
 - Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
@@ -20,18 +21,14 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 
 ## Temporary placeholders
 
-- Generated OG images using motto/headlines
-- Suggested domain fallback `https://donaldmayesministries.com` for metadata when env is unset
+- Generated OG/Twitter images using motto/headlines and the official DMM logo
 - Form “To be discussed” topic option (operational, not a ministry topic)
-- Connect copy explaining that email/social will appear when confirmed
-- Provisional Privacy and Terms language
 
 ## Client inputs still required
 
-- Confirmed public email
 - Facebook / Instagram / YouTube URLs
 - Testimonials for the speaking page (do not invent)
-- Production domain if different
+- Production DNS for `donaldmayesministries.com` in Vercel (canonical origin is already locked in code)
 - Legal review
 - HighLevel speaking calendar to replace the temporary booking form
 

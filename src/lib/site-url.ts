@@ -1,3 +1,5 @@
+export const CANONICAL_ORIGIN = "https://donaldmayesministries.com";
+
 function normalizeCandidate(raw: string): string {
   const trimmed = raw.trim().replace(/^['"]|['"]$/g, "").replace(/\/$/, "");
   if (!trimmed) {
@@ -23,6 +25,27 @@ function normalizeCandidate(raw: string): string {
   }
 }
 
+export function getCanonicalSiteUrl(): string {
+  return CANONICAL_ORIGIN;
+}
+
+export function getCanonicalUrl(path = "/"): string {
+  if (!path || path === "/") {
+    return CANONICAL_ORIGIN;
+  }
+
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${CANONICAL_ORIGIN}${normalized.replace(/\/$/, "")}`;
+}
+
+export function getMetadataBase(): URL {
+  return new URL(CANONICAL_ORIGIN);
+}
+
+export function isVercelPreview(): boolean {
+  return process.env.VERCEL_ENV === "preview";
+}
+
 export function getSiteUrl(): string {
   const candidates = [
     process.env.NEXT_PUBLIC_SITE_URL,
@@ -40,13 +63,5 @@ export function getSiteUrl(): string {
     }
   }
 
-  return "https://donaldmayesministries.com";
-}
-
-export function getMetadataBase(): URL {
-  try {
-    return new URL(getSiteUrl());
-  } catch {
-    return new URL("https://donaldmayesministries.com");
-  }
+  return CANONICAL_ORIGIN;
 }

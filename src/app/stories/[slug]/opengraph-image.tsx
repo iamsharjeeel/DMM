@@ -1,7 +1,11 @@
-import { storiesSection } from "@/content/stories";
+import {
+  storiesSection,
+  storyCategoryLabels,
+} from "@/content/stories";
 import { createOgImage, ogSize } from "@/lib/og-image";
 import { getStoryBySlug, getStoryStaticParams } from "@/lib/stories";
 
+export const runtime = "nodejs";
 export const alt = storiesSection.heading;
 export const size = ogSize;
 export const contentType = "image/png";
@@ -22,5 +26,8 @@ export default async function Image({
     return createOgImage(storiesSection.heading);
   }
 
-  return createOgImage(story.title);
+  return createOgImage(
+    story.title,
+    `${storyCategoryLabels[story.category]} · ${story.name}`,
+  );
 }

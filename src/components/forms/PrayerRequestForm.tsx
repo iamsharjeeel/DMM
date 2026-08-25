@@ -5,8 +5,10 @@ import { followUpOptions, prayer } from "@/content/prayer";
 import { Button } from "@/components/ui/Button";
 import { Checkbox } from "@/components/forms/Checkbox";
 import { controlClassName, FormField } from "@/components/forms/FormField";
+import { FormLegalFooter } from "@/components/forms/FormLegalFooter";
 import { HoneypotField } from "@/components/forms/HoneypotField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
+import { SmsConsentFields } from "@/components/forms/SmsConsentFields";
 import { SuccessState } from "@/components/forms/SuccessState";
 import { submitNativeForm } from "@/lib/forms/submit-client";
 import { FORM_GENERIC_ERROR } from "@/lib/forms/types";
@@ -27,6 +29,8 @@ const empty: PrayerRequestValues = {
   followUp: "",
   contactMethod: "",
   consent: false,
+  smsMarketingConsent: false,
+  smsNonMarketingConsent: false,
 };
 
 function validate(values: PrayerRequestValues): FieldErrors<PrayerRequestValues> {
@@ -153,6 +157,8 @@ export function PrayerRequestForm() {
       followUp: values.followUp,
       contactMethod: values.followUp === "yes" ? values.contactMethod : "",
       consent: values.followUp === "yes" ? values.consent : false,
+      smsMarketingConsent: values.smsMarketingConsent,
+      smsNonMarketingConsent: values.smsNonMarketingConsent,
       website,
       startedAt: startedAtRef.current ?? undefined,
     });
@@ -243,6 +249,15 @@ export function PrayerRequestForm() {
           className={controlClassName}
         />
       </FormField>
+      <SmsConsentFields
+        variant="prayer"
+        marketing={values.smsMarketingConsent}
+        nonMarketing={values.smsNonMarketingConsent}
+        onMarketingChange={(checked) => update("smsMarketingConsent", checked)}
+        onNonMarketingChange={(checked) =>
+          update("smsNonMarketingConsent", checked)
+        }
+      />
       <FormField
         id="request"
         label={prayer.form.request.label}
@@ -308,6 +323,7 @@ export function PrayerRequestForm() {
         </div>
       ) : null}
       <p className="text-xs leading-relaxed text-ink-soft">{prayer.frontendNotice}</p>
+      <FormLegalFooter />
       {submitError ? (
         <p role="alert" className="text-sm text-error">
           {submitError}

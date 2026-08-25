@@ -1,5 +1,6 @@
 import { createOgImage, ogSize } from "@/lib/og-image";
 
+export const runtime = "nodejs";
 export const alt = "Invite Pastor Donald Mayes to speak";
 export const size = ogSize;
 export const contentType = "image/png";

@@ -12,7 +12,7 @@ Central message: **Loving Everyone Always.**
 - Tailwind CSS 4
 - Vercel-ready static generation
 
-No database. Native prayer and speaking forms POST JSON to the site’s `/api/forms/[form]` route; the server forwards validated payloads to HighLevel. HighLevel external tracking still records page views. The `/booking` calendar is a HighLevel iframe and is not part of that API.
+No database. Native prayer and speaking forms POST JSON to the site’s `/api/forms/[form]` route; the server forwards validated payloads to HighLevel. HighLevel external tracking still records page views. Google Tag Manager (`GTM-WQ272CGD`) is installed globally alongside HighLevel. The `/booking` calendar is a HighLevel iframe and is not part of that API.
 
 ## Setup
 
@@ -21,7 +21,7 @@ npm install
 cp .env.example .env.local
 ```
 
-Optional: set `NEXT_PUBLIC_SITE_URL` in `.env.local` to the public site URL. `NEXT_PUBLIC_GHL_TRACKING_ID` is optional; the HighLevel tracking ID already lives in `src/config/site.ts`. Required for native form delivery: server-only `GHL_FORM_WEBHOOK_URL`.
+Optional: `NEXT_PUBLIC_SITE_URL` is not used for canonical SEO (that origin is `https://donaldmayesministries.com`). It may still be set for local/runtime origin checks. `NEXT_PUBLIC_GHL_TRACKING_ID` is optional; the HighLevel tracking ID already lives in `src/config/site.ts`. Required for native form delivery: server-only `GHL_FORM_WEBHOOK_URL`.
 
 ## Commands
 
@@ -43,8 +43,9 @@ npm run import:episodes
 - `/speaking` Speaking + booking form
 - `/prayer-requests` Prayer request form
 - `/booking` Direct-link HighLevel prayer-call calendar
-- `/privacy` Privacy Policy (provisional)
-- `/terms` Terms (provisional)
+- `/privacy` Privacy Policy
+- `/terms` Terms of Service
+- `/sms-terms` SMS Messaging Terms
 
 `/episodes` reads the committed RSS catalogue in `src/content/episodes.catalogue.json`. Refresh it with `npm run import:episodes`.
 
@@ -52,9 +53,9 @@ npm run import:episodes
 
 - Booking and prayer forms validate in the browser, POST to `/api/forms/[form]`, and confirm only after HighLevel accepts the webhook
 - Prayer text is not stored in the browser or placed in the page address
-- Contact email, social URLs, and testimonials are pending
+- Social URLs and testimonials are pending
 - Brand colors and type follow the locked kit in `docs/DESIGN-SYSTEM.md`
-- Legal copy requires client/legal review
+- Legal copy should still receive counsel review
 
 ## Structure
 
@@ -64,6 +65,7 @@ src/
   components/     layout, sections, forms, episodes, UI
   content/        client-approved copy and the episode catalogue JSON
   config/site.ts  ministry name, routes, social, asset paths
+  config/compliance.ts  legal identity and SMS consent copy
   lib/            metadata, JSON-LD, OG helper, validation, form API helpers, episode helpers
   app/api/forms   same-origin native form POST routes
 scripts/
@@ -76,7 +78,7 @@ Locked colors and fonts live in `src/app/globals.css` (`:root` tokens). See `doc
 
 ## Vercel
 
-Import the GitHub repo into Vercel. Framework: Next.js. Required env: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_GHL_TRACKING_ID`.
+Import the GitHub repo into Vercel. Framework: Next.js. Required env: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (runtime origin checks only), `NEXT_PUBLIC_GHL_TRACKING_ID`. Canonical SEO URLs always use `https://donaldmayesministries.com`.
 
 See `docs/DEPLOYMENT.md`.
 

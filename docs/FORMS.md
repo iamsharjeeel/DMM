@@ -28,11 +28,35 @@ Outbound header, derived server-side:
 - `source: prayer-request`
 - `source: speaking-booking`
 
+Server-derived SMS consent metadata is also appended before forwarding:
+
+- `smsConsentCapturedAt` (ISO timestamp)
+- `smsConsentSource` (`website-prayer-request` or `website-speaking-request`)
+- `smsConsentVersion` (`2026-08-26`)
+
+Client-supplied timestamps or source strings are not authoritative.
+
+## SMS consent (A2P)
+
+Prayer and speaking forms collect two independent optional checkboxes:
+
+- `smsMarketingConsent`
+- `smsNonMarketingConsent`
+
+Both default to `false`. Missing values are stored as `false`. Providing a phone number, submitting a form, requesting follow-up, choosing Text, or checking general contact permission does not constitute SMS consent.
+
+HighLevel workflows must only send:
+
+- marketing SMS when `smsMarketingConsent === true`
+- non-marketing SMS when `smsNonMarketingConsent === true`
+
+Do not create messaging workflows in this repository.
+
 ## Privacy / logging
 
 Do not log prayer text, names, emails, phones, event details, or payloads. Safe logs may include request ID, form name, success/failure, HTTP status, and timestamp.
 
-Prayer text is not written to localStorage, URLs, or the console.
+Prayer text is not written to localStorage, URLs, or the console. Do not log PII.
 
 ## Rate limiting
 

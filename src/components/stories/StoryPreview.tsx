@@ -15,7 +15,7 @@ export function StoryPreview({
   return (
     <article
       className={cn(
-        !compact && "border-t border-rule pt-10 first:border-t-0 first:pt-0",
+        !compact && "border-t border-rule pt-8 first:border-t-0 first:pt-0",
       )}
     >
       <StoryHeader
@@ -24,11 +24,11 @@ export function StoryPreview({
         size={compact ? "compact" : "standard"}
       />
       {compact ? null : (
-        <p className="mt-4 text-[1.05rem] leading-relaxed text-ink-soft">
+        <p className="mt-3 text-[1.05rem] leading-relaxed text-ink-soft">
           {story.preview}
         </p>
       )}
-      <div className={cn(compact ? "mt-4" : "mt-5")}>
+      <div className={cn(compact ? "mt-3" : "mt-4")}>
         <ReadStoryLink slug={story.slug} title={story.title} />
       </div>
     </article>

@@ -1,14 +1,23 @@
 import type { MetadataRoute } from "next";
-import { getSiteUrl } from "@/lib/site-url";
+import { CANONICAL_ORIGIN, isVercelPreview } from "@/lib/site-url";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = getSiteUrl();
+  if (isVercelPreview()) {
+    return {
+      rules: {
+        userAgent: "*",
+        disallow: "/",
+      },
+    };
+  }
 
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: "/api/",
     },
-    sitemap: `${base}/sitemap.xml`,
+    sitemap: `${CANONICAL_ORIGIN}/sitemap.xml`,
+    host: CANONICAL_ORIGIN,
   };
 }

@@ -16,6 +16,8 @@ export type SpeakingBookingValues = {
   topic: string;
   details: string;
   referral: string;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
 };
 
 export type PrayerRequestValues = {
@@ -27,6 +29,8 @@ export type PrayerRequestValues = {
   followUp: FollowUpChoice;
   contactMethod: ContactMethod;
   consent: boolean;
+  smsMarketingConsent: boolean;
+  smsNonMarketingConsent: boolean;
 };
 
 export type FieldErrors<T> = Partial<Record<keyof T, string>>;

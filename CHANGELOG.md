@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-08-26
+
+- Tightened homepage Stories previews: one paragraph for Ed, shorter Tim and Yolanda copy, compact stories as category/name/title/link only
+- Locked canonical SEO to `https://donaldmayesministries.com`, added www/Vercel alias redirects, preview noindex, GTM `GTM-WQ272CGD`, and corrected sitemap/robots/schema/social graphics
+- Published Privacy, Terms, and SMS Terms for A2P 10DLC, added optional marketing/non-marketing SMS consent on native forms, and displayed confirmed email and phone
+
 ## 2026-08-25
 
 - Added a Real Stories homepage section and dedicated `/stories/[slug]` pages from source testimonies, using the approved DMM blue/red/cream system

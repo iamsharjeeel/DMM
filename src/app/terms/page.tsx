@@ -1,12 +1,12 @@
 import { LegalPage } from "@/components/sections/LegalPage";
-import { legal } from "@/content/legal";
 import { createMetadata } from "@/lib/metadata";
+import { site } from "@/config/site";
 
 export const metadata = createMetadata({
-  title: legal.terms.title,
+  title: "Terms of Service",
   description:
-    "Provisional terms for the Donald Mayes Ministries website. Requires legal review.",
-  path: "/terms",
+    "Read the terms governing use of the Donald Mayes Ministries website, ministry content, prayer requests, speaking inquiries, and communications.",
+  path: site.routes.terms,
 });
 
 export default function TermsPage() {

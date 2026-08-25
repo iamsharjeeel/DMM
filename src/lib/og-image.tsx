@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { site } from "@/config/site";
 
@@ -6,7 +8,10 @@ export const ogSize = {
   height: 630,
 };
 
-export function createOgImage(title: string, kicker = site.name) {
+export async function createOgImage(title: string, kicker: string = site.name) {
+  const logo = await readFile(join(process.cwd(), "public/brand/dmm-logo.png"));
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
@@ -33,21 +38,14 @@ export function createOgImage(title: string, kicker = site.name) {
           }}
         >
           <span>{kicker}</span>
-          <span
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 52,
-              height: 52,
-              backgroundColor: "#052C91",
-              color: "#FFFDF8",
-              fontSize: 16,
-              letterSpacing: "0.12em",
-            }}
-          >
-            DMM
-          </span>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            src={logoSrc}
+            width={88}
+            height={61}
+            style={{ objectFit: "contain" }}
+          />
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
           <div
