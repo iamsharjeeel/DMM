@@ -6,6 +6,9 @@
 - Rebranded shared navigation, sections, forms, episode archive, player, metadata graphics, and responsive states
 - Renamed the decorative `GoldRule` primitive to the brand-neutral `AccentRule`
 - Updated brand architecture and design-system documentation for the DMM red and blue identity
+- Promoted red to the primary light-surface CTA color while preserving blue structural and secondary treatments
+- Replaced repeated pastor frames with one home portrait position and a curated sanctuary supporting image
+- Removed header blur, full-section grain blending, and CSS smooth scrolling to reduce scroll repaint work
 
 ## 2026-08-17
 

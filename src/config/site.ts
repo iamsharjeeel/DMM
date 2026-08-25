@@ -42,12 +42,11 @@ export const site = {
   },
   assets: {
     logo: "/brand/logo.svg",
+    supportingImage: "/images/editorial/sanctuary.png",
     ogDefault: "/opengraph-image",
   },
   photography: {
     hero: null as string | null,
-    portrait: null as string | null,
-    speaking: null as string | null,
   },
   routes: {
     home: "/",

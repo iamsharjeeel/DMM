@@ -25,6 +25,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
 - Wordmark reads its mark from `site.assets.logo` beside the Donald Mayes Ministries text identity
+- Home and speaking supporting frames use the curated sanctuary image; only the home hero reserves a Donald Mayes portrait
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
 
 ## Audio archive
@@ -62,7 +63,8 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 
 ## Pending client assets
 
-- Pastor photography → `public/images/pastor/` and paths in `src/config/site.ts`
+- Raw Donald Mayes headshot → `public/images/pastor/` and `site.photography.hero`
+- Genuine transparent DMM logo → `public/brand/` and `site.assets.logo`
 - Confirmed contact email → `site.email`
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
@@ -79,7 +81,10 @@ Brand colors and type follow the locked DMM blue, restrained red, warm neutral, 
 - Page files: home, speaking, prayer, legal, and episode section components
 - Metadata files: theme color, generated OG image, favicon, and Apple icon
 - Documentation: `docs/DESIGN-SYSTEM.md`, `docs/ARCHITECTURE.md`, `CHANGELOG.md`
-- Pending: replace `public/brand/logo.svg` with the approved transparent DMM artwork when the missing source asset is supplied
+- Refinement: primary light-surface actions are red; secondary actions remain blue
+- Performance: removed sticky-header blur, full-section grain/mix-blend overlays, and CSS smooth scrolling
+- Image strategy: added a supporting sanctuary image and reduced `PastorImage` to one home-hero use
+- Pending: replace `public/brand/logo.svg` and the home placeholder when raw logo/headshot files are supplied
 
 ## Intentionally not implemented
 

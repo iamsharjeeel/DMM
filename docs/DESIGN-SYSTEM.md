@@ -41,9 +41,10 @@ Page rhythm remains light → editorial → quiet tint → dark authority → li
 
 ## Components
 
-- `Button` / `ButtonLink`: blue primary, blue-outline secondary, editorial ghost, cream-outline invert, optional restrained red accent
+- `Button` / `ButtonLink`: red primary on light surfaces, blue-outline secondary, editorial ghost, cream-outline invert
 - `Wordmark`: approved DMM mark beside the Donald Mayes Ministries text identity
-- `PastorImage`: 4×5 portrait reservation with thin red L-corners
+- `PastorImage`: one primary Donald Mayes portrait with thin red L-corners
+- `EditorialImage`: secondary sanctuary or speaking atmosphere with matching restrained framing
 - Episode archive: ivory index, mist discovery band, deep-blue pinned player, red active/progress details
 - `SectionHeading`, `Eyebrow`, `AccentRule`, `PullQuote`, `Reveal`
 - Forms: cream fields, blue focus treatment, explicit labels, distinct dark-red errors
@@ -53,7 +54,7 @@ Page rhythm remains light → editorial → quiet tint → dark authority → li
 - Use cream for readable text on deep blue
 - Use reduced-opacity cream for secondary copy
 - Red may appear as a thin rule or control state, never as normal text on blue
-- Grain remains faint micro-texture only
+- Dark sections stay flat and unfiltered to protect scroll performance
 
 ## Logo
 

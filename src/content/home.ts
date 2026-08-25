@@ -31,8 +31,7 @@ export const home = {
       "His personal motto—and the heartbeat of Donald Mayes Ministries—is:",
     motto: site.motto,
     image: {
-      slot: "portrait" as const,
-      alt: "Forthcoming portrait of Pastor Donald Mayes",
+      alt: "A quiet sanctuary interior with a wooden pulpit and arched windows",
     },
   },
   experience: {

@@ -1,20 +1,18 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/lib/cn";
 
-type ButtonVariant = "primary" | "secondary" | "ghost" | "invert" | "accent";
+type ButtonVariant = "primary" | "secondary" | "ghost" | "invert";
 type ButtonSize = "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-blue text-cream hover:bg-blue-hover focus-visible:outline-blue",
+    "bg-red text-cream hover:bg-red-deep focus-visible:outline-red",
   secondary:
     "border border-blue/30 bg-transparent text-blue hover:border-blue hover:bg-mist/55",
   ghost:
     "text-blue underline-offset-[6px] hover:underline",
   invert:
     "border border-cream/40 bg-transparent text-cream hover:border-cream hover:bg-cream/10",
-  accent:
-    "bg-red text-cream hover:bg-red-deep focus-visible:outline-red",
 };
 
 const sizes: Record<ButtonSize, string> = {

@@ -1,8 +1,9 @@
 import { speaking } from "@/content/speaking";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
+import { EditorialImage } from "@/components/ui/EditorialImage";
 import { AccentRule } from "@/components/ui/AccentRule";
-import { PastorImage } from "@/components/ui/PastorImage";
+import { site } from "@/config/site";
 
 export function SpeakingHero() {
   const { hero } = speaking;
@@ -30,11 +31,11 @@ export function SpeakingHero() {
             </ButtonLink>
           </div>
         </div>
-        <PastorImage
-          slot={hero.image.slot}
+        <EditorialImage
+          src={site.assets.supportingImage}
           alt={hero.image.alt}
           aspect="portrait"
-          priority
+          preload
         />
       </Container>
     </section>

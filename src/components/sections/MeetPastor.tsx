@@ -1,10 +1,11 @@
 import { home } from "@/content/home";
 import { Container } from "@/components/ui/Container";
-import { PastorImage } from "@/components/ui/PastorImage";
+import { EditorialImage } from "@/components/ui/EditorialImage";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { site } from "@/config/site";
 
 export function MeetPastor() {
   const { meet } = home;
@@ -13,8 +14,8 @@ export function MeetPastor() {
     <Section tone="cream">
       <Container className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:gap-20">
         <Reveal>
-          <PastorImage
-            slot={meet.image.slot}
+          <EditorialImage
+            src={site.assets.supportingImage}
             alt={meet.image.alt}
             aspect="portrait"
           />

@@ -79,6 +79,8 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 
 - Editorial layout over card grids
 - DMM Red is reserved for precise accents and active states
+- One Donald Mayes portrait position; secondary frames use editorial ministry atmosphere
+- Native scrolling without blur, blend-mode grain, or scroll libraries
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
 - Social links render only when URLs are non-null

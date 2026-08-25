@@ -67,8 +67,7 @@ export const speaking = {
       label: "Book Pastor Mayes",
     },
     image: {
-      slot: "speaking" as const,
-      alt: "Forthcoming speaking photograph of Pastor Donald Mayes",
+      alt: "A quiet sanctuary interior with a wooden pulpit and arched windows",
     },
   },
   topics: {
