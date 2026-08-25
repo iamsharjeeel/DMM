@@ -30,9 +30,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Keep TypeScript strict; do not use `any` casually
 - Avoid new dependencies unless necessary
 - Keep Vercel compatibility
-- Do not add backend, APIs, webhooks, extra CRM systems, Supabase, databases, or email sending unless explicitly instructed
+- Do not add extra CRM systems, Supabase, databases, or email sending unless explicitly instructed
 - HighLevel external tracking is instructed: keep the account script on every page and leave the tracking ID unchanged unless `NEXT_PUBLIC_GHL_TRACKING_ID` is set
-- Booking and prayer forms stay native HTML forms so HighLevel can capture submits; keep preventDefault confirmation UX
+- Native booking and prayer forms POST JSON to same-origin `/api/forms/[form]`; keep preventDefault confirmation UX; the server forwards to HighLevel using `GHL_FORM_WEBHOOK_URL`
+- Do not call the HighLevel form webhook from the browser
+- Do not intercept `/booking` HighLevel calendar requests
 - Do not persist prayer text to localStorage, URLs, or the console
 - Do not display social links unless URLs exist in `src/config/site.ts`
 - Do not generate or fake photographs of Pastor Mayes

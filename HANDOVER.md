@@ -2,7 +2,7 @@
 
 ## Current build state
 
-Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views and form capture. No other backend.
+Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel.
 
 ## Completed pages
 
@@ -20,8 +20,8 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Sticky header with Home, Listen, Speaking, Prayer Requests, and Book Pastor Mayes CTA; active nav state
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
 - Footer with motto, nav, booking CTA, copyright, legal links
-- Speaking booking form: validation, required/optional states, success state; captured by HighLevel as `speaking-booking`
-- Prayer form: conditional follow-up fields, consent, success state; captured by HighLevel as `prayer-request`
+- Speaking booking form: validation, required/optional states, success state after confirmed HighLevel delivery (`speaking-booking`)
+- Prayer form: conditional follow-up fields, consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
@@ -42,16 +42,15 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 
 ## Forms and HighLevel
 
-Valid submissions show an on-page confirmation (`preventDefault`). The HighLevel external tracking script on every page is how booking and prayer fields reach the CRM.
+Valid submissions `preventDefault`, POST JSON to `/api/forms/prayer-request` or `/api/forms/speaking-booking`, and show confirmation only after the server receives a 2xx from the HighLevel webhook. Header `source` is set server-side from the allowlisted form name.
 
-Prayer text is not written to localStorage, URLs, or the console.
+Prayer text is not written to localStorage, URLs, or the console. Form values are not logged.
 
-Verify after deploy in HighLevel:
+Required env: `GHL_FORM_WEBHOOK_URL` (server-only). See `docs/FORMS.md`.
 
-- Sites → Forms → Submissions → External Forms
-- Sites → Analytics → External Tracking
+`/booking` remains a HighLevel calendar iframe and is not routed through this API.
 
-The booking form is temporary until a HighLevel calendar replaces it. Do not embed a calendar yet.
+The speaking page booking form is temporary until a HighLevel speaking calendar replaces it.
 
 ## Known limitations
 
@@ -88,7 +87,7 @@ Brand colors and type follow the locked DMM blue, restrained red, warm neutral, 
 
 ## Intentionally not implemented
 
-A.B.S., extra CRM systems, APIs, webhooks, databases, Supabase, email providers, marketing pixels, HighLevel speaking-calendar replacement.
+A.B.S., extra CRM systems, databases, Supabase, email providers, marketing pixels, HighLevel speaking-calendar replacement.
 
 ## Legal copy
 
@@ -99,19 +98,21 @@ Provisional. Requires review once collection and contact details exist.
 - Config: `.cursor/environment.json` (repository-managed)
 - Install: `npm ci`
 - Terminal: `dev-server` runs `npm run dev` (Next.js on port 3000)
-- No secrets required; `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GHL_TRACKING_ID` are optional
+- No secrets required for page rendering; native form delivery requires `GHL_FORM_WEBHOOK_URL`. `NEXT_PUBLIC_SITE_URL` and `NEXT_PUBLIC_GHL_TRACKING_ID` are optional
 
 ## Security
 
 ### Security Classification
 
-Frontend / Marketing. No auth, database, owned APIs, or application form endpoints.
+Frontend / Marketing with a same-origin native-form API. No auth or database.
 
 ### Controls Implemented
 
 - HTTPS via `getSiteUrl()` / `metadataBase` (hostname-only values are prefixed with `https://`)
-- Production headers in `next.config.ts`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: SAMEORIGIN`, CSP (`frame-ancestors 'self'`, HighLevel script host allowed, no `unsafe-eval`)
-- Form required/type/length/enum validation; native `maxLength` on text fields
+- Production headers in `next.config.ts`: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options: SAMEORIGIN`, `X-Permitted-Cross-Domain-Policies: none`, HSTS in production, CSP (`frame-ancestors 'self'`, `form-action 'self'`, HighLevel script/frame hosts allowed, no `unsafe-eval`)
+- Form required/type/length/enum validation on the client and authoritative Zod validation on the server
+- Native `maxLength` on text fields; 32 KB JSON body limit; `application/json` only
+- Same-origin checks, honeypot, supplemental timing signal, and in-memory form rate limits
 - React escaping; JSON-LD uses `JSON.stringify` of our data only
 - Prayer text is not written to localStorage, URLs, or the console
 - `.gitignore` excludes `.env*`; `.env.example` has names only
@@ -121,7 +122,8 @@ Frontend / Marketing. No auth, database, owned APIs, or application form endpoin
 ### External / Platform Controls
 
 - Vercel HTTPS and HSTS on production
-- HighLevel receives page views and form submits; abuse/rate-limiting is on HighLevel, not an owned POST endpoint
+- HighLevel receives page views via external tracking and native-form JSON via the server webhook forwarder
+- Application-layer form rate limiting is in-memory (not globally reliable on serverless); enable Vercel WAF rate limiting too
 
 ### Remaining Security Considerations
 
@@ -133,21 +135,23 @@ Frontend / Marketing. No auth, database, owned APIs, or application form endpoin
 ### Manual Configuration Required
 
 - `NEXT_PUBLIC_SITE_URL` for the confirmed production origin
+- `GHL_FORM_WEBHOOK_URL` on Vercel Production and Preview (server-only HighLevel inbound webhook)
 - Optional `NEXT_PUBLIC_GHL_TRACKING_ID` only to override the ID already in `src/config/site.ts`
-- After deploy: confirm test booking and prayer submits in HighLevel External Forms
+- After deploy: confirm test speaking and prayer JSON payloads in HighLevel
 - Attach the production domain in Vercel
 
 This site is not “100% secure.” Security depends on Vercel, HighLevel, dependencies, and ongoing configuration.
 
 ## Vercel readiness
 
-Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`. HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`.
+Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`. HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`.
 
 ## Verification (2026-08-25)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
-- production build: pass (`npm run build`, Next.js 16.3.1, all routes static)
+- form schema tests: pass (`npm run test`)
+- production build: pass (`npm run build`, Next.js 16.3.1; `/api/forms/[form]` is dynamic)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/booking`, `/privacy`, `/terms`
 - Chromium: homepage passes at 1440, 1280, 1024, 768, 430, 390, and 375px with no horizontal overflow
 - Production visual QA: official logo, both locked portraits, CTA alignment, footer, and mobile navigation pass
@@ -156,4 +160,4 @@ Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname o
 
 ## Recommended next action
 
-After deploy, confirm booking and prayer submits in HighLevel. Re-run `npm run import:episodes` when new messages are published.
+After deploy, set `GHL_FORM_WEBHOOK_URL` and confirm speaking and prayer JSON payloads in HighLevel. Re-run `npm run import:episodes` when new messages are published.

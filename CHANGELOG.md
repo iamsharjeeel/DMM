@@ -2,6 +2,7 @@
 
 ## 2026-08-25
 
+- Routed native prayer and speaking forms through a same-origin API that validates, rate-limits, and forwards JSON to HighLevel with a server-derived `source` header
 - Replaced the forest, gold, and sage visual system with the client-approved DMM blue, restrained red, and warm neutral brand system
 - Rebranded shared navigation, sections, forms, episode archive, player, metadata graphics, and responsive states
 - Renamed the decorative `GoldRule` primitive to the brand-neutral `AccentRule`

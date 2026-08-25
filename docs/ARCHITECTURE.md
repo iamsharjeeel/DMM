@@ -32,7 +32,7 @@ Client Components:
 - `PrayerRequestForm`
 - `EpisodesArchive` — search, filters, selection, native audio
 
-No route handlers. No server actions. No fake fetch calls. Episode RSS is imported by `scripts/import-episodes.mjs`, not fetched at request time.
+Route handler: `POST /api/forms/[form]` for native prayer and speaking forms. No server actions. Episode RSS is imported by `scripts/import-episodes.mjs`, not fetched at request time.
 
 ## Component hierarchy
 
@@ -58,9 +58,9 @@ Site-wide values: `src/config/site.ts`. Podcast RSS URL: `site.podcast.rssUrl`. 
 
 ## Forms
 
-Client-side validation with native `<form>` submit. Success is local React state after `preventDefault`, so the visitor stays on the page. HighLevel external tracking captures the submit. Form ids: `speaking-booking`, `prayer-request`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
+Client-side validation remains UX only. Native `<form>` elements `preventDefault`, POST JSON to `POST /api/forms/prayer-request` or `POST /api/forms/speaking-booking`, and show success only after the server confirms HighLevel delivery. See `docs/FORMS.md`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method.
 
-Do not persist prayer text to localStorage, URLs, or the console. Do not add webhooks, APIs, or a HighLevel calendar unless instructed.
+Do not persist prayer text to localStorage, URLs, or the console. Do not call the HighLevel webhook from the browser. `/booking` stays a native HighLevel calendar embed.
 
 ## HighLevel
 
@@ -92,4 +92,4 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 
 ## Security
 
-Classification: Frontend / Marketing. Production headers are set in `next.config.ts` (nosniff, referrer policy, permissions policy, SAMEORIGIN framing, CSP allowing Next.js plus HighLevel `link.msgsndr.com`). The HighLevel tracking ID is a public client ID. Prayer text is not written to localStorage, URLs, or the console. This app has no owned form POST endpoint.
+Classification: Frontend / Marketing with a same-origin form API. Production headers are set in `next.config.ts` (nosniff, referrer policy, permissions policy, SAMEORIGIN framing, HSTS in production, `X-Permitted-Cross-Domain-Policies: none`, CSP allowing Next.js plus HighLevel `link.msgsndr.com` / `leadconnectorhq.com`, `form-action 'self'`). The HighLevel tracking ID is a public client ID. Prayer text is not written to localStorage, URLs, or the console. Native form webhooks are server-only via `GHL_FORM_WEBHOOK_URL`.
