@@ -1,6 +1,6 @@
 import { cn } from "@/lib/cn";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 
 export function SectionHeading({
   eyebrow,
@@ -27,7 +27,7 @@ export function SectionHeading({
           {eyebrow}
         </Eyebrow>
       ) : null}
-      <GoldRule className={cn("mt-5", align === "center" && "mx-auto")} />
+      <AccentRule className={cn("mt-5", align === "center" && "mx-auto")} />
       <h2
         className={cn(
           "display-lg mt-5 text-balance",

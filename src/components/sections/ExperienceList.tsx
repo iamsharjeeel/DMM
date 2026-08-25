@@ -21,7 +21,7 @@ export function ExperienceList() {
             >
               <span
                 aria-hidden="true"
-                className="w-10 shrink-0 font-display text-xl italic text-forest"
+                className="w-10 shrink-0 font-display text-xl italic text-blue"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>

@@ -3,7 +3,7 @@ import { buttonClassName } from "@/components/ui/Button";
 
 type ButtonLinkProps = {
   href: string;
-  variant?: "primary" | "secondary" | "ghost" | "invert";
+  variant?: "primary" | "secondary" | "ghost" | "invert" | "accent";
   size?: "md" | "lg";
   className?: string;
   children: React.ReactNode;

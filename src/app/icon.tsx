@@ -13,14 +13,14 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#183A32",
+          background: "#052C91",
           color: "#FFFDF8",
           fontSize: 11,
           letterSpacing: "0.08em",
           fontWeight: 600,
         }}
       >
-        DM
+        DMM
       </div>
     ),
     { ...size },

@@ -27,7 +27,7 @@ export function ValuesSection() {
             >
               <p
                 aria-hidden="true"
-                className="font-display text-5xl leading-none text-forest md:text-6xl"
+                className="font-display text-5xl leading-none text-red md:text-6xl"
               >
                 {item.letter}
               </p>

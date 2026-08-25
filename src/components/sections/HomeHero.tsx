@@ -1,7 +1,7 @@
 import { home } from "@/content/home";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 import { PastorImage } from "@/components/ui/PastorImage";
 
 export function HomeHero() {
@@ -14,9 +14,9 @@ export function HomeHero() {
         className="grid items-center gap-12 py-[var(--space-hero)] lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-16 xl:gap-24"
       >
         <div className="hero-enter min-w-0">
-          <p className="eyebrow text-forest">{hero.eyebrow}</p>
-          <GoldRule className="mt-5" />
-          <h1 className="display-xl mt-6 max-w-[14ch] text-balance italic">
+          <p className="eyebrow text-blue">{hero.eyebrow}</p>
+          <AccentRule className="mt-5" />
+          <h1 className="display-xl mt-6 max-w-[14ch] text-balance text-blue-deep italic">
             {hero.headline}
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-ink-soft sm:text-xl">

@@ -10,7 +10,7 @@ export function SpeakingPreview() {
   const { speakingPreview } = home;
 
   return (
-    <Section tone="forest">
+    <Section tone="blue">
       <Container className="relative grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
         <Reveal>
           <SectionHeading heading={speakingPreview.heading} invert>

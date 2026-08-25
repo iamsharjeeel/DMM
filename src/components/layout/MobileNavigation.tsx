@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { headerCta, primaryNav } from "@/content/navigation";
 import { buttonClassName } from "@/components/ui/Button";
 import { CloseIcon, MenuIcon } from "@/components/ui/icons";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { cn } from "@/lib/cn";
 
@@ -75,7 +75,7 @@ export function MobileNavigation() {
       aria-label="Menu"
       className="fixed inset-0 z-[80] flex flex-col bg-ivory"
     >
-      <div className="h-[2px] bg-forest" aria-hidden="true" />
+      <div className="h-px bg-red" aria-hidden="true" />
       <div className="flex items-center justify-between px-5 py-4">
         <Wordmark compact />
         <button
@@ -89,8 +89,8 @@ export function MobileNavigation() {
         </button>
       </div>
       <nav className="flex flex-1 flex-col px-6 pb-16 pt-8 sm:px-10">
-        <p className="eyebrow text-forest">Menu</p>
-        <GoldRule className="mt-5" />
+        <p className="eyebrow text-blue">Menu</p>
+        <AccentRule className="mt-5" />
         <ul className="mt-10 space-y-5">
           {primaryNav.map((item) => {
             const current =
@@ -105,7 +105,7 @@ export function MobileNavigation() {
                   aria-current={current ? "page" : undefined}
                   className={cn(
                     "font-display text-[2.6rem] leading-none text-ink sm:text-5xl",
-                    current && "italic",
+                    current && "text-blue italic",
                   )}
                   onClick={() => setMenuPath(null)}
                 >

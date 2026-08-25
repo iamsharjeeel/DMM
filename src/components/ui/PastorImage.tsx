@@ -33,17 +33,17 @@ export function PastorImage({
         <>
           <span
             aria-hidden="true"
-            className="absolute -top-2.5 -left-2.5 hidden h-14 w-14 border-t border-l border-gold sm:block"
+            className="absolute -top-2.5 -left-2.5 hidden h-14 w-14 border-t border-l border-red sm:block"
           />
           <span
             aria-hidden="true"
-            className="absolute -right-2.5 -bottom-2.5 hidden h-14 w-14 border-r border-b border-gold sm:block"
+            className="absolute -right-2.5 -bottom-2.5 hidden h-14 w-14 border-r border-b border-red sm:block"
           />
         </>
       ) : null}
       <div
         className={cn(
-          "relative overflow-hidden bg-forest",
+          "relative overflow-hidden bg-blue-deep",
           aspects[aspect],
           src && "img-zoom",
         )}
@@ -53,7 +53,7 @@ export function PastorImage({
             src={src}
             alt={alt}
             fill
-            priority={priority}
+            preload={priority}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px"
             className="object-cover"
           />

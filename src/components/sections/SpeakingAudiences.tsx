@@ -18,7 +18,7 @@ export function SpeakingAudiences() {
             <li key={item} className="flex items-baseline gap-3">
               <span>{item}</span>
               {index < audiences.items.length - 1 ? (
-                <span aria-hidden="true" className="text-gold">
+                <span aria-hidden="true" className="text-red">
                   ·
                 </span>
               ) : null}

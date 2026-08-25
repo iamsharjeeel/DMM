@@ -26,7 +26,7 @@ export function EpisodeIndex({
         <button
           type="button"
           onClick={onClear}
-          className="mt-6 text-[0.6875rem] font-semibold tracking-[0.16em] text-forest uppercase underline-offset-4 hover:underline"
+          className="mt-6 text-[0.6875rem] font-semibold tracking-[0.16em] text-blue uppercase underline-offset-4 hover:underline"
         >
           {episodesPage.discovery.clear}
         </button>

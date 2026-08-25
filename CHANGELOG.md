@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-08-25
+
+- Replaced the forest, gold, and sage visual system with the client-approved DMM blue, restrained red, and warm neutral brand system
+- Rebranded shared navigation, sections, forms, episode archive, player, metadata graphics, and responsive states
+- Renamed the decorative `GoldRule` primitive to the brand-neutral `AccentRule`
+- Updated brand architecture and design-system documentation for the DMM red and blue identity
+
 ## 2026-08-17
 
 - Replaced the DM letters in the Wordmark box with the supplied white geometric mark

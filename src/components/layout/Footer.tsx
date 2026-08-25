@@ -3,13 +3,13 @@ import { site } from "@/config/site";
 import { footerNav, headerCta, legalNav } from "@/content/navigation";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { Wordmark } from "@/components/ui/Wordmark";
 
 export function Footer() {
   return (
-    <footer className="tone-forest">
+    <footer className="tone-blue">
       <Container className="relative py-16 lg:py-20">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,0.7fr)_minmax(0,0.9fr)] lg:gap-16">
           <div>
@@ -17,7 +17,7 @@ export function Footer() {
             <p className="mt-8 font-display text-[2.15rem] leading-[1.1] italic text-cream sm:text-4xl">
               {site.motto}
             </p>
-            <GoldRule className="mt-6" />
+            <AccentRule className="mt-6" />
             <p className="mt-6 max-w-md text-cream/70">
               Teaching followers of Christ how to love people through practical
               biblical living.

@@ -48,11 +48,11 @@ export function WaveformProgress({
               className={cn(
                 invert
                   ? filled
-                    ? "fill-cream"
+                    ? "fill-red-bright"
                     : "fill-cream/25"
                   : filled
-                    ? "fill-forest"
-                    : "fill-forest/20",
+                    ? "fill-blue"
+                    : "fill-blue/20",
               )}
             />
           );

@@ -2,7 +2,7 @@
 
 ## Current build state
 
-Phase 1 informational site with the locked **Modern Heritage Ministry** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views and form capture. No other backend.
+Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views and form capture. No other backend.
 
 ## Completed pages
 
@@ -24,7 +24,7 @@ Phase 1 informational site with the locked **Modern Heritage Ministry** visual s
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
-- Wordmark uses the supplied white geometric mark in the forest/gold box (header, footer, mobile menu)
+- Wordmark reads its mark from `site.assets.logo` beside the Donald Mayes Ministries text identity
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
 
 ## Audio archive
@@ -70,7 +70,16 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 - Legal review of Privacy and Terms
 - HighLevel calendar to replace the temporary booking form
 
-Brand colors and type are no longer pending: they follow the locked kit in `docs/DESIGN-SYSTEM.md`.
+Brand colors and type follow the locked DMM blue, restrained red, warm neutral, Instrument Serif, and Manrope system in `docs/DESIGN-SYSTEM.md`.
+
+## DMM brand overhaul
+
+- Why: align the full editorial experience with the client-approved red and royal-blue identity
+- Shared files: `src/app/globals.css`, `src/components/ui/`, `src/components/layout/`
+- Page files: home, speaking, prayer, legal, and episode section components
+- Metadata files: theme color, generated OG image, favicon, and Apple icon
+- Documentation: `docs/DESIGN-SYSTEM.md`, `docs/ARCHITECTURE.md`, `CHANGELOG.md`
+- Pending: replace `public/brand/logo.svg` with the approved transparent DMM artwork when the missing source asset is supplied
 
 ## Intentionally not implemented
 

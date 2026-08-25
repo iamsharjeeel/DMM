@@ -1,62 +1,68 @@
 # Design system
 
-Locked **Modern Heritage Ministry** system. Change tokens in `src/app/globals.css`, not one-off hex values in components.
+Locked **DMM Red + Blue** identity. Change tokens in `src/app/globals.css`, not one-off hex values in components.
 
 ## Brand tokens (`:root`)
 
 | Token | Value | Role |
 | --- | --- | --- |
-| `--brand-forest` | `#183A32` | Authority, header bar, footer, dark bands, primary buttons, focus |
-| `--brand-forest-deep` | `#122E28` | Hover on forest fills |
-| `--brand-gold` | `#C59A52` | Hairline rules, monogram ring, decorative corners. Never small text |
-| `--brand-ivory` | `#F7F3EA` | Page canvas |
-| `--brand-cream` | `#FFFDF8` | Raised surfaces, form panels |
-| `--brand-sage` | `#E4EAE3` | Breathing bands (mission, who we serve) |
-| `--brand-charcoal` | `#202421` | Primary text (`text-ink`) |
-| `--brand-muted` | `#6E746F` | Brand muted; small secondary text uses `--brand-ink-soft` for contrast |
-| `--brand-error` | `#6F3A32` | Form errors only (functional, not a brand accent) |
+| `--brand-blue` | `#052C91` | Primary structure, controls, focus, authority |
+| `--brand-blue-deep` | `#031E64` | Dark sections, footer, player |
+| `--brand-blue-hover` | `#04257D` | Primary hover |
+| `--brand-blue-soft` | `#E8EDF9` | Supporting blue tint |
+| `--brand-red` | `#C7060F` | Hairlines, active markers, portrait corners |
+| `--brand-red-bright` | `#E10F19` | Audio progress on deep blue |
+| `--brand-red-deep` | `#97030B` | Accent hover |
+| `--brand-ivory` | `#F7F4EE` | Page canvas |
+| `--brand-cream` | `#FFFCF7` | Raised and form surfaces |
+| `--brand-mist` | `#E9EDF7` | Quiet supporting bands |
+| `--brand-charcoal` | `#202126` | Primary text |
+| `--brand-muted` | `#686A70` | Secondary text |
+| `--brand-error` | `#7A242A` | Form errors only |
 
-Gold stays restrained: 1px rules, portrait L-corners, Wordmark gold ring. Not button fills, not body copy, not eyebrows.
+Target balance: 65–70% warm neutrals, 20–25% blue, 5–10% red. Red is a precise signal, not a canvas or default text color.
 
 ## Typography
 
-- Display: Instrument Serif (`--font-instrument` / `font-display`) — headlines, motto, pull quotes, numerals
-- Body/UI: Manrope (`--font-manrope` / `font-sans`) — navigation, forms, buttons, eyebrows
+- Instrument Serif (`font-display`) for headlines, motto, pull quotes, and editorial numerals
+- Manrope (`font-sans`) for body copy, navigation, controls, labels, and eyebrows
+- Display hierarchy comes from scale, spacing, and italic treatment rather than heavy weight
 
-Loaded in `src/app/layout.tsx` via `next/font`. Instrument Serif is regular + italic only; hierarchy comes from size and italic, not weight.
+## Surfaces and rhythm
 
-Utilities: `.display-xl`, `.display-lg`, `.display-md`, `.eyebrow`.
+- Ivory for primary editorial pages
+- Cream for raised sections and form surfaces
+- Mist for quiet supporting bands
+- Deep blue for authority sections, footer, and the listening object
+- Thin red details for rules, active states, image corners, and audio progress
+- Radius stays 1–2px; shadows stay low-opacity and blue-tinted
 
-## Spacing and width
-
-- 4px-based scale: `--space-1` … `--space-24`
-- Section padding: `--space-section`
-- Hero padding: `--space-hero`
-- Content: `--max-width-content` (72rem)
-- Reading: `--max-width-narrow` (38rem)
-- Wide hero: `--max-width-wide` (86rem)
-
-## Surfaces and radius
-
-Ivory / cream / sage / forest. Hairline `--brand-rule`. Radius stays 1–2px. No SaaS cards or heavy shadows. Forest bands use a faint grain overlay. The `/episodes` player uses the same forest grain; gold marks the active archive row and artwork corners only.
+Page rhythm remains light → editorial → quiet tint → dark authority → light. Do not alternate large red and blue bands.
 
 ## Components
 
-- `Button` / `ButtonLink`: primary forest, secondary forest outline, invert on forest, ghost underline
-- `Wordmark`: forest square with the white geometric mark and gold ring; invert on footer
-- `PastorImage`: 4×5 portrait reservation with gold L-corners; swap via `site.photography`
-- Episode archive: index rows, sage discovery band, forest pinned player
-- `SectionHeading`, `Eyebrow`, `GoldRule`, `PullQuote`, `Reveal`
-- Forms: ivory fields, forest focus ring, explicit labels, associated errors
+- `Button` / `ButtonLink`: blue primary, blue-outline secondary, editorial ghost, cream-outline invert, optional restrained red accent
+- `Wordmark`: approved DMM mark beside the Donald Mayes Ministries text identity
+- `PastorImage`: 4×5 portrait reservation with thin red L-corners
+- Episode archive: ivory index, mist discovery band, deep-blue pinned player, red active/progress details
+- `SectionHeading`, `Eyebrow`, `AccentRule`, `PullQuote`, `Reveal`
+- Forms: cream fields, blue focus treatment, explicit labels, distinct dark-red errors
 
-## Motion
+## Dark sections
 
-Hero fade/rise. `Reveal` for below-fold entrance. Button lift. Portrait zoom on hover. Honor `prefers-reduced-motion`. No animation libraries.
+- Use cream for readable text on deep blue
+- Use reduced-opacity cream for secondary copy
+- Red may appear as a thin rule or control state, never as normal text on blue
+- Grain remains faint micro-texture only
 
-## Page rhythm
+## Logo
 
-Light and dark alternate. Dense lists follow a quieter band. Speaking uses forest for professional weight. Prayer stays ivory/cream, quieter, no dark hero. The episode archive is an editorial index with a forest listening object, not a streaming dashboard.
+Use the client-approved transparent DMM artwork without recoloring, effects, distortion, badges, or alternate redraws. Keep the adjacent text wordmark readable because embedded logo lettering is not relied on at navigation size.
 
-## Logo and photography
+## Accessibility and motion
 
-The supplied geometric mark lives at `public/brand/logo.svg` (white strokes, transparent background) and is centered in the Wordmark box. Photography paths live in `src/config/site.ts`. Do not generate a likeness of Pastor Mayes.
+- Keep normal text combinations at WCAG AA contrast or better
+- Use blue for focus indicators and trust-oriented form states
+- Keep functional errors visually distinct from brand red
+- Preserve keyboard behavior and visible focus
+- Honor `prefers-reduced-motion`; use only short fades, rises, and controlled image zoom

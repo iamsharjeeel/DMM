@@ -21,7 +21,7 @@ export function SpeakingTopics() {
             >
               <span
                 aria-hidden="true"
-                className="font-display text-2xl italic text-forest"
+                className="font-display text-2xl italic text-blue"
               >
                 {String(index + 1).padStart(2, "0")}
               </span>

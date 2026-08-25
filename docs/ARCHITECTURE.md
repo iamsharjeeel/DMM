@@ -73,12 +73,12 @@ JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person only
 
 ## Design tokens
 
-Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind `@theme inline` maps them to utilities (`bg-forest`, `text-ink`, `font-display`, `max-w-content`).
+Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind `@theme inline` maps them to utilities (`bg-blue`, `bg-mist`, `text-red`, `text-ink`, `font-display`, `max-w-content`).
 
 ## Important decisions
 
 - Editorial layout over card grids
-- Heritage Gold is decorative only
+- DMM Red is reserved for precise accents and active states
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
 - Social links render only when URLs are non-null

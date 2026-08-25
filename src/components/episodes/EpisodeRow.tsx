@@ -26,7 +26,7 @@ export function EpisodeRow({
       className={cn(
         "episode-row flex min-h-[76px] items-center gap-3 border-b border-l-2 py-3 pl-4 sm:min-h-[88px] sm:gap-4 sm:pl-5 lg:min-h-[96px] lg:py-3.5",
         selected
-          ? "border-l-gold bg-cream"
+          ? "border-l-red bg-cream"
           : "border-l-transparent bg-transparent",
         "border-rule transition-[background-color,border-color] duration-[220ms] motion-reduce:transition-none",
       )}
@@ -36,7 +36,7 @@ export function EpisodeRow({
         onClick={onSelect}
         className="flex min-h-[52px] min-w-0 flex-1 items-center gap-3 py-1 text-left sm:gap-4"
       >
-        <span className="w-8 shrink-0 font-display text-lg italic text-forest sm:w-10 sm:text-xl">
+        <span className="w-8 shrink-0 font-display text-lg italic text-blue sm:w-10 sm:text-xl">
           {archiveNumberLabel(episode.archiveNumber)}
         </span>
         <span className="hidden shrink-0 sm:block">
@@ -51,7 +51,7 @@ export function EpisodeRow({
           <span
             className={cn(
               "episode-title block font-display text-[1.15rem] leading-snug sm:text-[1.25rem]",
-              selected ? "text-forest" : "text-ink",
+              selected ? "text-blue" : "text-ink",
             )}
           >
             {episode.title}
