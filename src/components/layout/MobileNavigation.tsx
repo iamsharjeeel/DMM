@@ -10,6 +10,7 @@ import { CloseIcon, MenuIcon } from "@/components/ui/icons";
 import { AccentRule } from "@/components/ui/AccentRule";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { cn } from "@/lib/cn";
+import { agentDebugLog } from "@/lib/agent-debug-log";
 
 export function MobileNavigation() {
   const pathname = usePathname();
@@ -28,6 +29,100 @@ export function MobileNavigation() {
     const trigger = buttonRef.current;
     closeRef.current?.focus();
     document.body.style.overflow = "hidden";
+
+    // #region agent log
+    const logOpen = () => {
+      const panel = panelRef.current;
+      const panelRect = panel?.getBoundingClientRect();
+      const linkMetrics = panel
+        ? Array.from(panel.querySelectorAll<HTMLElement>("nav a")).map((a) => {
+            const r = a.getBoundingClientRect();
+            return {
+              text: a.textContent?.trim() ?? "",
+              top: Math.round(r.top),
+              left: Math.round(r.left),
+              width: Math.round(r.width),
+              height: Math.round(r.height),
+              inView:
+                r.bottom > 0 &&
+                r.top < window.innerHeight &&
+                r.right > 0 &&
+                r.left < window.innerWidth,
+            };
+          })
+        : [];
+      void agentDebugLog({
+        hypothesisId: "A-E",
+        location: "MobileNavigation.tsx:open-effect",
+        message: "mobile menu opened",
+        runId: "pre-fix",
+        data: {
+          pathname,
+          viewport: { w: window.innerWidth, h: window.innerHeight },
+          scroll: {
+            x: window.scrollX,
+            y: window.scrollY,
+            docScrollLeft: document.documentElement.scrollLeft,
+            bodyScrollLeft: document.body.scrollLeft,
+          },
+          bodyOverflow: document.body.style.overflow,
+          bodyOverflowComputed: getComputedStyle(document.body).overflow,
+          bodyOverflowXComputed: getComputedStyle(document.body).overflowX,
+          portalParent: panel?.parentElement?.tagName ?? null,
+          inHeader: panel ? Boolean(panel.closest("header")) : null,
+          panelRect: panelRect
+            ? {
+                top: Math.round(panelRect.top),
+                left: Math.round(panelRect.left),
+                width: Math.round(panelRect.width),
+                height: Math.round(panelRect.height),
+              }
+            : null,
+          panelStyles: panel
+            ? {
+                position: getComputedStyle(panel).position,
+                zIndex: getComputedStyle(panel).zIndex,
+                bg: getComputedStyle(panel).backgroundColor,
+                opacity: getComputedStyle(panel).opacity,
+                visibility: getComputedStyle(panel).visibility,
+                transform: getComputedStyle(panel).transform,
+              }
+            : null,
+          headerStyles: (() => {
+            const header = document.querySelector("header");
+            if (!header) return null;
+            const cs = getComputedStyle(header);
+            return {
+              position: cs.position,
+              zIndex: cs.zIndex,
+              filter: cs.filter,
+              backdropFilter: cs.backdropFilter,
+              transform: cs.transform,
+              overflow: cs.overflow,
+              height: Math.round(header.getBoundingClientRect().height),
+            };
+          })(),
+          linkMetrics,
+          centerEl: (() => {
+            const el = document.elementFromPoint(
+              Math.floor(window.innerWidth / 2),
+              Math.floor(window.innerHeight / 2),
+            );
+            return el
+              ? {
+                  tag: el.tagName,
+                  text: el.textContent?.trim().slice(0, 40) ?? "",
+                  className: String(
+                    (el as HTMLElement).className ?? "",
+                  ).slice(0, 80),
+                }
+              : null;
+          })(),
+        },
+      });
+    };
+    requestAnimationFrame(() => requestAnimationFrame(logOpen));
+    // #endregion
 
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -60,11 +155,28 @@ export function MobileNavigation() {
     document.addEventListener("keydown", onKey);
 
     return () => {
+      // #region agent log
+      void agentDebugLog({
+        hypothesisId: "C-D",
+        location: "MobileNavigation.tsx:close-cleanup",
+        message: "mobile menu closing cleanup",
+        runId: "pre-fix",
+        data: {
+          scrollBeforeRestore: {
+            x: window.scrollX,
+            y: window.scrollY,
+            docScrollLeft: document.documentElement.scrollLeft,
+            bodyScrollLeft: document.body.scrollLeft,
+          },
+          bodyOverflowInline: document.body.style.overflow,
+        },
+      });
+      // #endregion
       document.body.style.overflow = "";
       document.removeEventListener("keydown", onKey);
       trigger?.focus();
     };
-  }, [open]);
+  }, [open, pathname]);
 
   const overlay = open ? (
     <div
@@ -138,7 +250,27 @@ export function MobileNavigation() {
         className="inline-flex min-h-11 min-w-11 items-center justify-center text-ink"
         aria-expanded={open}
         aria-controls={panelId}
-        onClick={() => setMenuPath(pathname)}
+        onClick={() => {
+          // #region agent log
+          void agentDebugLog({
+            hypothesisId: "E",
+            location: "MobileNavigation.tsx:open-click",
+            message: "hamburger clicked",
+            runId: "pre-fix",
+            data: {
+              pathname,
+              menuPathBefore: menuPath,
+              viewport: {
+                w: window.innerWidth,
+                h: window.innerHeight,
+              },
+              scrollX: window.scrollX,
+              scrollY: window.scrollY,
+            },
+          });
+          // #endregion
+          setMenuPath(pathname);
+        }}
       >
         <MenuIcon />
         <span className="sr-only">Open menu</span>
