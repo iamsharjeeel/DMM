@@ -255,8 +255,10 @@ try {
 } finally {
   next.kill("SIGTERM");
   webhookServer.close();
+  await new Promise((resolve) => {
+    next.once("exit", resolve);
+    setTimeout(resolve, 2000);
+  });
 }
 
-if (failed) {
-  process.exit(1);
-}
+process.exit(failed ? 1 : 0);
