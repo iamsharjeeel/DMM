@@ -17,7 +17,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | `/terms` | `src/app/terms/page.tsx` | |
 | 404 | `src/app/not-found.tsx` | |
 
-Special files: `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `icon.tsx`, `apple-icon.tsx`.
+Special files: `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`, `icon.png`, `apple-icon.png`, `favicon.ico`.
 
 ## Server vs client
 
