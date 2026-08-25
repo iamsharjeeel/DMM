@@ -138,11 +138,11 @@ This site is not “100% secure.” Security depends on Vercel, HighLevel, depen
 
 Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname or full HTTPS origin). `getSiteUrl()` prefixes `https://` when the value is a hostname such as `dmm-omega.vercel.app`. HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`.
 
-## Verification (2026-08-17)
+## Verification (2026-08-25)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
-- production build: pass (`npm run build`, Next.js 16.3.1, `/episodes` static)
+- production build: pass (`npm run build`, Next.js 16.3.1, all routes static)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
 
 ## Recommended next action
