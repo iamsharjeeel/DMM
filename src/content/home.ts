@@ -15,7 +15,7 @@ export const home = {
     },
     image: {
       slot: "hero" as const,
-      alt: "Forthcoming portrait of Pastor Donald Mayes",
+      alt: "Pastor Donald Mayes speaking from a pulpit",
     },
   },
   meet: {
@@ -31,7 +31,8 @@ export const home = {
       "His personal motto—and the heartbeat of Donald Mayes Ministries—is:",
     motto: site.motto,
     image: {
-      alt: "A quiet sanctuary interior with a wooden pulpit and arched windows",
+      slot: "portrait" as const,
+      alt: "Portrait of Pastor Donald Mayes",
     },
   },
   experience: {

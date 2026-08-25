@@ -11,8 +11,8 @@ export function PrayerPreview() {
 
   return (
     <Section>
-      <Container>
-        <Reveal className="max-w-2xl">
+      <Container width="narrow">
+        <Reveal>
           <SectionHeading heading={prayerPreview.heading}>
             <p>{prayerPreview.body}</p>
             <p className="mt-4">{prayerPreview.supporting}</p>

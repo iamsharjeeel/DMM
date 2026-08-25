@@ -11,14 +11,14 @@ export function SpeakingPreview() {
 
   return (
     <Section tone="blue">
-      <Container className="relative grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+      <Container className="relative grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-center">
         <Reveal>
           <SectionHeading heading={speakingPreview.heading} invert>
             <p>{speakingPreview.body}</p>
             <p className="mt-4">{speakingPreview.supporting}</p>
           </SectionHeading>
         </Reveal>
-        <Reveal delay={90} className="lg:justify-self-end">
+        <Reveal delay={90} className="justify-self-start lg:justify-self-end">
           <ButtonLink href={speakingPreview.cta.href} variant="invert" size="lg">
             {speakingPreview.cta.label}
             <ArrowIcon />

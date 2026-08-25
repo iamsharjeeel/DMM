@@ -10,8 +10,7 @@ export function HomeHero() {
   return (
     <section className="bg-ivory">
       <Container
-        width="wide"
-        className="grid items-center gap-12 py-[var(--space-hero)] lg:grid-cols-[minmax(0,1.12fr)_minmax(0,0.88fr)] lg:gap-16 xl:gap-24"
+        className="grid items-center gap-10 py-14 sm:gap-12 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(21rem,0.95fr)] lg:gap-14 lg:py-20 xl:gap-20 xl:py-24"
       >
         <div className="hero-enter min-w-0">
           <p className="eyebrow text-blue">{hero.eyebrow}</p>
@@ -39,8 +38,9 @@ export function HomeHero() {
           slot={hero.image.slot}
           alt={hero.image.alt}
           aspect="portrait"
-          priority
-          className="mx-auto w-full max-w-md lg:max-w-none"
+          preload
+          objectPosition="center 42%"
+          className="mx-auto w-full max-w-[27rem] lg:justify-self-end"
         />
       </Container>
     </section>

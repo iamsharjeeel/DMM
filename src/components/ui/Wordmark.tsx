@@ -3,14 +3,17 @@ import Link from "next/link";
 import { site } from "@/config/site";
 import { cn } from "@/lib/cn";
 
-function BrandMark() {
+function BrandMark({ compact }: { compact: boolean }) {
   return (
     <Image
       src={site.assets.logo}
       alt=""
-      width={100}
-      height={54}
-      className="h-auto w-7"
+      width={879}
+      height={605}
+      className={cn(
+        "h-10 w-auto shrink-0 object-contain sm:h-11",
+        compact && "h-9 sm:h-10",
+      )}
     />
   );
 }
@@ -30,16 +33,8 @@ export function Wordmark({
         invert ? "text-cream" : "text-ink",
       )}
     >
-      <span
-        aria-hidden="true"
-        className={cn(
-          "relative grid h-10 w-10 shrink-0 place-items-center text-white",
-          invert
-            ? "bg-cream/10 ring-1 ring-red/80"
-            : "bg-blue ring-1 ring-red/80",
-        )}
-      >
-        <BrandMark />
+      <span aria-hidden="true" className="shrink-0">
+        <BrandMark compact={compact} />
       </span>
       <span className="flex min-w-0 flex-col leading-none">
         <span

@@ -24,8 +24,8 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - SEO metadata, canonical URLs, OG images, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
-- Wordmark reads its mark from `site.assets.logo` beside the Donald Mayes Ministries text identity
-- Home and speaking supporting frames use the curated sanctuary image; only the home hero reserves a Donald Mayes portrait
+- Header, footer, and mobile navigation use the transparent official DMM mark beside the Donald Mayes Ministries text identity
+- Home hero uses the locked pulpit image; Meet Pastor uses the locked yellow-jacket portrait
 - Design tokens and primitives in `src/app/globals.css` and `src/components/ui/`
 
 ## Audio archive
@@ -63,8 +63,6 @@ The booking form is temporary until a HighLevel calendar replaces it. Do not emb
 
 ## Pending client assets
 
-- Raw Donald Mayes headshot → `public/images/pastor/` and `site.photography.hero`
-- Genuine transparent DMM logo → `public/brand/` and `site.assets.logo`
 - Confirmed contact email → `site.email`
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
@@ -83,8 +81,8 @@ Brand colors and type follow the locked DMM blue, restrained red, warm neutral, 
 - Documentation: `docs/DESIGN-SYSTEM.md`, `docs/ARCHITECTURE.md`, `CHANGELOG.md`
 - Refinement: primary light-surface actions are red; secondary actions remain blue
 - Performance: removed sticky-header blur, full-section grain/mix-blend overlays, and CSS smooth scrolling
-- Image strategy: added a supporting sanctuary image and reduced `PastorImage` to one home-hero use
-- Pending: replace `public/brand/logo.svg` and the home placeholder when raw logo/headshot files are supplied
+- Image strategy: locked production portraits now anchor the home hero and Meet Pastor section
+- Homepage refinement: normalized container edges, tightened responsive hero spacing, centered prayer composition, and aligned speaking/contact CTAs with their content blocks
 
 ## Intentionally not implemented
 
@@ -154,4 +152,4 @@ Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname o
 
 ## Recommended next action
 
-Upload the genuine transparent DMM logo and raw Donald Mayes headshot, then replace the temporary logo and home portrait placeholder. After deploy, confirm booking and prayer submits in HighLevel. Re-run `npm run import:episodes` when new messages are published.
+After deploy, confirm booking and prayer submits in HighLevel. Re-run `npm run import:episodes` when new messages are published.

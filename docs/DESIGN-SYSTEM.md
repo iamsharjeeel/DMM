@@ -43,7 +43,7 @@ Page rhythm remains light → editorial → quiet tint → dark authority → li
 
 - `Button` / `ButtonLink`: red primary on light surfaces, blue-outline secondary, editorial ghost, cream-outline invert
 - `Wordmark`: approved DMM mark beside the Donald Mayes Ministries text identity
-- `PastorImage`: one primary Donald Mayes portrait with thin red L-corners
+- `PastorImage`: locked Pastor Mayes hero and biography photography with thin red L-corners
 - `EditorialImage`: secondary sanctuary or speaking atmosphere with matching restrained framing
 - Episode archive: ivory index, mist discovery band, deep-blue pinned player, red active/progress details
 - `SectionHeading`, `Eyebrow`, `AccentRule`, `PullQuote`, `Reveal`

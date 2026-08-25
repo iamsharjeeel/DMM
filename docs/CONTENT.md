@@ -18,7 +18,6 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 
 ## Temporary placeholders
 
-- Photography frames labeled “Photography forthcoming”
 - Generated OG images using motto/headlines
 - Suggested domain fallback `https://donaldmayesministries.com` for metadata when env is unset
 - Form “To be discussed” topic option (operational, not a ministry topic)
@@ -27,13 +26,18 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 
 ## Client inputs still required
 
-- Pastor Mayes photography
 - Confirmed public email
 - Facebook / Instagram / YouTube URLs
 - Testimonials (do not invent)
 - Production domain if different
 - Legal review
 - HighLevel calendar to replace the temporary booking form
+
+## Locked production assets
+
+- Official DMM logo: `public/brand/dmm-logo.png`
+- Home hero: `public/images/pastor/donald-mayes-speaking.png`
+- Meet Pastor portrait: `public/images/pastor/donald-mayes-headshot.jpg`
 
 ## Hidden until supplied
 

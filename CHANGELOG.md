@@ -9,6 +9,8 @@
 - Promoted red to the primary light-surface CTA color while preserving blue structural and secondary treatments
 - Replaced repeated pastor frames with one home portrait position and a curated sanctuary supporting image
 - Removed header blur, full-section grain blending, and CSS smooth scrolling to reduce scroll repaint work
+- Integrated the official transparent DMM mark and locked Pastor Mayes hero and portrait photography
+- Refined homepage containers, image crops, section spacing, and CTA alignment across desktop, tablet, and mobile
 
 ## 2026-08-17
 

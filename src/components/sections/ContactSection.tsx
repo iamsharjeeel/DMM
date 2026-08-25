@@ -6,7 +6,7 @@ import { home } from "@/content/home";
 export function ContactSection() {
   return (
     <div className="border-t border-rule bg-cream">
-      <Container className="flex flex-col gap-8 py-16 lg:flex-row lg:items-end lg:justify-between lg:py-20">
+      <Container className="flex flex-col gap-8 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
         <div className="max-w-xl">
           <p className="eyebrow text-blue">Connect</p>
           <AccentRule className="mt-5" />
