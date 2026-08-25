@@ -4,7 +4,7 @@ import http from "node:http";
 import { spawn } from "node:child_process";
 
 const WEBHOOK_PORT = 4179;
-const APP_PORT = 3011;
+const APP_PORT = 3012;
 const origin = `http://127.0.0.1:${APP_PORT}`;
 
 const received = [];
@@ -61,15 +61,20 @@ next.stderr.on("data", (chunk) => {
 function waitForReady() {
   return new Promise((resolve, reject) => {
     const started = Date.now();
-    const timer = setInterval(() => {
-      if (nextOutput.includes("started server") || nextOutput.includes("Ready")) {
-        clearInterval(timer);
-        resolve();
-      } else if (Date.now() - started > 20000) {
-        clearInterval(timer);
-        reject(new Error(`Next did not start:\n${nextOutput}`));
+    const timer = setInterval(async () => {
+      try {
+        const res = await fetch(origin, { redirect: "manual" });
+        if (res.status) {
+          clearInterval(timer);
+          resolve();
+        }
+      } catch {
+        if (Date.now() - started > 25000) {
+          clearInterval(timer);
+          reject(new Error(`Next did not start:\n${nextOutput}`));
+        }
       }
-    }, 200);
+    }, 250);
   });
 }
 
@@ -140,7 +145,11 @@ try {
     body: prayer,
     ip: nextIp(),
   });
-  expect("valid prayer 200", validPrayer.status === 200 && validPrayer.json?.ok === true);
+  expect(
+    "valid prayer 200",
+    validPrayer.status === 200 && validPrayer.json?.ok === true,
+    `status=${validPrayer.status} body=${validPrayer.text.slice(0, 180)}`,
+  );
   const prayerHook = received.at(-1);
   expect("prayer source header", prayerHook?.source === "prayer-request");
   expect("prayer json request forwarded", prayerHook?.json?.request === prayer.request);

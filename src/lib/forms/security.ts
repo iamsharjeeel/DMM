@@ -30,6 +30,15 @@ export function getAllowedOrigins(request: Request): Set<string> {
     allowed.add(requestOrigin);
   }
 
+  const host = request.headers.get("host")?.trim();
+  if (host) {
+    const requestUrl = new URL(request.url);
+    const proto =
+      request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() ||
+      requestUrl.protocol.replace(":", "");
+    allowed.add(`${proto}://${host}`);
+  }
+
   const siteOrigin = originFromUrl(getSiteUrl());
   if (siteOrigin) {
     allowed.add(siteOrigin);
