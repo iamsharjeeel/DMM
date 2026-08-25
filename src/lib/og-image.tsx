@@ -6,7 +6,7 @@ export const ogSize = {
   height: 630,
 };
 
-export function createOgImage(title: string, kicker: string = site.name) {
+export function createOgImage(title: string, kicker = site.name) {
   return new ImageResponse(
     (
       <div
@@ -16,8 +16,8 @@ export function createOgImage(title: string, kicker: string = site.name) {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#F7F3EA",
-          color: "#202421",
+          backgroundColor: "#F7F4EE",
+          color: "#202126",
           padding: "72px 80px",
         }}
       >
@@ -29,7 +29,7 @@ export function createOgImage(title: string, kicker: string = site.name) {
             fontSize: 20,
             letterSpacing: "0.22em",
             textTransform: "uppercase",
-            color: "#183A32",
+            color: "#052C91",
           }}
         >
           <span>{kicker}</span>
@@ -40,13 +40,13 @@ export function createOgImage(title: string, kicker: string = site.name) {
               justifyContent: "center",
               width: 52,
               height: 52,
-              backgroundColor: "#183A32",
+              backgroundColor: "#052C91",
               color: "#FFFDF8",
               fontSize: 16,
               letterSpacing: "0.12em",
             }}
           >
-            DM
+            DMM
           </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
@@ -64,7 +64,7 @@ export function createOgImage(title: string, kicker: string = site.name) {
             style={{
               width: 72,
               height: 1,
-              backgroundColor: "#C59A52",
+              backgroundColor: "#C7060F",
             }}
           />
         </div>
@@ -72,7 +72,7 @@ export function createOgImage(title: string, kicker: string = site.name) {
           style={{
             display: "flex",
             fontSize: 24,
-            color: "#6E746F",
+            color: "#686A70",
             maxWidth: 760,
             lineHeight: 1.4,
           }}

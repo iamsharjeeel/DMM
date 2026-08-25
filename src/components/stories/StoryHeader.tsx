@@ -14,7 +14,7 @@ export function StoryHeader({
 
   return (
     <header>
-      <p className="eyebrow text-forest">
+      <p className="eyebrow text-blue">
         {storyCategoryLabels[story.category]}
       </p>
       <p className="mt-4 text-[0.9375rem] leading-snug text-ink-soft">

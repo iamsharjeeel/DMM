@@ -22,5 +22,5 @@ export default async function Image({
     return createOgImage(storiesSection.heading);
   }
 
-  return createOgImage(story.title, story.name);
+  return createOgImage(story.title);
 }

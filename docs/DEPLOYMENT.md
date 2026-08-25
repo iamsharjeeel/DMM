@@ -43,6 +43,14 @@ No `vercel.json` is required.
 
 ## 7. Environment variables
 
+Required:
+
+```text
+GHL_FORM_WEBHOOK_URL=
+```
+
+Server-only. Never use a `NEXT_PUBLIC_` prefix. Paste the HighLevel inbound webhook URL in the Vercel dashboard for Production and Preview. See `docs/FORMS.md`.
+
 Optional:
 
 ```text
@@ -52,7 +60,7 @@ NEXT_PUBLIC_GHL_TRACKING_ID=
 
 Use `NEXT_PUBLIC_SITE_URL` for canonical URLs, sitemap, and Open Graph. A hostname without a protocol (for example `dmm-omega.vercel.app`) is accepted and normalized to HTTPS.
 
-`NEXT_PUBLIC_GHL_TRACKING_ID` is optional. The HighLevel tracking ID is already set in `src/config/site.ts`. Only set the env var to override it. It is a public client ID, not a secret. Do not add webhooks, APIs, or database variables.
+`NEXT_PUBLIC_GHL_TRACKING_ID` is optional. The HighLevel tracking ID is already set in `src/config/site.ts`. Only set the env var to override it. It is a public client ID, not a secret.
 
 ## 8. Domain
 
@@ -72,7 +80,8 @@ Merging to the production branch (usually `main`) deploys production.
 - Listen archive loads, filters, and the pinned player updates
 - Speaking `#booking` is reachable from **Book Pastor Mayes**
 - Prayer conditional fields work
-- Booking and prayer forms show confirmation and send through HighLevel
+- Booking and prayer forms show confirmation only after `/api/forms/[form]` reports success
+- `/booking` HighLevel calendar still loads
 - `/sitemap.xml` and `/robots.txt` resolve
 - Social share images load
 - No social icons appear until URLs are configured

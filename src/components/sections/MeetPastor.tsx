@@ -11,12 +11,14 @@ export function MeetPastor() {
 
   return (
     <Section tone="cream">
-      <Container className="grid gap-12 lg:grid-cols-[0.86fr_1.14fr] lg:items-center lg:gap-20">
-        <Reveal>
+      <Container className="grid gap-12 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch lg:gap-16 xl:gap-20">
+        <Reveal className="lg:h-full">
           <PastorImage
             slot={meet.image.slot}
             alt={meet.image.alt}
             aspect="portrait"
+            stretch
+            objectPosition="center 22%"
           />
         </Reveal>
         <Reveal delay={80}>

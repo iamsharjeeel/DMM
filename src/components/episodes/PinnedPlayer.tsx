@@ -143,8 +143,8 @@ export const PinnedPlayer = forwardRef<PlayerHandle, PinnedPlayerProps>(
       <aside
         aria-label="Now listening"
         className={cn(
-          "tone-forest border-t border-gold/70 px-4 py-3",
-          "sm:border sm:border-gold/40 sm:px-6 sm:py-6",
+          "tone-blue border-t border-red/70 px-4 py-3",
+          "sm:border sm:border-red/40 sm:px-6 sm:py-6",
           "lg:px-7 lg:py-7",
         )}
       >
@@ -200,7 +200,7 @@ export const PinnedPlayer = forwardRef<PlayerHandle, PinnedPlayerProps>(
               <PlayControl
                 playing={isPlaying}
                 filled={isPlaying}
-                tone="forest"
+                tone="blue"
                 label={playLabel}
                 onClick={toggle}
               />
@@ -220,7 +220,7 @@ export const PinnedPlayer = forwardRef<PlayerHandle, PinnedPlayerProps>(
           <p
             role="status"
             aria-live="polite"
-            className="mt-3 border border-gold/50 bg-cream px-3 py-2 text-sm text-forest"
+            className="mt-3 border border-red/45 bg-cream px-3 py-2 text-sm text-blue"
           >
             {toast}
           </p>

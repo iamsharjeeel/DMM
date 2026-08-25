@@ -12,39 +12,44 @@ export function PastorImage({
   slot,
   alt,
   aspect = "portrait",
-  priority = false,
+  preload = false,
   className,
   caption,
   framed = true,
+  stretch = false,
+  objectPosition = "center",
 }: {
   slot: PhotographySlot;
   alt: string;
   aspect?: keyof typeof aspects;
-  priority?: boolean;
+  preload?: boolean;
   className?: string;
   caption?: string;
   framed?: boolean;
+  stretch?: boolean;
+  objectPosition?: string;
 }) {
   const src = site.photography[slot];
 
   return (
-    <figure className={cn("relative min-w-0", className)}>
+    <figure className={cn("relative min-w-0", stretch && "lg:h-full", className)}>
       {framed ? (
         <>
           <span
             aria-hidden="true"
-            className="absolute -top-2.5 -left-2.5 hidden h-14 w-14 border-t border-l border-gold sm:block"
+            className="absolute -top-2.5 -left-2.5 hidden h-14 w-14 border-t border-l border-red sm:block"
           />
           <span
             aria-hidden="true"
-            className="absolute -right-2.5 -bottom-2.5 hidden h-14 w-14 border-r border-b border-gold sm:block"
+            className="absolute -right-2.5 -bottom-2.5 hidden h-14 w-14 border-r border-b border-red sm:block"
           />
         </>
       ) : null}
       <div
         className={cn(
-          "relative overflow-hidden bg-forest",
+          "relative overflow-hidden bg-blue-deep",
           aspects[aspect],
+          stretch && "lg:h-full lg:aspect-auto",
           src && "img-zoom",
         )}
       >
@@ -53,27 +58,17 @@ export function PastorImage({
             src={src}
             alt={alt}
             fill
-            priority={priority}
+            preload={preload}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px"
             className="object-cover"
+            style={{ objectPosition }}
           />
         ) : (
           <div
             role="img"
             aria-label={alt}
-            className="absolute inset-0 flex flex-col justify-between p-6 text-cream sm:p-7"
-          >
-            <p className="eyebrow text-cream/60">Photography forthcoming</p>
-            <div>
-              <p className="font-display text-3xl leading-none italic sm:text-4xl">
-                Pastor Donald Mayes
-              </p>
-              <p className="mt-3 max-w-[16rem] text-sm leading-relaxed text-cream/70">
-                A reserved portrait frame until ministry photography is in
-                place.
-              </p>
-            </div>
-          </div>
+            className="absolute inset-0 bg-blue-deep"
+          />
         )}
       </div>
       {caption ? (

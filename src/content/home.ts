@@ -15,7 +15,7 @@ export const home = {
     },
     image: {
       slot: "hero" as const,
-      alt: "Forthcoming portrait of Pastor Donald Mayes",
+      alt: "Pastor Donald Mayes speaking from a pulpit",
     },
   },
   meet: {
@@ -32,7 +32,7 @@ export const home = {
     motto: site.motto,
     image: {
       slot: "portrait" as const,
-      alt: "Forthcoming portrait of Pastor Donald Mayes",
+      alt: "Portrait of Pastor Donald Mayes",
     },
   },
   experience: {

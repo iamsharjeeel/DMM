@@ -23,15 +23,15 @@ export function HeaderNav() {
             href={item.href}
             aria-current={current ? "page" : undefined}
             className={cn(
-              "relative py-1 text-[0.9375rem] text-ink-soft transition-colors hover:text-ink",
-              current && "text-ink",
+              "relative py-1 text-[0.9375rem] text-ink-soft transition-colors hover:text-blue",
+              current && "text-blue",
             )}
           >
             {item.label}
             <span
               aria-hidden="true"
               className={cn(
-                "absolute inset-x-0 -bottom-1 mx-auto h-px w-5 bg-gold transition-opacity",
+                "absolute inset-x-0 -bottom-1 mx-auto h-px w-5 bg-red transition-opacity",
                 current ? "opacity-100" : "opacity-0",
               )}
             />

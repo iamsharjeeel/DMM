@@ -18,7 +18,7 @@ export function ReadStoryLink({
       href={getStoryPath(slug)}
       aria-label={`${storiesSection.readStoryLabel}: ${title}`}
       className={cn(
-        "inline-flex items-center gap-2 text-[0.9375rem] font-medium text-forest transition-colors hover:text-forest-deep",
+        "inline-flex items-center gap-2 text-[0.9375rem] font-medium text-blue transition-colors hover:text-blue-hover",
         className,
       )}
     >

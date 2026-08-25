@@ -35,7 +35,7 @@ export function Checkbox({
           aria-invalid={Boolean(error)}
           aria-describedby={errorId}
           onChange={(event) => onChange(event.target.checked)}
-          className="mt-1 h-5 w-5 shrink-0 accent-forest"
+          className="mt-1 h-5 w-5 shrink-0 accent-blue"
         />
         <span>{children}</span>
       </label>

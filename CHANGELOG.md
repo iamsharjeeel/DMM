@@ -2,7 +2,19 @@
 
 ## 2026-08-25
 
-- Added a Real Stories homepage section and dedicated `/stories/[slug]` pages from source testimonies
+- Added a Real Stories homepage section and dedicated `/stories/[slug]` pages from source testimonies, using the approved DMM blue/red/cream system
+- Routed native prayer and speaking forms through a same-origin API that validates, rate-limits, and forwards JSON to HighLevel with a server-derived `source` header
+- Replaced the generated DMM-letter favicon with the official interlocking heart mark
+- Replaced the forest, gold, and sage visual system with the client-approved DMM blue, restrained red, and warm neutral brand system
+- Rebranded shared navigation, sections, forms, episode archive, player, metadata graphics, and responsive states
+- Renamed the decorative `GoldRule` primitive to the brand-neutral `AccentRule`
+- Updated brand architecture and design-system documentation for the DMM red and blue identity
+- Promoted red to the primary light-surface CTA color while preserving blue structural and secondary treatments
+- Replaced repeated pastor frames with one home portrait position and a curated sanctuary supporting image
+- Removed header blur, full-section grain blending, and CSS smooth scrolling to reduce scroll repaint work
+- Integrated the official transparent DMM mark and locked Pastor Mayes hero and portrait photography
+- Refined homepage containers, image crops, section spacing, and CTA alignment across desktop, tablet, and mobile
+- Added the direct-link `/booking` prayer-call calendar with minimal DMM chrome and responsive HighLevel embedding
 
 ## 2026-08-17
 

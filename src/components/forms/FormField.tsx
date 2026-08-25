@@ -37,7 +37,7 @@ export function FormField({
       <label htmlFor={id} className="block text-sm font-medium text-ink">
         {label}
         {required ? (
-          <span className="text-forest">
+          <span className="text-blue">
             {" "}
             *
             <span className="sr-only"> required</span>
@@ -71,4 +71,4 @@ export function FormField({
 }
 
 export const controlClassName =
-  "min-h-12 w-full rounded-sm border border-rule bg-ivory px-3.5 py-2.5 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-forest focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--brand-forest)_16%,transparent)] focus:outline-none";
+  "min-h-12 w-full rounded-sm border border-rule bg-cream px-3.5 py-2.5 text-base text-ink transition-[border-color,box-shadow] duration-200 focus:border-blue focus:shadow-[0_0_0_3px_color-mix(in_srgb,var(--brand-blue)_16%,transparent)] focus:outline-none";

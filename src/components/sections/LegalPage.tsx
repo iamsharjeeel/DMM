@@ -1,6 +1,6 @@
 import { legal } from "@/content/legal";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
+import { AccentRule } from "@/components/ui/AccentRule";
 
 type LegalKey = keyof typeof legal;
 
@@ -10,8 +10,8 @@ export function LegalPage({ kind }: { kind: LegalKey }) {
   return (
     <article className="bg-ivory">
       <Container width="narrow" className="py-16 lg:py-24">
-        <p className="eyebrow text-forest">Updated {page.updated}</p>
-        <GoldRule className="mt-5" />
+        <p className="eyebrow text-blue">Updated {page.updated}</p>
+        <AccentRule className="mt-5" />
         <h1 className="display-lg mt-5">{page.title}</h1>
         <p className="mt-6 text-lg text-ink-soft">{page.intro}</p>
         <div className="mt-12 space-y-10">

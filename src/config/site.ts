@@ -41,13 +41,13 @@ export const site = {
     youtube: null as string | null,
   },
   assets: {
-    logo: "/brand/logo.svg",
+    logo: "/brand/dmm-logo.png",
+    supportingImage: "/images/editorial/sanctuary.png",
     ogDefault: "/opengraph-image",
   },
   photography: {
-    hero: null as string | null,
-    portrait: null as string | null,
-    speaking: null as string | null,
+    hero: "/images/pastor/donald-mayes-speaking.png",
+    portrait: "/images/pastor/donald-mayes-headshot.jpg",
   },
   routes: {
     home: "/",
@@ -57,6 +57,7 @@ export const site = {
     privacy: "/privacy",
     terms: "/terms",
     booking: "/speaking#booking",
+    prayerCall: "/booking",
     stories: "/#stories",
   },
   podcast: {

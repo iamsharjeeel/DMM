@@ -1,11 +1,14 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { eventTypes, speaking, speakingTopicOptions } from "@/content/speaking";
 import { Button } from "@/components/ui/Button";
 import { controlClassName, FormField } from "@/components/forms/FormField";
+import { HoneypotField } from "@/components/forms/HoneypotField";
 import { RadioGroup } from "@/components/forms/RadioGroup";
 import { SuccessState } from "@/components/forms/SuccessState";
+import { submitNativeForm } from "@/lib/forms/submit-client";
+import { FORM_GENERIC_ERROR } from "@/lib/forms/types";
 import { isValidEmail, requiredText, tooLong, fieldMax } from "@/lib/validation";
 import type { FieldErrors, SpeakingBookingValues } from "@/types/forms";
 
@@ -101,8 +104,15 @@ export function SpeakingBookingForm() {
   const [values, setValues] = useState(empty);
   const [errors, setErrors] = useState<FieldErrors<SpeakingBookingValues>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
+  const startedAtRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    startedAtRef.current = Date.now();
+  }, []);
 
   function update<K extends keyof SpeakingBookingValues>(
     key: K,
@@ -111,8 +121,11 @@ export function SpeakingBookingForm() {
     setValues((current) => ({ ...current, [key]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (submitting) {
+      return;
+    }
     const nextErrors = validate(values);
     setErrors(nextErrors);
     const first = fieldOrder.find((key) => nextErrors[key]);
@@ -123,10 +136,37 @@ export function SpeakingBookingForm() {
       node?.focus();
       return;
     }
-    setSubmitted(true);
-    window.requestAnimationFrame(() => {
-      successRef.current?.focus();
+    const website =
+      formRef.current?.querySelector<HTMLInputElement>('[name="website"]')
+        ?.value ?? "";
+    setSubmitting(true);
+    setSubmitError(null);
+    const result = await submitNativeForm("speaking-booking", {
+      name: values.name,
+      organization: values.organization,
+      email: values.email,
+      phone: values.phone,
+      eventName: values.eventName,
+      eventDate: values.eventDate,
+      eventLocation: values.eventLocation,
+      eventType: values.eventType,
+      attendance: values.attendance,
+      format: values.format,
+      topic: values.topic,
+      details: values.details,
+      referral: values.referral,
+      website,
+      startedAt: startedAtRef.current ?? undefined,
     });
+    setSubmitting(false);
+    if (result.ok) {
+      setSubmitted(true);
+      window.requestAnimationFrame(() => {
+        successRef.current?.focus();
+      });
+      return;
+    }
+    setSubmitError(FORM_GENERIC_ERROR);
   }
 
   if (submitted) {
@@ -140,6 +180,8 @@ export function SpeakingBookingForm() {
             setValues(empty);
             setErrors({});
             setSubmitted(false);
+            setSubmitError(null);
+            startedAtRef.current = Date.now();
           }}
           resetLabel="Submit another request"
         />
@@ -154,8 +196,10 @@ export function SpeakingBookingForm() {
       name={speaking.booking.formId}
       noValidate
       onSubmit={handleSubmit}
-      className="grid gap-6"
+      aria-busy={submitting}
+      className="relative grid gap-6"
     >
+      <HoneypotField />
       <div className="grid gap-6 md:grid-cols-2">
         <FormField id="name" label="Name" required error={errors.name}>
           <input
@@ -350,10 +394,26 @@ export function SpeakingBookingForm() {
       <p className="text-xs leading-relaxed text-ink-soft">
         {speaking.booking.notice}
       </p>
+      {submitError ? (
+        <p role="alert" className="text-sm text-error">
+          {submitError}
+        </p>
+      ) : null}
       <div>
-        <Button type="submit" variant="primary" size="lg">
-          {speaking.booking.submitLabel}
+        <Button
+          type="submit"
+          variant="primary"
+          size="lg"
+          disabled={submitting}
+          aria-busy={submitting}
+        >
+          {submitting ? "Submitting…" : speaking.booking.submitLabel}
         </Button>
+        {submitting ? (
+          <span role="status" className="sr-only">
+            Submitting…
+          </span>
+        ) : null}
       </div>
     </form>
   );

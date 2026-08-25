@@ -11,14 +11,14 @@ export function PrayerPreview() {
 
   return (
     <Section>
-      <Container>
-        <Reveal className="max-w-2xl">
+      <Container width="narrow">
+        <Reveal>
           <SectionHeading heading={prayerPreview.heading}>
             <p>{prayerPreview.body}</p>
             <p className="mt-4">{prayerPreview.supporting}</p>
           </SectionHeading>
           <div className="mt-9">
-            <ButtonLink href={prayerPreview.cta.href} variant="secondary" size="lg">
+            <ButtonLink href={prayerPreview.cta.href} variant="primary" size="lg">
               {prayerPreview.cta.label}
               <ArrowIcon />
             </ButtonLink>

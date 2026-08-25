@@ -1,8 +1,8 @@
 import { ReadStoryLink } from "@/components/stories/ReadStoryLink";
 import { StoryHeader } from "@/components/stories/StoryHeader";
 import { StoryPreview } from "@/components/stories/StoryPreview";
+import { AccentRule } from "@/components/ui/AccentRule";
 import { Container } from "@/components/ui/Container";
-import { GoldRule } from "@/components/ui/GoldRule";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -39,7 +39,7 @@ export function StoriesOfReconciliation() {
           <Reveal className="min-w-0 lg:col-span-7 lg:pr-12 xl:pr-16">
             <article>
               <StoryHeader story={featured} headingLevel="h3" size="featured" />
-              <GoldRule className="mt-6" />
+              <AccentRule className="mt-6" />
               <div className="mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
                 {featuredPreview.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
