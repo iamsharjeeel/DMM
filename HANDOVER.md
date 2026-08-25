@@ -149,7 +149,9 @@ Ready for GitHub → Vercel import. Optional: `NEXT_PUBLIC_SITE_URL` (hostname o
 - typecheck: pass (`npm run typecheck`)
 - production build: pass (`npm run build`, Next.js 16.3.1, all routes static)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`
+- Chromium: desktop 1440×900 and mobile 390×844 pass for navigation, forms, episodes, images, CTAs, and responsive layout
+- Scroll profile: native scrolling, zero sampled long frames/tasks, approximately 16.8ms worst frame delta
 
 ## Recommended next action
 
-Import the repo into Vercel and attach the production domain when it is confirmed. After deploy, submit a test booking and a test prayer request and confirm both appear in HighLevel. In parallel, collect Pastor Mayes photography. Re-run `npm run import:episodes` when new messages are published.
+Upload the genuine transparent DMM logo and raw Donald Mayes headshot, then replace the temporary logo and home portrait placeholder. After deploy, confirm booking and prayer submits in HighLevel. Re-run `npm run import:episodes` when new messages are published.
