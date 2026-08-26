@@ -102,6 +102,14 @@ export function SpeakingLeadForm() {
   ) {
     markFormStart();
     setValues((current) => ({ ...current, [key]: value }));
+    setErrors((current) => {
+      if (!current[key]) {
+        return current;
+      }
+      const next = { ...current };
+      delete next[key];
+      return next;
+    });
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
