@@ -25,10 +25,8 @@ export function SpeakingAtmosphere() {
             </div>
             <div className="lg:col-span-3 lg:pb-2">
               <Eyebrow>{atmosphere.eyebrow}</Eyebrow>
-              <h2 className="mt-4 font-display text-2xl leading-snug tracking-tight sm:text-[1.85rem]">
-                {atmosphere.heading}
-              </h2>
-              <p className="mt-4 text-sm leading-relaxed text-ink-soft">
+              <h2 className="sr-only">{atmosphere.eyebrow}</h2>
+              <p className="mt-4 text-sm leading-relaxed text-ink-soft lg:mt-6">
                 {atmosphere.caption}
               </p>
             </div>

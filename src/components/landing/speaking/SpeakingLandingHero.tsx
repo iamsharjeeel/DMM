@@ -9,7 +9,7 @@ export function SpeakingLandingHero() {
   const { hero } = speakingLanding;
 
   return (
-    <section className="overflow-x-clip bg-ivory">
+    <section className="overflow-x-clip bg-ivory" id="speaking-landing-hero">
       <div className="mx-auto grid w-full max-w-[96rem] lg:grid-cols-[minmax(0,1.15fr)_minmax(18rem,0.85fr)] lg:items-stretch">
         <div className="flex min-w-0 flex-col justify-center px-5 py-10 sm:px-8 sm:py-12 lg:px-12 lg:py-16 xl:py-20 xl:pl-[max(3rem,calc((100vw-86rem)/2+4rem))] xl:pr-12">
           <p className="eyebrow lp-enter lp-enter-1 text-blue">{hero.eyebrow}</p>
@@ -58,7 +58,7 @@ export function SpeakingLandingHero() {
                 framed={false}
                 stretch
                 zoomOnHover={false}
-                objectPosition="center 38%"
+                objectPosition="center 50%"
                 sizes="(max-width: 1023px) 100vw, 46vw"
                 className="lg:h-full"
               />

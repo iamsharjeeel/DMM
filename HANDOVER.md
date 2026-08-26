@@ -164,6 +164,7 @@ Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: 
 - typecheck: pass (`npm run typecheck`)
 - form schema/webhook tests: pass (`npm test`)
 - production build: pass (`npm run build`, Next.js 16.3.1; `/sms-terms` and `/invite-pastor-mayes` static)
+- `/invite-pastor-mayes` simplified lead payload accepted by `/api/forms/speaking-meta-lead`; prayer and speaking booking SMS consent UI unchanged
 
 ## Verification (2026-08-25)
 
