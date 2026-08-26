@@ -34,6 +34,7 @@ Client Components:
 - `SpeakingBookingForm`
 - `PrayerRequestForm`
 - `SpeakingLeadForm` — paid `/invite-pastor-mayes` inquiry form
+- `SpeakingLandingFaq` — disclosure list on the paid speaking landing
 - `EpisodesArchive` — search, filters, selection, native audio
 
 Route handler: `POST /api/forms/[form]` for native prayer and speaking forms. No server actions. Episode RSS is imported by `scripts/import-episodes.mjs`, not fetched at request time.
@@ -68,7 +69,7 @@ Site-wide values: `src/config/site.ts`. Compliance identity and SMS consent copy
 
 Client-side validation remains UX only. Native `<form>` elements `preventDefault`, POST JSON to `POST /api/forms/prayer-request`, `/api/forms/speaking-booking`, or `/api/forms/speaking-meta-lead`, and show success only after the server confirms HighLevel delivery. See `docs/FORMS.md`. Prayer follow-up fields appear when the visitor chooses Yes; email/phone/consent become required according to the selected method. Two optional SMS consent checkboxes are independent of follow-up preference and are never preselected.
 
-`/invite-pastor-mayes` uses a shorter speaking lead form. Required fields are name, organization, email, and event type. Attribution is read from the current URL at submit time and is limited to an allowlist.
+`/invite-pastor-mayes` uses a shorter speaking lead form. Required fields are name, organization, email, and event type. Phone and event details are optional. SMS consent is not collected on this route. Attribution is read from the current URL at submit time and is limited to an allowlist.
 
 Do not persist prayer text to localStorage, URLs, or the console. Do not call the HighLevel webhook from the browser. `/booking` stays a native HighLevel calendar embed.
 
