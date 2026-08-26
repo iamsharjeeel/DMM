@@ -2,7 +2,7 @@
 
 ## Current build state
 
-Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`.
+Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`. `/invite-pastor-mayes` is an isolated premium editorial speaking landing with a simplified inquiry form.
 
 ## Completed pages
 
@@ -24,7 +24,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
 - Footer with motto, nav, booking CTA, copyright, legal links, email, and phone
 - Speaking booking form: validation, required/optional states, optional SMS consent, success state after confirmed HighLevel delivery (`speaking-booking`)
-- Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events, optional SMS consent
+- Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events. This route does not show SMS consent controls; omitted values default to `false`.
 - Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
 - Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`

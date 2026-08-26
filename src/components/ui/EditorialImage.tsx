@@ -4,6 +4,7 @@ import { cn } from "@/lib/cn";
 const aspects = {
   portrait: "aspect-[4/5]",
   landscape: "aspect-[16/10]",
+  cinematic: "aspect-[16/10] lg:aspect-[2.15/1]",
 } as const;
 
 export function EditorialImage({
@@ -12,12 +13,18 @@ export function EditorialImage({
   aspect = "portrait",
   preload = false,
   className,
+  caption,
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px",
+  objectPosition = "center",
 }: {
   src: string;
   alt: string;
   aspect?: keyof typeof aspects;
   preload?: boolean;
   className?: string;
+  caption?: string;
+  sizes?: string;
+  objectPosition?: string;
 }) {
   return (
     <figure className={cn("relative min-w-0", className)}>
@@ -40,10 +47,14 @@ export function EditorialImage({
           alt={alt}
           fill
           preload={preload}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px"
+          sizes={sizes}
           className="object-cover"
+          style={{ objectPosition }}
         />
       </div>
+      {caption ? (
+        <figcaption className="mt-3 text-sm text-ink-soft">{caption}</figcaption>
+      ) : null}
     </figure>
   );
 }

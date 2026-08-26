@@ -181,6 +181,31 @@ test("accepts a short speaking lead with optional fields empty", () => {
       assert.equal(parsed.payload.landingPath, "/invite-pastor-mayes");
     }
     assert.equal("eventName" in parsed.payload, false);
+    assert.equal("format" in parsed.payload, false);
+    assert.equal("topic" in parsed.payload, false);
+    assert.equal("eventTimeframe" in parsed.payload, false);
+    assert.equal("eventLocation" in parsed.payload, false);
+  }
+});
+
+test("accepts a simplified speaking lead without legacy or SMS fields", () => {
+  const parsed = parseNativeForm("speaking-meta-lead", {
+    ...speakingLeadBase,
+    phone: "555-0199",
+    details: "Sunday gathering in Dallas this fall, topic to be discussed.",
+    utm_source: "facebook",
+    utm_campaign: "speaking-2026",
+  });
+  assert.equal(parsed.status, "ok");
+  if (parsed.status === "ok" && "landingPath" in parsed.payload) {
+    assert.equal(parsed.payload.phone, "555-0199");
+    assert.equal(
+      parsed.payload.details,
+      "Sunday gathering in Dallas this fall, topic to be discussed.",
+    );
+    assert.equal(parsed.payload.utm_source, "facebook");
+    assert.equal(parsed.payload.smsMarketingConsent, false);
+    assert.equal(parsed.payload.smsNonMarketingConsent, false);
   }
 });
 

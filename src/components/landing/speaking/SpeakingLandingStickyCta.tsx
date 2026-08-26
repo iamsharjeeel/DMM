@@ -5,26 +5,55 @@ import { speakingLanding } from "@/content/speaking-landing";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export function SpeakingLandingStickyCta() {
-  const [formInView, setFormInView] = useState(true);
+  const [formNearby, setFormNearby] = useState(false);
+  const [formFocused, setFormFocused] = useState(false);
 
   useEffect(() => {
-    const node = document.getElementById(speakingLanding.formAnchor);
-    if (!node) {
+    const form = document.getElementById(speakingLanding.formAnchor);
+    if (!(form instanceof HTMLElement)) {
       return;
     }
 
+    const section: HTMLElement = form;
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setFormInView(entry.isIntersecting);
+        setFormNearby(entry.isIntersecting);
       },
-      { threshold: 0.2 },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0 },
     );
 
-    observer.observe(node);
-    return () => observer.disconnect();
+    observer.observe(section);
+
+    function handleFocusIn(event: FocusEvent) {
+      if (event.target instanceof Node && section.contains(event.target)) {
+        setFormFocused(true);
+      }
+    }
+
+    function handleFocusOut(event: FocusEvent) {
+      if (
+        event.target instanceof Node &&
+        section.contains(event.target) &&
+        !(
+          event.relatedTarget instanceof Node &&
+          section.contains(event.relatedTarget)
+        )
+      ) {
+        setFormFocused(false);
+      }
+    }
+
+    section.addEventListener("focusin", handleFocusIn);
+    section.addEventListener("focusout", handleFocusOut);
+
+    return () => {
+      observer.disconnect();
+      section.removeEventListener("focusin", handleFocusIn);
+      section.removeEventListener("focusout", handleFocusOut);
+    };
   }, []);
 
-  if (formInView) {
+  if (formNearby || formFocused) {
     return null;
   }
 
