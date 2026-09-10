@@ -39,6 +39,7 @@ export function StoriesOfReconciliation() {
             <Reveal className="min-w-0 lg:col-span-7 lg:pr-12 xl:pr-16">
               <article aria-labelledby="featured-story-title">
                 <p className="eyebrow text-blue">{storiesSection.featuredLabel}</p>
+                <AccentRule className="mt-5" />
                 <div className="mt-6">
                   <StoryHeader
                     story={featured}
