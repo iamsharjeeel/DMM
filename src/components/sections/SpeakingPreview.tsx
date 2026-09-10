@@ -19,7 +19,12 @@ export function SpeakingPreview() {
           </SectionHeading>
         </Reveal>
         <Reveal delay={90} className="justify-self-start lg:justify-self-end">
-          <ButtonLink href={speakingPreview.cta.href} variant="invert" size="lg">
+          <ButtonLink
+            href={speakingPreview.cta.href}
+            variant="invert"
+            size="lg"
+            className="w-full sm:w-auto"
+          >
             {speakingPreview.cta.label}
             <ArrowIcon />
           </ButtonLink>

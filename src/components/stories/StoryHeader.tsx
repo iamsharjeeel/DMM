@@ -4,10 +4,12 @@ import { cn } from "@/lib/cn";
 export function StoryHeader({
   story,
   headingLevel,
+  headingId,
   size = "standard",
 }: {
   story: Story;
-  headingLevel: "h1" | "h2" | "h3" | "p";
+  headingLevel: "h1" | "h2" | "h3" | "h4" | "p";
+  headingId?: string;
   size?: "featured" | "standard" | "compact";
 }) {
   const Heading = headingLevel;
@@ -27,10 +29,11 @@ export function StoryHeader({
         ) : null}
       </p>
       <Heading
+        id={headingId}
         className={cn(
           "mt-3 text-balance",
           size === "featured" &&
-            "font-display text-[clamp(2rem,3.2vw,3.15rem)] leading-[1.12] tracking-[-0.02em]",
+            "font-display text-[clamp(1.85rem,3.2vw,3.15rem)] leading-[1.12] tracking-[-0.02em]",
           size === "standard" && "display-md",
           size === "compact" &&
             "font-display text-[1.4rem] leading-snug tracking-[-0.015em]",

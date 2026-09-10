@@ -1,5 +1,10 @@
 import { site } from "@/config/site";
 
+export type FoundationalScripture = {
+  reference: string;
+  quotation?: string;
+};
+
 export const home = {
   hero: {
     eyebrow: site.name,
@@ -37,6 +42,8 @@ export const home = {
   },
   experience: {
     heading: "40+ Years of Ministry & Community Service",
+    intro:
+      "A selection of pastoral, chaplaincy, mentoring, missions, board, and community service roles Pastor Mayes has held throughout more than four decades of service.",
     items: [
       "Pastor of Worship Community Church",
       "State of Arizona Chaplain",
@@ -56,10 +63,12 @@ export const home = {
     heading: "Our Mission",
     body: site.mission,
     supporting: site.missionShort,
+    scripture: undefined as FoundationalScripture | undefined,
   },
   vision: {
     heading: "Our Vision",
     body: site.vision,
+    scripture: undefined as FoundationalScripture | undefined,
   },
   values: {
     heading: "Our Core Values",

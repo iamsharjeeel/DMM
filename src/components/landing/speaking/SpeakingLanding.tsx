@@ -7,6 +7,7 @@ import { ButtonLink } from "@/components/ui/ButtonLink";
 import { Container } from "@/components/ui/Container";
 import { PastorImage } from "@/components/ui/PastorImage";
 import { PullQuote } from "@/components/ui/PullQuote";
+import { RoleList } from "@/components/ui/RoleList";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -124,19 +125,7 @@ export function SpeakingLanding() {
             <SectionHeading eyebrow={experience.eyebrow} heading={experience.heading}>
               <p>{experience.body}</p>
             </SectionHeading>
-            <ol className="mt-12 grid gap-x-16 sm:grid-cols-2">
-              {experience.items.map((item, index) => (
-                <li key={item} className="flex gap-5 border-t border-rule py-5">
-                  <span
-                    aria-hidden="true"
-                    className="w-10 shrink-0 font-display text-xl italic text-blue"
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="pt-0.5 leading-snug">{item}</span>
-                </li>
-              ))}
-            </ol>
+            <RoleList items={experience.items} />
             <PullQuote lead={principle.lead} quote={principle.quote} />
             <p className="mt-5 max-w-xl text-ink-soft">{principle.supporting}</p>
           </Container>

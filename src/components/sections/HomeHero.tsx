@@ -22,13 +22,19 @@ export function HomeHero() {
             {hero.supporting}
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-            <ButtonLink href={hero.primaryCta.href} variant="primary" size="lg">
+            <ButtonLink
+              href={hero.primaryCta.href}
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               {hero.primaryCta.label}
             </ButtonLink>
             <ButtonLink
               href={hero.secondaryCta.href}
               variant="secondary"
               size="lg"
+              className="w-full sm:w-auto"
             >
               {hero.secondaryCta.label}
             </ButtonLink>
