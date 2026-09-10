@@ -174,6 +174,21 @@ This site is not “100% secure.” Security depends on Vercel, HighLevel, depen
 
 Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (runtime origin checks; canonical SEO is always `https://donaldmayesministries.com`). HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`. GTM container ID is `GTM-WQ272CGD` in `src/config/site.ts`.
 
+## Verification (2026-09-10, phone/archive/CTA audit)
+
+- lint: pass (`npm run lint`)
+- typecheck: pass (`npm run typecheck`)
+- form tests: pass (`npm test`, 12/12)
+- production build: pass (`npm run build`, Next.js 16.3.1)
+- RSS import: `npm run import:episodes` — 62 episodes, years 2020–2022, latest `2022-04-18`
+- Built HTML + live pages at `127.0.0.1:3000`:
+  - Footer, Privacy, Terms, SMS Terms: `+1 773-787-5028` / `tel:+17737875028` only
+  - Terms STOP: `text "STOP" to +1 773-787-5028`
+  - `/speaking` booking and `/invite-pastor-mayes` form/landing footer: `(602) 228-2393` / `tel:+16022282393`
+  - Organization JSON-LD `telephone`: `+17737875028`; ContactPoint speaking bookings: `+16022282393`
+  - `/episodes` span: `2020—2022` (no Present)
+- Homepage speaking preview CTA: full content width at 320/375/390/430; natural width at 768/1440; no horizontal overflow on those widths
+
 ## Verification (2026-09-10, first pass)
 
 - lint: pass (`npm run lint`)
