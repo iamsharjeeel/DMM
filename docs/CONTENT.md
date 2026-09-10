@@ -18,7 +18,7 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Confirmed contact: info@donaldmayesministries.com
 - General / SMS / compliance phone: +1 773-787-5028 (`tel:+17737875028`)
 - Bookings / speaking phone: (602) 228-2393 (`tel:+16022282393`)
-- Loving Everyone Always archive years follow the RSS catalogue (2020—2022 as of the 2026-09-10 RSS refresh; latest episode 2022-04-18)
+- Loving Everyone Always archive years follow the RSS catalogue (2020—2022; feed checked 2026-09-10 and latest episode remains 2022-04-18)
 - Listen page framing copy in `src/content/episodes.ts`
 - Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
