@@ -3,15 +3,16 @@
 ## 2026-09-10
 
 - Scoped phones: general/SMS/compliance `+1 773-787-5028`; bookings/speaking `(602) 228-2393`
-- Listen archive span now uses catalogue years (`2020—2022`); RSS re-import still ends in 2022
+- Listen archive span now uses catalogue years (`2020—2022`); RSS checked and still ends in 2022
 - Homepage speaking preview CTA spans the mobile container width
-- Removed decorative 01–12 numbering from ministry role lists and added a non-chronological intro
+- Removed decorative 01–12 numbering from the homepage ministry role list and added a non-chronological intro
 - Clarified Real Stories hierarchy: featured Ed, additional stories, and More Real Stories
 - Prepared Mission and Vision to show optional Scripture only after Pastor Mayes supplies it
 - Tightened homepage mobile CTA widths and story section spacing
 
 ## 2026-08-26
 
+- Redesigned `/invite-pastor-mayes` as a premium editorial speaking landing with a simplified inquiry form and no SMS consent controls
 - Added a noindex paid speaking landing page at `/invite-pastor-mayes` with a short HighLevel inquiry form, campaign attribution, and GTM conversion events
 - Tightened homepage Stories previews: one paragraph for Ed, shorter Tim and Yolanda copy, compact stories as category/name/title/link only
 - Locked canonical SEO to `https://donaldmayesministries.com`, added www/Vercel alias redirects, preview noindex, GTM `GTM-WQ272CGD`, and corrected sitemap/robots/schema/social graphics

@@ -47,7 +47,7 @@ Prayer and speaking forms collect two independent optional checkboxes:
 
 Both default to `false`. Missing values are stored as `false`. Providing a phone number, submitting a form, requesting follow-up, choosing Text, or checking general contact permission does not constitute SMS consent.
 
-The paid speaking landing form (`speaking-meta-lead`) uses the same two SMS fields. It also forwards allowlisted attribution when present: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`, and `landingPath` (`/invite-pastor-mayes`). Unknown query keys are dropped.
+The paid speaking landing form (`speaking-meta-lead`) does not show SMS consent controls. Omitted consent values are stored as `false`. Optional legacy fields (`eventTimeframe`, `eventLocation`, `format`, `topic`) are still accepted when present and are omitted from the forwarded payload when empty. The form also forwards allowlisted attribution when present: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`, `fbclid`, and `landingPath` (`/invite-pastor-mayes`). Unknown query keys are dropped.
 
 HighLevel workflows must only send:
 

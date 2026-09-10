@@ -18,6 +18,8 @@ export function PastorImage({
   framed = true,
   stretch = false,
   objectPosition = "center",
+  sizes = "(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px",
+  zoomOnHover = true,
 }: {
   slot: PhotographySlot;
   alt: string;
@@ -28,6 +30,8 @@ export function PastorImage({
   framed?: boolean;
   stretch?: boolean;
   objectPosition?: string;
+  sizes?: string;
+  zoomOnHover?: boolean;
 }) {
   const src = site.photography[slot];
 
@@ -50,7 +54,7 @@ export function PastorImage({
           "relative overflow-hidden bg-blue-deep",
           aspects[aspect],
           stretch && "lg:h-full lg:aspect-auto",
-          src && "img-zoom",
+          src && zoomOnHover && "img-zoom",
         )}
       >
         {src ? (
@@ -59,7 +63,7 @@ export function PastorImage({
             alt={alt}
             fill
             preload={preload}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 44vw, 520px"
+            sizes={sizes}
             className="object-cover"
             style={{ objectPosition }}
           />

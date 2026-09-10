@@ -1,21 +1,8 @@
 # Handover
 
-## Latest revision (2026-09-10)
-
-Pastor Mayes and reviewer refinement round. Not a redesign. Phone and Listen date scoping were corrected after the first pass.
-
-- General / SMS / compliance phone is `+1 773-787-5028` (`tel:+17737875028`) in `site.phone` / `site.phoneHref`. Used by footer, Privacy, Terms, SMS Terms (including HELP/STOP), compliance config, and Organization JSON-LD.
-- Booking / speaking phone is `(602) 228-2393` (`tel:+16022282393`) in `site.bookingPhone` / `site.bookingPhoneHref`. Used by `/speaking` booking, the speaking booking form call line, and `/invite-pastor-mayes` inquiry/booking context. JSON-LD adds a speaking-bookings ContactPoint for 602. SMS STOP/HELP still uses 773.
-- Experience lists are unnumbered semantic lists with a short red hairline marker. Homepage intro: selected roles across 40+ years, not a chronology.
-- Real Stories: section intro is separated from the collection; Ed is labeled Featured Story; Tim and Yolanda sit under Additional Real Stories; compact rows sit under More Real Stories.
-- Mission/Vision copy is unchanged. Optional `home.mission.scripture` and `home.vision.scripture` render only when a reference is present.
-- Authentic ministry media is not on the page yet. Recommended later placements: one photo after the 40+ years role list (community service / chaplaincy / mentoring), and one photo or short clip in the speaking preview (preaching / teaching). Keep the locked hero and Meet Pastor portraits. No stock, generated, or placeholder media.
-- Homepage speaking preview CTA is full-width on mobile (`w-full` button inside a full-width Reveal).
-- 2020 vs 2022 ministry founding was not changed. The Loving Everyone Always RSS was re-imported on 2026-09-10 from `https://anchor.fm/s/328aea1c/podcast/rss`. The live feed still has 62 episodes, `yearStart` 2020, `yearEnd` 2022 (latest published 2022-04-18). The Listen archive span is `2020—2022` from catalogue years. It does not show Present. Homepage copy describes 40+ years of Pastor Mayes’ personal ministry and does not state a founding year for Donald Mayes Ministries.
-
 ## Current build state
 
-Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`.
+Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`. `/invite-pastor-mayes` is an isolated premium editorial speaking landing with a simplified inquiry form.
 
 ## Completed pages
 
@@ -37,10 +24,10 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Accessible mobile menu with focus trap, rendered in a portal so it covers the viewport
 - Footer with motto, nav, booking CTA, copyright, legal links, email, and phone
 - Speaking booking form: validation, required/optional states, optional SMS consent, success state after confirmed HighLevel delivery (`speaking-booking`)
-- Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events, optional SMS consent
+- Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events. This route does not show SMS consent controls; omitted values default to `false`.
 - Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
-- Home stories section after Who We Serve: section intro, then Featured Story (Ed), Additional Real Stories (Tim Moore and Yolanda Bryant), then More Real Stories (compact remaining testimonies); each opens `/stories/[slug]`
+- Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`
 - SEO metadata, canonical URLs locked to `https://donaldmayesministries.com`, OG/Twitter images using the official logo, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
 - Google Tag Manager container `GTM-WQ272CGD` on every page (`GoogleTagManager` in the root layout); `/invite-pastor-mayes` also pushes non-PII `dataLayer` conversion events
@@ -61,7 +48,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 
 ## Stories
 
-Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Hierarchy: Real Stories intro, then Featured Story (Ed), Additional Real Stories (Tim Moore and Yolanda Bryant), then More Real Stories (Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James, compact). Full copy is on `/stories/[slug]`. Story SEO titles use the story title plus the ministry template; meta descriptions use `seoDescription`, not the homepage preview. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
+Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Ed is featured with a one-paragraph preview and pull quote; Tim Moore and Yolanda Bryant are secondary with short previews; Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James are compact (no paragraph). Full copy is on `/stories/[slug]`. Story SEO titles use the story title plus the ministry template; meta descriptions use `seoDescription`, not the homepage preview. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
 
 ## Forms and HighLevel
 
@@ -88,9 +75,6 @@ The speaking page booking form is temporary until a HighLevel speaking calendar 
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
 - Story photographs are not used; do not generate them
-- Mission and Vision foundational Scripture (reference and optional quotation)
-- Authentic ministry photos/videos and permission to publish them
-- Confirm what 2020 and 2022 represent versus the 40+ years of Pastor Mayes’ personal ministry
 - Confirm `donaldmayesministries.com` DNS in Vercel
 - Counsel review of Privacy, Terms, and SMS Terms
 - HighLevel A2P workflows must send marketing SMS only when `smsMarketingConsent === true` and non-marketing SMS only when `smsNonMarketingConsent === true`
@@ -174,36 +158,13 @@ This site is not “100% secure.” Security depends on Vercel, HighLevel, depen
 
 Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (runtime origin checks; canonical SEO is always `https://donaldmayesministries.com`). HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`. GTM container ID is `GTM-WQ272CGD` in `src/config/site.ts`.
 
-## Verification (2026-09-10, phone/archive/CTA audit)
-
-- lint: pass (`npm run lint`)
-- typecheck: pass (`npm run typecheck`)
-- form tests: pass (`npm test`, 12/12)
-- production build: pass (`npm run build`, Next.js 16.3.1)
-- RSS import: `npm run import:episodes` — 62 episodes, years 2020–2022, latest `2022-04-18`
-- Built HTML + live pages at `127.0.0.1:3000`:
-  - Footer, Privacy, Terms, SMS Terms: `+1 773-787-5028` / `tel:+17737875028` only
-  - Terms STOP: `text "STOP" to +1 773-787-5028`
-  - `/speaking` booking and `/invite-pastor-mayes` form/landing footer: `(602) 228-2393` / `tel:+16022282393`
-  - Organization JSON-LD `telephone`: `+17737875028`; ContactPoint speaking bookings: `+16022282393`
-  - `/episodes` span: `2020—2022` (no Present)
-- Homepage speaking preview CTA: full content width at 320/375/390/430; natural width at 768/1440; no horizontal overflow on those widths
-
-## Verification (2026-09-10, first pass)
-
-- lint: pass (`npm run lint`)
-- typecheck: pass (`npm run typecheck`)
-- production build: pass (`npm run build`, Next.js 16.3.1)
-- routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/stories/ed`, `/invite-pastor-mayes`, `/booking`
-- Chromium: homepage has no horizontal overflow at 1440, 768, 430, 390, 375, and 320px
-- That pass incorrectly treated `(602) 228-2393` as the sitewide public/compliance number. The later same-day audit restored 773 for general/SMS/compliance and kept 602 for bookings/speaking only.
-
 ## Verification (2026-08-26)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
 - form schema/webhook tests: pass (`npm test`)
 - production build: pass (`npm run build`, Next.js 16.3.1; `/sms-terms` and `/invite-pastor-mayes` static)
+- `/invite-pastor-mayes` simplified lead payload accepted by `/api/forms/speaking-meta-lead`; prayer and speaking booking SMS consent UI unchanged
 
 ## Verification (2026-08-25)
 
