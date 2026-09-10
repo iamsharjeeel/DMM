@@ -7,14 +7,15 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Brand: Donald Mayes Ministries
 - Motto: Loving Everyone Always.
 - Mission, vision, FCL values, audience wording
-- Home hero, Meet Pastor Mayes biography paragraphs, experience list
+- Home hero, Meet Pastor Mayes biography paragraphs, experience list and intro sentence
+- Mission and Vision copy; optional `scripture` fields stay empty until Pastor Mayes provides references
 - Stories of reconciliation, restoration, and transformation in `src/content/stories.ts`
 - Speaking headline, body, five topics, audience list, booking intro, confirmation, and the temporary-form notice
 - Paid speaking landing copy in `src/content/speaking-landing.ts`
 - Prayer headline, supporting lines, form labels, confirmation copy, and the HighLevel capture notice
 - Prayer-call booking heading and supporting copy
 - Footer copyright: © 2026 Donald Mayes Ministries LLC. All Rights Reserved.
-- Confirmed contact: info@donaldmayesministries.com, +1 773-787-5028
+- Confirmed contact: info@donaldmayesministries.com, (602) 228-2393 (`tel:+16022282393`)
 - Listen page framing copy in `src/content/episodes.ts`
 - Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
@@ -29,6 +30,9 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 
 - Facebook / Instagram / YouTube URLs
 - Testimonials for the speaking page (do not invent)
+- Mission and Vision foundational Scripture (do not invent)
+- Authentic ministry photos/videos and permission to publish them
+- Confirm what 2020 and 2022 represent versus the official beginning of Donald Mayes Ministries
 - Production DNS for `donaldmayesministries.com` in Vercel (canonical origin is already locked in code)
 - Legal review
 - HighLevel speaking calendar to replace the temporary booking form

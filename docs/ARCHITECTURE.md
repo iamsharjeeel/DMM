@@ -102,7 +102,10 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 - Native scrolling without blur, blend-mode grain, or scroll libraries
 - No icon package — small inline SVGs
 - Testimonials component is real but hidden while the array is empty
-- Home stories section is editorial, not a testimonial widget; copy lives in `src/content/stories.ts`
+- Home stories section is editorial, not a testimonial widget; copy lives in `src/content/stories.ts`. Hierarchy is section intro → featured story → additional stories → more stories
+- Experience roles use an unnumbered two-column list (`RoleList`); do not restore sequential numbering
+- Mission and Vision accept optional `scripture` (`reference`, optional `quotation`) and render it only when a reference is present
+- Public phone lives in `site.phone` / `site.phoneHref` and is used for booking, footer, legal, and JSON-LD
 - Social links render only when URLs are non-null
 - Forms disclose that HighLevel receives the submission for ministry follow-up
 - Episode catalogue refreshes only through `npm run import:episodes`

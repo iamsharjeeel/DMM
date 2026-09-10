@@ -1,5 +1,16 @@
 # Handover
 
+## Latest revision (2026-09-10)
+
+Pastor Mayes and reviewer refinement round. Not a redesign.
+
+- Booking/contact phone is `(602) 228-2393` with `tel:+16022282393`. `site.phone` is the single public number (footer, speaking booking, invite landing, legal/SMS support, JSON-LD). Old `773-787-5028` representations were removed.
+- Experience lists are unnumbered semantic lists with a short red hairline marker. Homepage intro: selected roles across 40+ years, not a chronology.
+- Real Stories: section intro is separated from the collection; Ed is labeled Featured Story; Tim and Yolanda sit under Additional Real Stories; compact rows sit under More Real Stories.
+- Mission/Vision copy is unchanged. Optional `home.mission.scripture` and `home.vision.scripture` render only when a reference is present.
+- Authentic ministry media is not on the page yet. Recommended later placements: one photo after the 40+ years role list (community service / chaplaincy / mentoring), and one photo or short clip in the speaking preview (preaching / teaching). Keep the locked hero and Meet Pastor portraits. No stock, generated, or placeholder media.
+- 2020 vs 2022 was not changed. The only dated 2020/2022 public history in the repo is the Loving Everyone Always RSS catalogue (`yearStart` 2020, `yearEnd` 2022, filter years 2020–2022). The Listen intro shows `2020—Present`. Homepage copy describes 40+ years of Pastor Mayes’ personal ministry and does not state a founding year for Donald Mayes Ministries.
+
 ## Current build state
 
 Phase 1 informational site with the client-approved **DMM Red + Blue** visual system applied. Includes the Loving Everyone Always audio archive at `/episodes`. HighLevel external tracking is installed for page views. Google Tag Manager container `GTM-WQ272CGD` is installed globally. Native prayer and speaking forms POST to `/api/forms/[form]` and are forwarded server-to-server to HighLevel. Canonical search identity is `https://donaldmayesministries.com`.
@@ -27,7 +38,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events, optional SMS consent
 - Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
 - `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
-- Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`
+- Home stories section after Who We Serve: section intro, then Featured Story (Ed), Additional Real Stories (Tim Moore and Yolanda Bryant), then More Real Stories (compact remaining testimonies); each opens `/stories/[slug]`
 - SEO metadata, canonical URLs locked to `https://donaldmayesministries.com`, OG/Twitter images using the official logo, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
 - Google Tag Manager container `GTM-WQ272CGD` on every page (`GoogleTagManager` in the root layout); `/invite-pastor-mayes` also pushes non-PII `dataLayer` conversion events
@@ -48,7 +59,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 
 ## Stories
 
-Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Ed is featured with a one-paragraph preview and pull quote; Tim Moore and Yolanda Bryant are secondary with short previews; Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James are compact (no paragraph). Full copy is on `/stories/[slug]`. Story SEO titles use the story title plus the ministry template; meta descriptions use `seoDescription`, not the homepage preview. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
+Source testimonies live in `src/content/stories.ts`. The homepage section sits after Who We Serve and before Speaking. Hierarchy: Real Stories intro, then Featured Story (Ed), Additional Real Stories (Tim Moore and Yolanda Bryant), then More Real Stories (Herbert Huyler, Charles Reiffit, Pastor Jessie Herring, and John James, compact). Full copy is on `/stories/[slug]`. Story SEO titles use the story title plus the ministry template; meta descriptions use `seoDescription`, not the homepage preview. Do not invent quotes, outcomes, or photographs. The section uses existing DMM blue/red/cream tokens only.
 
 ## Forms and HighLevel
 
@@ -75,6 +86,9 @@ The speaking page booking form is temporary until a HighLevel speaking calendar 
 - Social URLs → `site.social`
 - Testimonials → `src/content/speaking.ts` `testimonials.items`
 - Story photographs are not used; do not generate them
+- Mission and Vision foundational Scripture (reference and optional quotation)
+- Authentic ministry photos/videos and permission to publish them
+- Confirm what 2020 and 2022 represent versus the 40+ years of Pastor Mayes’ personal ministry
 - Confirm `donaldmayesministries.com` DNS in Vercel
 - Counsel review of Privacy, Terms, and SMS Terms
 - HighLevel A2P workflows must send marketing SMS only when `smsMarketingConsent === true` and non-marketing SMS only when `smsNonMarketingConsent === true`
