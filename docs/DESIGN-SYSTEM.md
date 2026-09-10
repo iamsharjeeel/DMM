@@ -46,8 +46,9 @@ Page rhythm remains light → editorial → quiet tint → dark authority → li
 - `PastorImage`: locked Pastor Mayes hero and biography photography with thin red L-corners
 - `EditorialImage`: secondary sanctuary or speaking atmosphere with matching restrained framing
 - Episode archive: ivory index, mist discovery band, deep-blue pinned player, red active/progress details
-- Home stories: cream editorial collection after Who We Serve, using existing navy/red tokens and `AccentRule`
-- `SectionHeading`, `Eyebrow`, `AccentRule`, `PullQuote`, `Reveal`
+- Home stories: cream editorial collection after Who We Serve, using existing navy/red tokens and `AccentRule`, with featured / additional / more grouping
+- Experience roles: unnumbered two-column list with a short red hairline marker (`RoleList`)
+- `SectionHeading`, `Eyebrow`, `AccentRule`, `PullQuote`, `Reveal`, `RoleList`
 - Forms: cream fields, blue focus treatment, explicit labels, distinct dark-red errors
 
 ## Dark sections

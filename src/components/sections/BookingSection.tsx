@@ -1,4 +1,5 @@
 import { speaking } from "@/content/speaking";
+import { site } from "@/config/site";
 import { SpeakingBookingForm } from "@/components/forms/SpeakingBookingForm";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -15,6 +16,15 @@ export function BookingSection() {
           <SectionHeading heading={booking.heading}>
             <p>{booking.body}</p>
             <p className="mt-4">{booking.supporting}</p>
+            <p className="mt-4">
+              {booking.callLabel}{" "}
+              <a
+                href={site.bookingPhoneHref}
+                className="text-ink underline-offset-4 hover:underline"
+              >
+                {site.bookingPhone}
+              </a>
+            </p>
           </SectionHeading>
         </Reveal>
         <div className="border border-rule bg-ivory px-5 py-8 sm:px-8 sm:py-10">

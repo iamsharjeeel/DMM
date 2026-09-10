@@ -13,11 +13,19 @@ export function ContactSection() {
           <h2 className="display-lg mt-5">{home.connect.heading}</h2>
           <p className="mt-4 text-ink-soft">{home.connect.body}</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href={home.hero.primaryCta.href} variant="primary">
+        <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+          <ButtonLink
+            href={home.hero.primaryCta.href}
+            variant="primary"
+            className="w-full sm:w-auto"
+          >
             {home.hero.primaryCta.label}
           </ButtonLink>
-          <ButtonLink href={home.hero.secondaryCta.href} variant="secondary">
+          <ButtonLink
+            href={home.hero.secondaryCta.href}
+            variant="secondary"
+            className="w-full sm:w-auto"
+          >
             {home.hero.secondaryCta.label}
           </ButtonLink>
         </div>

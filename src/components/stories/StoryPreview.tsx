@@ -6,9 +6,11 @@ import { cn } from "@/lib/cn";
 export function StoryPreview({
   story,
   variant = "secondary",
+  headingLevel,
 }: {
   story: Story;
   variant?: "secondary" | "compact";
+  headingLevel?: "h3" | "h4" | "p";
 }) {
   const compact = variant === "compact";
 
@@ -20,7 +22,7 @@ export function StoryPreview({
     >
       <StoryHeader
         story={story}
-        headingLevel={compact ? "p" : "h3"}
+        headingLevel={headingLevel ?? (compact ? "p" : "h3")}
         size={compact ? "compact" : "standard"}
       />
       {compact ? null : (

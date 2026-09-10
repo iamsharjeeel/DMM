@@ -10,7 +10,7 @@ export const compliance = {
   email: site.email,
   phone: site.phone,
   emailHref: `mailto:${site.email}`,
-  phoneHref: "tel:+17737875028",
+  phoneHref: site.phoneHref,
   website: "https://donaldmayesministries.com",
   formAcknowledgment:
     "By submitting this form, you acknowledge our Privacy Policy and Terms of Service. SMS participation is governed by our SMS Terms.",

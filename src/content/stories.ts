@@ -26,7 +26,9 @@ export const storiesSection = {
   heading: "Stories of Reconciliation, Restoration & Transformation",
   intro:
     "Lives changed through faith, friendship, discipleship, prayer, and the decision to keep moving forward.",
-  moreHeading: "Explore More Stories",
+  featuredLabel: "Featured Story",
+  additionalHeading: "Additional Real Stories",
+  moreHeading: "More Real Stories",
   readStoryLabel: "Read Story",
   backLabel: "All stories",
   relatedHeading: "More stories",

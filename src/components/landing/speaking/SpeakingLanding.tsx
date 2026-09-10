@@ -21,6 +21,7 @@ import { Section } from "@/components/ui/Section";
 import { Wordmark } from "@/components/ui/Wordmark";
 import { compliance } from "@/config/compliance";
 import { speakingLanding } from "@/content/speaking-landing";
+import { speaking } from "@/content/speaking";
 import { legalNav } from "@/content/navigation";
 import { site } from "@/config/site";
 
@@ -55,6 +56,15 @@ export function SpeakingLanding() {
                   <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-soft">
                     {form.support}
                   </p>
+                  <p className="mt-4 max-w-md text-sm text-ink-soft">
+                    {speaking.booking.callLabel}{" "}
+                    <a
+                      href={site.bookingPhoneHref}
+                      className="text-ink underline-offset-4 hover:underline"
+                    >
+                      {site.bookingPhone}
+                    </a>
+                  </p>
                   <p className="mt-8 max-w-md font-display text-2xl leading-snug">
                     {expectation.heading}
                   </p>
@@ -84,8 +94,8 @@ export function SpeakingLanding() {
             <a href={compliance.emailHref} className="text-cream/80 hover:text-cream hover:underline">
               {compliance.email}
             </a>
-            <a href={compliance.phoneHref} className="text-cream/80 hover:text-cream hover:underline">
-              {compliance.phone}
+            <a href={site.bookingPhoneHref} className="text-cream/80 hover:text-cream hover:underline">
+              {site.bookingPhone}
             </a>
           </div>
           <div className="flex flex-col gap-4 border-t border-cream/10 pt-6 sm:flex-row sm:items-center sm:justify-between">

@@ -18,7 +18,12 @@ export function PrayerPreview() {
             <p className="mt-4">{prayerPreview.supporting}</p>
           </SectionHeading>
           <div className="mt-9">
-            <ButtonLink href={prayerPreview.cta.href} variant="primary" size="lg">
+            <ButtonLink
+              href={prayerPreview.cta.href}
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto"
+            >
               {prayerPreview.cta.label}
               <ArrowIcon />
             </ButtonLink>

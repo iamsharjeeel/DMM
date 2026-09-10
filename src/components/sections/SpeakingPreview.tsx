@@ -18,8 +18,16 @@ export function SpeakingPreview() {
             <p className="mt-4">{speakingPreview.supporting}</p>
           </SectionHeading>
         </Reveal>
-        <Reveal delay={90} className="justify-self-start lg:justify-self-end">
-          <ButtonLink href={speakingPreview.cta.href} variant="invert" size="lg">
+        <Reveal
+          delay={90}
+          className="w-full justify-self-stretch sm:w-auto sm:justify-self-start lg:justify-self-end"
+        >
+          <ButtonLink
+            href={speakingPreview.cta.href}
+            variant="invert"
+            size="lg"
+            className="w-full sm:w-auto"
+          >
             {speakingPreview.cta.label}
             <ArrowIcon />
           </ButtonLink>
