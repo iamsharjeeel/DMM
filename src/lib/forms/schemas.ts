@@ -268,13 +268,13 @@ export type SpeakingLeadForwardPayload = {
   email: string;
   eventType: string;
   phone: string;
-  eventTimeframe: string;
-  eventLocation: string;
-  format: string;
-  topic: string;
   details: string;
   smsMarketingConsent: boolean;
   smsNonMarketingConsent: boolean;
+  eventTimeframe?: string;
+  eventLocation?: string;
+  format?: string;
+  topic?: string;
 } & LandingAttribution;
 
 export type ParsedNativeForm =
@@ -368,10 +368,6 @@ export function parseNativeForm(form: AllowedForm, input: unknown): ParsedNative
     email: parsed.data.email,
     eventType: parsed.data.eventType,
     phone: parsed.data.phone,
-    eventTimeframe: parsed.data.eventTimeframe,
-    eventLocation: parsed.data.eventLocation,
-    format: parsed.data.format,
-    topic: parsed.data.topic,
     details: parsed.data.details,
     smsMarketingConsent: parsed.data.smsMarketingConsent,
     smsNonMarketingConsent: parsed.data.smsNonMarketingConsent,
@@ -385,5 +381,17 @@ export function parseNativeForm(form: AllowedForm, input: unknown): ParsedNative
       landingPath: parsed.data.landingPath,
     }),
   };
+  if (parsed.data.eventTimeframe) {
+    payload.eventTimeframe = parsed.data.eventTimeframe;
+  }
+  if (parsed.data.eventLocation) {
+    payload.eventLocation = parsed.data.eventLocation;
+  }
+  if (parsed.data.format) {
+    payload.format = parsed.data.format;
+  }
+  if (parsed.data.topic) {
+    payload.topic = parsed.data.topic;
+  }
   return { status: "ok", payload };
 }

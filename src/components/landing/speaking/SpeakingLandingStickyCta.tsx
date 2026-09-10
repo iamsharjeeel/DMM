@@ -5,26 +5,67 @@ import { speakingLanding } from "@/content/speaking-landing";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export function SpeakingLandingStickyCta() {
-  const [formInView, setFormInView] = useState(true);
+  const [heroInView, setHeroInView] = useState(true);
+  const [formNearby, setFormNearby] = useState(false);
+  const [formFocused, setFormFocused] = useState(false);
 
   useEffect(() => {
-    const node = document.getElementById(speakingLanding.formAnchor);
-    if (!node) {
+    const form = document.getElementById(speakingLanding.formAnchor);
+    const hero = document.getElementById("speaking-landing-hero");
+    if (!(form instanceof HTMLElement)) {
       return;
     }
 
+    const section: HTMLElement = form;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setFormInView(entry.isIntersecting);
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.target.id === speakingLanding.formAnchor) {
+            setFormNearby(entry.isIntersecting);
+          }
+          if (entry.target.id === "speaking-landing-hero") {
+            setHeroInView(entry.isIntersecting);
+          }
+        }
       },
-      { threshold: 0.2 },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0 },
     );
 
-    observer.observe(node);
-    return () => observer.disconnect();
+    observer.observe(section);
+    if (hero instanceof HTMLElement) {
+      observer.observe(hero);
+    }
+
+    function handleFocusIn(event: FocusEvent) {
+      if (event.target instanceof Node && section.contains(event.target)) {
+        setFormFocused(true);
+      }
+    }
+
+    function handleFocusOut(event: FocusEvent) {
+      if (
+        event.target instanceof Node &&
+        section.contains(event.target) &&
+        !(
+          event.relatedTarget instanceof Node &&
+          section.contains(event.relatedTarget)
+        )
+      ) {
+        setFormFocused(false);
+      }
+    }
+
+    section.addEventListener("focusin", handleFocusIn);
+    section.addEventListener("focusout", handleFocusOut);
+
+    return () => {
+      observer.disconnect();
+      section.removeEventListener("focusin", handleFocusIn);
+      section.removeEventListener("focusout", handleFocusOut);
+    };
   }, []);
 
-  if (formInView) {
+  if (heroInView || formNearby || formFocused) {
     return null;
   }
 

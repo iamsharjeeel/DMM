@@ -250,10 +250,170 @@ body:has(.speaking-landing-page) > [data-site-shell] {
   .img-zoom img,
   .episode-row,
   .episode-title,
-  .archive-results {
+  .archive-results,
+  .speaking-landing-page .lp-enter,
+  .speaking-landing-page .lp-hero-frame,
+  .speaking-landing-page .lp-topic-row,
+  .speaking-landing-page .lp-topic-num,
+  .speaking-landing-page .lp-topic-title,
+  .speaking-landing-page .lp-topic-arrow,
+  .speaking-landing-page .lp-faq-panel,
+  .speaking-landing-page .lp-fit-item {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+}
+
+.speaking-landing-page {
+  --lp-header-height: 3.85rem;
+}
+
+.speaking-landing-page .lp-hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 5.4vw, 3.65rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.speaking-landing-page .lp-manifesto {
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 6.4vw, 4.85rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+}
+
+.speaking-landing-page .lp-principle-quote {
+  font-family: var(--font-display);
+  font-size: clamp(2.35rem, 7vw, 5.35rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+}
+
+.speaking-landing-page .lp-form-control {
+  min-height: 3rem;
+  background: var(--brand-ivory);
+  border-color: color-mix(in srgb, var(--brand-blue) 18%, var(--brand-rule));
+}
+
+.speaking-landing-page .lp-form-control:focus {
+  border-color: var(--brand-blue);
+}
+
+.speaking-landing-page .lp-topic-row {
+  border-top: 1px solid var(--brand-rule);
+  transition: border-color 220ms var(--ease-ui);
+}
+
+.speaking-landing-page .lp-topic-num,
+.speaking-landing-page .lp-topic-title,
+.speaking-landing-page .lp-topic-arrow {
+  transition:
+    color 220ms var(--ease-ui),
+    transform 220ms var(--ease-ui);
+}
+
+.speaking-landing-page .lp-fit-item {
+  transition: background-color 220ms var(--ease-ui);
+}
+
+.speaking-landing-page .lp-faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 240ms var(--ease-ui),
+    opacity 240ms var(--ease-ui);
+}
+
+.speaking-landing-page .lp-faq-panel.is-open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.speaking-landing-page .lp-faq-panel-inner {
+  overflow: hidden;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .speaking-landing-page .lp-topic-row:hover {
+    border-color: color-mix(in srgb, var(--brand-blue) 42%, var(--brand-rule));
+  }
+
+  .speaking-landing-page .lp-topic-row:hover .lp-topic-num {
+    color: var(--brand-red);
+    transform: translateX(2px);
+  }
+
+  .speaking-landing-page .lp-topic-row:hover .lp-topic-title {
+    transform: translateX(3px);
+  }
+
+  .speaking-landing-page .lp-topic-row:hover .lp-topic-arrow {
+    color: var(--brand-blue);
+    transform: translateX(4px);
+  }
+
+  .speaking-landing-page .lp-fit-item:hover {
+    background: var(--brand-blue-soft);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .speaking-landing-page .lp-enter {
+    animation: lp-rise 560ms var(--ease-out) both;
+  }
+
+  .speaking-landing-page .lp-enter-1 {
+    animation-delay: 40ms;
+  }
+
+  .speaking-landing-page .lp-enter-2 {
+    animation-delay: 130ms;
+  }
+
+  .speaking-landing-page .lp-enter-3 {
+    animation-delay: 230ms;
+  }
+
+  .speaking-landing-page .lp-enter-4 {
+    animation-delay: 320ms;
+  }
+
+  .speaking-landing-page .lp-hero-frame {
+    animation: lp-image 640ms var(--ease-out) both;
+    animation-delay: 430ms;
+  }
+
+  .speaking-landing-page .reveal[data-ready] {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes lp-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes lp-image {
+  from {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }

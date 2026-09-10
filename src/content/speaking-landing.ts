@@ -1,5 +1,5 @@
 import { site } from "../config/site";
-import { speakingAudiences, speakingTopics } from "./speaking";
+import { speaking, speakingAudiences, speakingTopics } from "./speaking";
 
 export const speakingLeadFormats = [
   "In person",
@@ -40,6 +40,7 @@ export const speakingLanding = {
   path: site.routes.invitePastorMayes,
   formId: "speaking-meta-lead",
   formAnchor: "speaking-request",
+  topicsAnchor: "speaking-topics",
   cta: "Tell Us About Your Event",
   submitLabel: "Send Speaking Request",
   visitLabel: "Visit Donald Mayes Ministries",
@@ -49,26 +50,39 @@ export const speakingLanding = {
       "Invite Pastor Donald Mayes to speak at your church, conference, ministry, leadership event, community organization, school, or podcast.",
   },
   hero: {
-    eyebrow: "For churches, ministries & community events",
+    eyebrow: "Invite Pastor Donald Mayes",
     headline:
       "Invite Pastor Donald Mayes to speak about faith that shows up in how we treat people.",
-    body: "For more than 40 years, Pastor Mayes has served churches and communities through preaching, chaplaincy, mentoring, missions, teaching, and pastoral care. He speaks from Scripture and connects it to the choices people make after the event is over.",
-    microcopy: "A date can be tentative. Start with what you know.",
-    imageAlt: "Pastor Donald Mayes speaking from a pulpit",
-    credibility: [
-      "40+ years of ministry & community service",
-      "Trinity Evangelical Divinity School graduate",
-      "Pastor and chaplain",
-      "Missionary, Bible teacher, mentor, and community advocate",
+    headlineLines: [
+      "Invite Pastor Donald Mayes",
+      "to speak about faith that shows up",
+      "in how we treat people.",
     ],
+    body: "For more than 40 years, Pastor Mayes has served churches and communities through preaching, chaplaincy, mentoring, missions, teaching, and pastoral care. He speaks from Scripture and connects it to the choices people make after the event is over.",
+    exploreLabel: "Explore speaking topics",
+    imageAlt: "Pastor Donald Mayes speaking from a pulpit",
+    imageCaption: "Pastor Donald Mayes",
+    credibility:
+      "40+ Years in Ministry · Pastor · Chaplain · Teacher · Community Leader",
   },
+  authority: [
+    "40+ Years of Ministry & Community Service",
+    "Trinity Evangelical Divinity School",
+    "Pastor & Chaplain",
+    "Missionary · Teacher · Mentor",
+  ],
   form: {
+    eyebrow: "Start the conversation",
     heading: "Tell us about your event",
     support: "A few details are enough to start.",
-    timeframePlaceholder:
-      "Example: October 2026, Spring 2027, or still deciding",
-    locationPlaceholder: "City, state, or virtual",
-    notesLabel: "Anything else we should know?",
+    nameLabel: "Name",
+    organizationLabel: "Church / Organization",
+    emailLabel: "Email",
+    phoneLabel: "Phone",
+    eventTypeLabel: "Type of Event",
+    detailsLabel: "Tell us about your event",
+    detailsHint:
+      "Include the approximate date, location, audience, or topic if you already know them.",
     confirmation: {
       heading: "Thanks. Your speaking request has been sent.",
       body: "The Donald Mayes Ministries team will review the details and follow up using the contact information you provided.",
@@ -86,9 +100,16 @@ export const speakingLanding = {
     heading: "What Pastor Mayes speaks about",
     items: speakingLandingTopics,
   },
+  atmosphere: {
+    eyebrow: "Event context",
+    heading: "Where Pastor Mayes speaks",
+    alt: speaking.hero.image.alt,
+    caption:
+      "Churches, conferences, leadership events, community organizations, schools, and podcasts.",
+  },
   experience: {
     eyebrow: "Experience",
-    heading: "More than four decades in ministry and community service",
+    heading: "More than four decades in ministry and community service.",
     body: "Pastor Mayes has served in church leadership, chaplaincy, mentoring, missions, Bible teaching, and community organizations. Those roles give him decades of ministry experience to draw from when he speaks.",
     items: [
       "Pastor of Worship Community Church",
@@ -102,10 +123,10 @@ export const speakingLanding = {
     ],
   },
   principle: {
-    lead: "The principle at the center of his ministry:",
+    lead: "The principle at the center of his ministry",
+    quoteLines: ["Love God", "by loving people."],
     quote: "Love God by loving people.",
-    supporting:
-      "His personal motto and the heartbeat of Donald Mayes Ministries is “Loving Everyone Always.”",
+    motto: site.motto,
   },
   eventFit: {
     eyebrow: "Event fit",
@@ -129,12 +150,12 @@ export const speakingLanding = {
       {
         question: "Does Pastor Mayes speak in person and virtually?",
         answer:
-          "The speaking request can indicate an in-person or virtual format. Share the format you are considering and any location details you already have.",
+          "Share whether you are considering an in-person or virtual format, along with any location details you already have.",
       },
       {
         question: "Can we request a specific topic?",
         answer:
-          "Yes. You can select one of Pastor Mayes' current speaking topics or choose “To be discussed” if you want to begin with the purpose of the event.",
+          "Yes. You can mention one of Pastor Mayes' current speaking topics, or begin with the purpose of the event.",
       },
       {
         question: "Can we inquire before the date is final?",
@@ -151,6 +172,7 @@ export const speakingLanding = {
   closer: {
     heading: "Tell us what you're planning.",
     body: "A few details are enough to start. If the date, location, or topic is still being worked out, share what you know.",
+    reassurance: "A tentative date is enough to start.",
   },
 } as const;
 
