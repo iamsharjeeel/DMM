@@ -19,10 +19,10 @@ export function BookingSection() {
             <p className="mt-4">
               {booking.callLabel}{" "}
               <a
-                href={site.phoneHref}
+                href={site.bookingPhoneHref}
                 className="text-ink underline-offset-4 hover:underline"
               >
-                {site.phone}
+                {site.bookingPhone}
               </a>
             </p>
           </SectionHeading>

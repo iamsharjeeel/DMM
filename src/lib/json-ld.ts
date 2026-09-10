@@ -67,6 +67,12 @@ export function getJsonLd() {
         logo: logoUrl,
         email: site.email,
         telephone: site.phoneHref.replace(/^tel:/, ""),
+        contactPoint: {
+          "@type": "ContactPoint",
+          telephone: site.bookingPhoneHref.replace(/^tel:/, ""),
+          contactType: "speaking bookings",
+          availableLanguage: "English",
+        },
         founder: { "@id": ids.person },
         ...(sameAs.length > 0 ? { sameAs } : {}),
       },

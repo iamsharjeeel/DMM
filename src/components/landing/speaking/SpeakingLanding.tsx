@@ -193,8 +193,8 @@ export function SpeakingLanding() {
             <a href={compliance.emailHref} className="text-cream/80 hover:text-cream hover:underline">
               {compliance.email}
             </a>
-            <a href={compliance.phoneHref} className="text-cream/80 hover:text-cream hover:underline">
-              {compliance.phone}
+            <a href={site.bookingPhoneHref} className="text-cream/80 hover:text-cream hover:underline">
+              {site.bookingPhone}
             </a>
           </div>
           <div className="flex flex-col gap-4 border-t border-cream/10 pt-6 sm:flex-row sm:items-center sm:justify-between">

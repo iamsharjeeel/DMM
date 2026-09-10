@@ -226,10 +226,10 @@ export function SpeakingLeadForm() {
         <p className="mt-2 text-sm text-ink-soft">
           {speaking.booking.callLabel}{" "}
           <a
-            href={site.phoneHref}
+            href={site.bookingPhoneHref}
             className="text-ink underline-offset-4 hover:underline"
           >
-            {site.phone}
+            {site.bookingPhone}
           </a>
         </p>
       </div>
