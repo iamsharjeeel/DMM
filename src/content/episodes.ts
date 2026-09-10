@@ -15,7 +15,6 @@ export const episodesPage = {
   },
   lede: "A growing collection of biblical reflections, practical encouragement, and conversations for everyday life.",
   status: {
-    present: "Present",
     rss: "Updated from RSS",
   },
   discovery: {
@@ -62,9 +61,14 @@ export const episodesPage = {
 } as const;
 
 export function archiveStatus(catalogue: EpisodeCatalogue) {
+  const span =
+    catalogue.yearStart === catalogue.yearEnd
+      ? `${catalogue.yearStart}`
+      : `${catalogue.yearStart}—${catalogue.yearEnd}`;
+
   return {
     count: `${catalogue.episodeCount} episodes`,
-    span: `${catalogue.yearStart}—${episodesPage.status.present}`,
+    span,
     rss: episodesPage.status.rss,
   };
 }
