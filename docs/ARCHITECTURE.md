@@ -84,7 +84,7 @@ Do not persist prayer text to localStorage, URLs, or the console. Do not call th
 
 Preview deployments (`VERCEL_ENV === "preview"`) are `noindex, nofollow` in root metadata and `robots.txt`. Production remains indexable. `/booking` and `/invite-pastor-mayes` are `noindex, follow` and are omitted from the sitemap.
 
-JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person from documented facts, using the official logo, Pastor Mayes portrait, confirmed email, and phone. `/episodes` adds PodcastSeries linked to those same entity IDs, with `hasPart` PodcastEpisode entries from the imported catalogue.
+JSON-LD in `src/lib/json-ld.ts` describes WebSite, Organization, and Person from documented facts, using the official logo, Pastor Mayes portrait, confirmed email, and the general ministry phone. Organization `telephone` is the 773 compliance number. A schema.org ContactPoint of type “speaking bookings” exposes the 602 booking number. `/episodes` adds PodcastSeries linked to those same entity IDs, with `hasPart` PodcastEpisode entries from the imported catalogue.
 
 `www.donaldmayesministries.com` and `dmm-omega.vercel.app` permanently redirect to the apex origin.
 
@@ -105,7 +105,9 @@ Locked brand values are CSS custom properties in `src/app/globals.css`. Tailwind
 - Home stories section is editorial, not a testimonial widget; copy lives in `src/content/stories.ts`. Hierarchy is section intro → featured story → additional stories → more stories
 - Experience roles use an unnumbered two-column list (`RoleList`); do not restore sequential numbering
 - Mission and Vision accept optional `scripture` (`reference`, optional `quotation`) and render it only when a reference is present
-- Public phone lives in `site.phone` / `site.phoneHref` and is used for booking, footer, legal, and JSON-LD
+- General / SMS / compliance phone lives in `site.phone` / `site.phoneHref` (`+1 773-787-5028`) for footer, legal pages, SMS HELP/STOP, and Organization JSON-LD
+- Booking / speaking phone lives in `site.bookingPhone` / `site.bookingPhoneHref` (`(602) 228-2393`) for `/speaking`, invite inquiry, and the speaking-bookings ContactPoint
+- Listen archive span is `${yearStart}—${yearEnd}` from `episodes.catalogue.json` (currently 2020—2022; not Present)
 - Social links render only when URLs are non-null
 - Forms disclose that HighLevel receives the submission for ministry follow-up
 - Episode catalogue refreshes only through `npm run import:episodes`

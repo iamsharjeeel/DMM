@@ -2,14 +2,16 @@
 
 ## Latest revision (2026-09-10)
 
-Pastor Mayes and reviewer refinement round. Not a redesign.
+Pastor Mayes and reviewer refinement round. Not a redesign. Phone and Listen date scoping were corrected after the first pass.
 
-- Booking/contact phone is `(602) 228-2393` with `tel:+16022282393`. `site.phone` is the single public number (footer, speaking booking, invite landing, legal/SMS support, JSON-LD). Old `773-787-5028` representations were removed.
+- General / SMS / compliance phone is `+1 773-787-5028` (`tel:+17737875028`) in `site.phone` / `site.phoneHref`. Used by footer, Privacy, Terms, SMS Terms (including HELP/STOP), compliance config, and Organization JSON-LD.
+- Booking / speaking phone is `(602) 228-2393` (`tel:+16022282393`) in `site.bookingPhone` / `site.bookingPhoneHref`. Used by `/speaking` booking, the speaking booking form call line, and `/invite-pastor-mayes` inquiry/booking context. JSON-LD adds a speaking-bookings ContactPoint for 602. SMS STOP/HELP still uses 773.
 - Experience lists are unnumbered semantic lists with a short red hairline marker. Homepage intro: selected roles across 40+ years, not a chronology.
 - Real Stories: section intro is separated from the collection; Ed is labeled Featured Story; Tim and Yolanda sit under Additional Real Stories; compact rows sit under More Real Stories.
 - Mission/Vision copy is unchanged. Optional `home.mission.scripture` and `home.vision.scripture` render only when a reference is present.
 - Authentic ministry media is not on the page yet. Recommended later placements: one photo after the 40+ years role list (community service / chaplaincy / mentoring), and one photo or short clip in the speaking preview (preaching / teaching). Keep the locked hero and Meet Pastor portraits. No stock, generated, or placeholder media.
-- 2020 vs 2022 was not changed. The only dated 2020/2022 public history in the repo is the Loving Everyone Always RSS catalogue (`yearStart` 2020, `yearEnd` 2022, filter years 2020–2022). The Listen intro shows `2020—Present`. Homepage copy describes 40+ years of Pastor Mayes’ personal ministry and does not state a founding year for Donald Mayes Ministries.
+- Homepage speaking preview CTA is full-width on mobile (`w-full` button inside a full-width Reveal).
+- 2020 vs 2022 ministry founding was not changed. The Loving Everyone Always RSS was re-imported on 2026-09-10 from `https://anchor.fm/s/328aea1c/podcast/rss`. The live feed still has 62 episodes, `yearStart` 2020, `yearEnd` 2022 (latest published 2022-04-18). The Listen archive span is `2020—2022` from catalogue years. It does not show Present. Homepage copy describes 40+ years of Pastor Mayes’ personal ministry and does not state a founding year for Donald Mayes Ministries.
 
 ## Current build state
 
@@ -172,14 +174,14 @@ This site is not “100% secure.” Security depends on Vercel, HighLevel, depen
 
 Ready for GitHub → Vercel import. Required: `GHL_FORM_WEBHOOK_URL`. Optional: `NEXT_PUBLIC_SITE_URL` (runtime origin checks; canonical SEO is always `https://donaldmayesministries.com`). HighLevel tracking ID defaults in `src/config/site.ts`; optional override is `NEXT_PUBLIC_GHL_TRACKING_ID`. GTM container ID is `GTM-WQ272CGD` in `src/config/site.ts`.
 
-## Verification (2026-09-10)
+## Verification (2026-09-10, first pass)
 
 - lint: pass (`npm run lint`)
 - typecheck: pass (`npm run typecheck`)
 - production build: pass (`npm run build`, Next.js 16.3.1)
 - routes: `/`, `/episodes`, `/speaking`, `/prayer-requests`, `/privacy`, `/terms`, `/stories/ed`, `/invite-pastor-mayes`, `/booking`
 - Chromium: homepage has no horizontal overflow at 1440, 768, 430, 390, 375, and 320px
-- Booking phone: `(602) 228-2393` / `tel:+16022282393` on speaking, invite, footer, legal, and JSON-LD; old `773-787-5028` absent from source and built HTML
+- That pass incorrectly treated `(602) 228-2393` as the sitewide public/compliance number. The later same-day audit restored 773 for general/SMS/compliance and kept 602 for bookings/speaking only.
 
 ## Verification (2026-08-26)
 

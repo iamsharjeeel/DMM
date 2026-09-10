@@ -2,7 +2,9 @@
 
 ## 2026-09-10
 
-- Updated the public booking/contact number to (602) 228-2393 (`tel:+16022282393`)
+- Scoped phones: general/SMS/compliance `+1 773-787-5028`; bookings/speaking `(602) 228-2393`
+- Listen archive span now uses catalogue years (`2020—2022`); RSS re-import still ends in 2022
+- Homepage speaking preview CTA spans the mobile container width
 - Removed decorative 01–12 numbering from ministry role lists and added a non-chronological intro
 - Clarified Real Stories hierarchy: featured Ed, additional stories, and More Real Stories
 - Prepared Mission and Vision to show optional Scripture only after Pastor Mayes supplies it
