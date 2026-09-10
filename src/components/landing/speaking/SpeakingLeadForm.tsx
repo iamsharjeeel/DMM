@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { eventTypes, speakingTopicOptions } from "@/content/speaking";
+import { eventTypes, speaking, speakingTopicOptions } from "@/content/speaking";
 import { speakingLanding, speakingLeadFormats } from "@/content/speaking-landing";
+import { site } from "@/config/site";
 import { Button } from "@/components/ui/Button";
 import { controlClassName, FormField } from "@/components/forms/FormField";
 import { FormLegalFooter } from "@/components/forms/FormLegalFooter";
@@ -222,6 +223,15 @@ export function SpeakingLeadForm() {
           {copy.heading}
         </h2>
         <p className="mt-2 text-sm text-ink-soft">{copy.support}</p>
+        <p className="mt-2 text-sm text-ink-soft">
+          {speaking.booking.callLabel}{" "}
+          <a
+            href={site.phoneHref}
+            className="text-ink underline-offset-4 hover:underline"
+          >
+            {site.phone}
+          </a>
+        </p>
       </div>
       <HoneypotField />
       <FormField id="lead-name" label="Name" required error={errors.name}>

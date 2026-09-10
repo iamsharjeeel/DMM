@@ -91,6 +91,7 @@ export const speaking = {
     body: "Interested in having Pastor Donald Mayes speak at your church, conference, organization, podcast, or event?",
     supporting:
       "Tell us a little about your event and our team will follow up with you.",
+    callLabel: "Call",
     submitLabel: "Submit Booking Request",
     formId: "speaking-booking",
     confirmation: {

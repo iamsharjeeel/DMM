@@ -66,7 +66,7 @@ export function getJsonLd() {
         slogan: site.motto,
         logo: logoUrl,
         email: site.email,
-        telephone: site.phone,
+        telephone: site.phoneHref.replace(/^tel:/, ""),
         founder: { "@id": ids.person },
         ...(sameAs.length > 0 ? { sameAs } : {}),
       },

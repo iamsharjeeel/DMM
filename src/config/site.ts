@@ -35,7 +35,8 @@ export const site = {
   },
   copyrightYear: 2026,
   email: "info@donaldmayesministries.com",
-  phone: "+1 773-787-5028",
+  phone: "(602) 228-2393",
+  phoneHref: "tel:+16022282393",
   social: {
     facebook: null as string | null,
     instagram: null as string | null,
