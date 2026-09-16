@@ -292,6 +292,10 @@ const terms: LegalDocument = {
         },
         {
           type: "p",
+          text: "You must be 18 years of age or older to use this SMS service.",
+        },
+        {
+          type: "p",
           text: `If you have any questions regarding privacy, please read our privacy policy: [Privacy Policy](/privacy). Additional SMS details are in the [SMS Terms](/sms-terms).`,
         },
       ],
