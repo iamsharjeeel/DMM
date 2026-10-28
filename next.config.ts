@@ -27,4 +27,56 @@ const securityHeaders = [
     value:
       'camera=(), microphone=(), geolocation=(), payment=(self "https://api.leadconnectorhq.com")',
   },
-  { key: "Conte¶»§q«^
+  { key: "Content-Security-Policy", value: contentSecurityPolicy },
+];
+
+if (process.env.NODE_ENV === "production") {
+  securityHeaders.push({
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  });
+}
+
+function hostRedirects(fromHost: string) {
+  return [
+    {
+      source: "/",
+      has: [{ type: "host" as const, value: fromHost }],
+      destination: `${canonicalOrigin}/`,
+      permanent: true,
+    },
+    {
+      source: "/:path*",
+      has: [{ type: "host" as const, value: fromHost }],
+      destination: `${canonicalOrigin}/:path*`,
+      permanent: true,
+    },
+  ];
+}
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "d3t3ozftmdmh3i.cloudfront.net",
+      },
+    ],
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: securityHeaders,
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      ...hostRedirects("www.donaldmayesministries.com"),
+      ...hostRedirects("dmm-omega.vercel.app"),
+    ];
+  },
+};
+
+export default nextConfig;

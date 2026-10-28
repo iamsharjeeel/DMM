@@ -42,4 +42,26 @@ export const episodesPage = {
     next: "Next list",
   },
   player: {
-    publisher: "Loving Everyone Alwa¶»§q«^
+    publisher: "Loving Everyone Always",
+    ministry: site.name,
+    pending: "Playback is being connected",
+    progress: "Audio progress",
+    previous: "Previous episode",
+    next: "Next episode",
+    play: "Play",
+    pause: "Pause",
+  },
+  closing: {
+    eyebrow: "The ministry",
+    heading: "More from Donald Mayes Ministries",
+    body: "Return home for the ministry message, speaking invitations, and prayer.",
+    cta: "Explore the ministry",
+  },
+} as const;
+
+export function archiveStatus(catalogue: EpisodeCatalogue) {
+  return {
+    count: `${catalogue.episodeCount} episodes`,
+    rss: episodesPage.status.rss,
+  };
+}

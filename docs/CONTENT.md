@@ -22,4 +22,34 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Listen page framing copy in `src/content/episodes.ts`; publishing dates and year filters are hidden
 - Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
-Do not paraphrase these into generi∂ªßq´^
+Do not paraphrase these into generic ministry marketing. Do not rewrite RSS episode titles or descriptions.
+
+## Temporary placeholders
+
+- Generated OG/Twitter images using motto/headlines and the official DMM logo
+- Form ‚ÄúTo be discussed‚Äù topic option (operational, not a ministry topic)
+
+## Client inputs still required
+
+- Four client-supplied video IDs in src/content/videos.ts; video titles and channel attribution verified through YouTube oEmbed
+
+- Facebook / Instagram / YouTube URLs
+- Testimonials for the speaking page (do not invent)
+- Mission and Vision foundational Scripture (do not invent)
+- Authentic ministry photos/videos and permission to publish them
+- Confirm what 2020 and 2022 represent versus the official beginning of Donald Mayes Ministries
+- Production DNS for `donaldmayesministries.com` in Vercel (canonical origin is already locked in code)
+- Legal review
+- HighLevel speaking calendar to replace the temporary booking form
+
+## Locked production assets
+
+- Official DMM logo: `public/brand/dmm-logo.png`
+- Home hero: `public/images/pastor/donald-mayes-speaking.png`
+- Meet Pastor portrait: `public/images/pastor/donald-mayes-headshot.jpg`
+
+## Hidden until supplied
+
+`Testimonials` on `/speaking` reads `speaking.testimonials.items`. Empty array ‚Üí section not shown.
+
+Home stories in `src/content/stories.ts` are source testimonies. Do not invent quotes, outcomes, or photographs. Do not rewrite them into marketing language.
