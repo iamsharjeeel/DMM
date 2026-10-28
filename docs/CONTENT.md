@@ -16,10 +16,10 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Prayer-call booking heading and supporting copy
 - Footer copyright: © 2026 Donald Mayes Ministries LLC. All Rights Reserved.
 - Confirmed contact: info@donaldmayesministries.com
-- General / SMS / compliance phone: +1 773-787-5028 (`tel:+17737875028`)
-- Bookings / speaking phone: (602) 228-2393 (`tel:+16022282393`)
+- General / SMS / compliance phone: +1 447-226-0717 (`tel:+14472260717`)
+- Bookings / speaking phone: +1 447-226-0717 (`tel:+14472260717`)
 - Loving Everyone Always archive years follow the RSS catalogue (2020—2022; feed checked 2026-09-10 and latest episode remains 2022-04-18)
-- Listen page framing copy in `src/content/episodes.ts`
+- Listen page framing copy in `src/content/episodes.ts`; publishing dates and year filters are hidden
 - Episode titles, dates, durations, descriptions, and audio URLs from the Loving Everyone Always RSS catalogue
 
 Do not paraphrase these into generic ministry marketing. Do not rewrite RSS episode titles or descriptions.
@@ -30,6 +30,8 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 - Form “To be discussed” topic option (operational, not a ministry topic)
 
 ## Client inputs still required
+
+- Approved videos and URLs for the dedicated `/videos` page
 
 - Facebook / Instagram / YouTube URLs
 - Testimonials for the speaking page (do not invent)

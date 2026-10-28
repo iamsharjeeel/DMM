@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-29
+
+- Hid podcast publication dates, archive year span, and year filters without changing original RSS data or sorting
+- Added a dedicated Videos page and navigation entry, pending approved video links
+- Unified general, SMS/compliance, speaking and booking phone numbers to +1 447-226-0717
+
 ## 2026-09-10
 
 - Scoped phones: general/SMS/compliance `+1 773-787-5028`; bookings/speaking `(602) 228-2393`

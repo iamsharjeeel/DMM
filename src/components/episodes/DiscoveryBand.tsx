@@ -34,29 +34,23 @@ export function DiscoveryBand({
   query,
   sort,
   seasons,
-  years,
   availableSeasons,
-  availableYears,
   resultLabel,
   canClear,
   onQueryChange,
   onSortChange,
   onToggleSeason,
-  onToggleYear,
   onClear,
 }: {
   query: string;
   sort: EpisodeSort;
   seasons: number[];
-  years: number[];
   availableSeasons: number[];
-  availableYears: number[];
   resultLabel: string;
   canClear: boolean;
   onQueryChange: (value: string) => void;
   onSortChange: (value: EpisodeSort) => void;
   onToggleSeason: (value: number) => void;
-  onToggleYear: (value: number) => void;
   onClear: () => void;
 }) {
   const copy = episodesPage.discovery;
@@ -124,22 +118,6 @@ export function DiscoveryBand({
                     onClick={() => onToggleSeason(season)}
                   >
                     {`${copy.seasonsLabel} ${season}`}
-                  </FilterChip>
-                ))}
-              </div>
-            </fieldset>
-            <fieldset className="min-w-0">
-              <legend className="mb-2 text-[0.6875rem] font-semibold tracking-[0.16em] text-ink-soft uppercase">
-                {copy.yearsLabel}
-              </legend>
-              <div className="flex flex-wrap gap-2">
-                {availableYears.map((year) => (
-                  <FilterChip
-                    key={year}
-                    pressed={years.includes(year)}
-                    onClick={() => onToggleYear(year)}
-                  >
-                    {String(year)}
                   </FilterChip>
                 ))}
               </div>

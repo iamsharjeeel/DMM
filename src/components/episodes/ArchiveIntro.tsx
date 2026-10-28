@@ -27,7 +27,6 @@ export function ArchiveIntro({ catalogue }: { catalogue: EpisodeCatalogue }) {
         </div>
         <aside className="border-t border-rule pt-6 lg:border-0 lg:pt-1 lg:text-right">
           <p className="eyebrow text-ink-soft">{status.count}</p>
-          <p className="eyebrow mt-3 text-ink-soft">{status.span}</p>
           <p className="eyebrow mt-3 text-ink-soft">{status.rss}</p>
         </aside>
       </Container>

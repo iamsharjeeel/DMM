@@ -3,6 +3,7 @@ import { site } from "@/config/site";
 export const primaryNav = [
   { href: site.routes.home, label: "Home" },
   { href: site.routes.episodes, label: "Listen" },
+  { href: site.routes.videos, label: "Videos" },
   { href: site.routes.speaking, label: "Speaking" },
   { href: site.routes.prayer, label: "Prayer Requests" },
 ] as const;

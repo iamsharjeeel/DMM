@@ -37,7 +37,6 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
   const [debouncedQuery, setDebouncedQuery] = useState("");
   const [sort, setSort] = useState<EpisodeSort>("newest");
   const [seasons, setSeasons] = useState<number[]>([]);
-  const [years, setYears] = useState<number[]>([]);
   const [page, setPage] = useState(0);
   const [selectedId, setSelectedId] = useState(defaultEpisode.id);
   const [autoPlay, setAutoPlay] = useState(false);
@@ -54,11 +53,11 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
         filterEpisodes(catalogue.episodes, {
           query: debouncedQuery,
           seasons,
-          years,
+          years: [],
         }),
         sort,
       ),
-    [catalogue.episodes, debouncedQuery, seasons, years, sort],
+    [catalogue.episodes, debouncedQuery, seasons, sort],
   );
 
   const totalPages = pageCount(visible.length);
@@ -76,7 +75,6 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
   const canClear =
     query.trim().length > 0 ||
     seasons.length > 0 ||
-    years.length > 0 ||
     sort !== "newest";
 
   function selectEpisode(id: string, play: boolean) {
@@ -109,7 +107,6 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
     setDebouncedQuery("");
     setSort("newest");
     setSeasons([]);
-    setYears([]);
     setPage(0);
   }
 
@@ -119,9 +116,7 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
         query={query}
         sort={sort}
         seasons={seasons}
-        years={years}
         availableSeasons={catalogue.seasons}
-        availableYears={catalogue.years}
         resultLabel={resultCountLabel(visible.length, catalogue.episodeCount)}
         canClear={canClear}
         onQueryChange={(value) => {
@@ -134,10 +129,6 @@ export function EpisodesArchive({ catalogue }: { catalogue: EpisodeCatalogue }) 
         }}
         onToggleSeason={(value) => {
           setSeasons((current) => toggleValue(current, value));
-          setPage(0);
-        }}
-        onToggleYear={(value) => {
-          setYears((current) => toggleValue(current, value));
           setPage(0);
         }}
         onClear={clearFilters}

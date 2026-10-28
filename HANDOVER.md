@@ -6,6 +6,8 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 
 ## Completed pages
 
+- `/videos` dedicated video library page; awaiting approved video URLs
+
 - `/` Home / About
 - `/stories/[slug]` Seven source testimonies
 - `/episodes` Audio archive
@@ -26,7 +28,7 @@ Phase 1 informational site with the client-approved **DMM Red + Blue** visual sy
 - Speaking booking form: validation, required/optional states, optional SMS consent, success state after confirmed HighLevel delivery (`speaking-booking`)
 - Paid speaking landing at `/invite-pastor-mayes`: isolated chrome, short `speaking-meta-lead` form, UTM/`fbclid` attribution, GTM `dataLayer` conversion events. This route does not show SMS consent controls; omitted values default to `false`.
 - Prayer form: conditional follow-up fields, general contact permission, optional SMS consent, success state after confirmed HighLevel delivery (`prayer-request`)
-- `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player
+- `/episodes` searchable, sortable RSS-backed catalogue with a five-row list-flip and a pinned native audio player; dates and year filters are no longer displayed
 - Home stories section after Who We Serve: Ed featured (one-paragraph preview plus pull quote), Tim Moore and Yolanda Bryant secondary (short previews), four compact stories with category/name/title/link only; each opens `/stories/[slug]`
 - SEO metadata, canonical URLs locked to `https://donaldmayesministries.com`, OG/Twitter images using the official logo, sitemap, robots, Person/Organization/WebSite JSON-LD; PodcastSeries on `/episodes`
 - HighLevel external tracking script on every page (`HighLevelTracking` in the root layout)
@@ -63,6 +65,8 @@ Required env: `GHL_FORM_WEBHOOK_URL` (server-only). See `docs/FORMS.md`.
 The speaking page booking form is temporary until a HighLevel speaking calendar replaces it.
 
 ## Known limitations
+
+- `/videos` has no content until video URLs are supplied; the 62 existing podcast episodes are audio-only
 
 - Speaking still uses the temporary native booking form
 - Social icons hidden until URLs are set

@@ -64,7 +64,7 @@ Four primary pages:
 
 Plus Privacy, Terms, and 404.
 
-Navigation stays: **Home | Listen | Speaking | Prayer Requests | Book Pastor Mayes**
+Navigation: **Home | Listen | Videos | Speaking | Prayer Requests | Book Pastor Mayes**
 
 ## Page purposes
 

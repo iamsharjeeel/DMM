@@ -20,12 +20,11 @@ export const episodesPage = {
   discovery: {
     label: "Find a conversation",
     support:
-      "Search by title or description, then narrow by season, year, and length.",
+      "Search by title or description, browse seasons, and sort the archive."
     searchLabel: "Search titles and descriptions",
     searchPlaceholder: "Search the archive",
     sortLabel: "Sort",
     seasonsLabel: "Season",
-    yearsLabel: "Year",
     clear: "Clear filters",
   },
   sortOptions: [
@@ -61,14 +60,8 @@ export const episodesPage = {
 } as const;
 
 export function archiveStatus(catalogue: EpisodeCatalogue) {
-  const span =
-    catalogue.yearStart === catalogue.yearEnd
-      ? `${catalogue.yearStart}`
-      : `${catalogue.yearStart}—${catalogue.yearEnd}`;
-
   return {
     count: `${catalogue.episodeCount} episodes`,
-    span,
     rss: episodesPage.status.rss,
   };
 }
