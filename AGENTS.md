@@ -23,7 +23,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Do not invent ministry programs, testimonials, achievements, statistics, theology, partnerships, events, or speaking engagements
 - Do not rewrite approved copy into marketing language
 - Keep Pastor Mayes at the center of the experience
-- Keep navigation to Home, Listen, Speaking, Prayer Requests, and Book Pastor Mayes
+- Keep navigation to Home, Listen, Videos, Speaking, Prayer Requests, and Book Pastor Mayes
 - Preserve responsiveness and accessibility
 - Reuse existing components
 - Change brand colors/fonts only through CSS tokens in `src/app/globals.css`

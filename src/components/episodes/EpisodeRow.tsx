@@ -1,7 +1,7 @@
 import { episodesPage } from "@/content/episodes";
 import { EpisodeArtwork } from "@/components/episodes/EpisodeArtwork";
 import { PlayControl } from "@/components/episodes/PlayControl";
-import { archiveNumberLabel, formatPublishedDate } from "@/lib/episodes";
+import { archiveNumberLabel } from "@/lib/episodes";
 import type { Episode } from "@/lib/episodes";
 import { cn } from "@/lib/cn";
 
@@ -60,14 +60,6 @@ export function EpisodeRow({
             {episode.description}
           </span>
           <span className="mt-1.5 flex flex-wrap gap-x-4 gap-y-1 text-[0.6875rem] font-semibold tracking-[0.14em] text-ink-soft uppercase">
-            <time dateTime={episode.publishedAt}>
-              <span className="sm:hidden">
-                {formatPublishedDate(episode.publishedAt, true)}
-              </span>
-              <span className="hidden sm:inline">
-                {formatPublishedDate(episode.publishedAt)}
-              </span>
-            </time>
             <span>{episode.durationLabel}</span>
           </span>
         </span>

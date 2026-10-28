@@ -72,7 +72,7 @@ export function Footer() {
         </div>
         <div className="mt-14 flex flex-col gap-4 border-t border-cream/10 pt-6 text-sm text-cream/60 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {site.copyrightYear} {site.legalName}. All Rights Reserved.
+            © {site.legalName}. All Rights Reserved.
           </p>
           <ul className="flex gap-5">
             {legalNav.map((item) => (

@@ -10,7 +10,7 @@ const contentSecurityPolicy = [
   "media-src 'self' https:",
   "font-src 'self' https://fonts.gstatic.com data:",
   "connect-src 'self' https://link.msgsndr.com https://*.msgsndr.com https://*.leadconnectorhq.com https://www.googletagmanager.com https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com",
-  "frame-src 'self' https://api.leadconnectorhq.com https://*.leadconnectorhq.com https://www.googletagmanager.com",
+  "frame-src 'self' https://api.leadconnectorhq.com https://*.leadconnectorhq.com https://www.googletagmanager.com https://www.youtube-nocookie.com",
   "frame-ancestors 'self'",
   "base-uri 'self'",
   "object-src 'none'",

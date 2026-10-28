@@ -11,6 +11,7 @@ Next.js 16 App Router, React 19, TypeScript strict, Tailwind CSS 4. npm lockfile
 | `/` | `src/app/page.tsx` | Home / About |
 | `/stories/[slug]` | `src/app/stories/[slug]/page.tsx` | Seven source testimonies; static params |
 | `/episodes` | `src/app/episodes/page.tsx` | Loving Everyone Always archive |
+| `/videos` | `src/app/videos/page.tsx` | Video library; empty state until videos are supplied |
 | `/speaking` | `src/app/speaking/page.tsx` | Includes `#booking` |
 | `/prayer-requests` | `src/app/prayer-requests/page.tsx` | Calmer ivory/cream page |
 | `/booking` | `src/app/booking/page.tsx` | Direct-link HighLevel prayer-call calendar |

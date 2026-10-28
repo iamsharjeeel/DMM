@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: getCanonicalUrl(site.routes.home) },
     { url: getCanonicalUrl(site.routes.episodes) },
+    { url: getCanonicalUrl(site.routes.videos) },
     { url: getCanonicalUrl(site.routes.speaking) },
     { url: getCanonicalUrl(site.routes.prayer) },
     ...stories.map((story) => ({
