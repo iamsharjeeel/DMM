@@ -14,7 +14,7 @@ Kept in `src/content/` and `src/config/site.ts`.
 - Paid speaking landing copy in `src/content/speaking-landing.ts`
 - Prayer headline, supporting lines, form labels, confirmation copy, and the HighLevel capture notice
 - Prayer-call booking heading and supporting copy
-- Footer copyright: © 2026 Donald Mayes Ministries LLC. All Rights Reserved.
+- Footer copyright: © Donald Mayes Ministries LLC. All Rights Reserved. (no displayed year)
 - Confirmed contact: info@donaldmayesministries.com
 - General / SMS / compliance phone: +1 447-226-0717 (`tel:+14472260717`)
 - Bookings / speaking phone: +1 447-226-0717 (`tel:+14472260717`)
@@ -31,7 +31,7 @@ Do not paraphrase these into generic ministry marketing. Do not rewrite RSS epis
 
 ## Client inputs still required
 
-- Approved videos and URLs for the dedicated `/videos` page
+- Video channel URL provided: `https://www.youtube.com/@donaldmayes9857`; individual video URLs/titles and view counts still need verification
 
 - Facebook / Instagram / YouTube URLs
 - Testimonials for the speaking page (do not invent)

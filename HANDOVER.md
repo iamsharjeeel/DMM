@@ -66,6 +66,8 @@ The speaking page booking form is temporary until a HighLevel speaking calendar 
 
 ## Known limitations
 
+- Public Videos page links directly to the client-provided YouTube channel; individual titles and view counts could not be verified, so no clips have been invented
+
 - `/videos` has no content until video URLs are supplied; the 62 existing podcast episodes are audio-only
 
 - Speaking still uses the temporary native booking form

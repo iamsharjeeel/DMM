@@ -54,7 +54,7 @@ export default function BookingPage() {
       <footer className="bg-blue-deep text-cream">
         <Container className="flex flex-col gap-3 py-8 text-sm text-cream/70 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {site.copyrightYear} {site.legalName}. All Rights Reserved.
+            © {site.legalName}. All Rights Reserved.
           </p>
           <Link href={site.routes.home} className="text-cream hover:underline">
             Donald Mayes Ministries

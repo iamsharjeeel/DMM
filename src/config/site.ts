@@ -33,7 +33,6 @@ export const site = {
       },
     ],
   },
-  copyrightYear: 2026,
   email: "info@donaldmayesministries.com",
   phone: "+1 447-226-0717",
   phoneHref: "tel:+14472260717",

@@ -9,7 +9,6 @@ export type LegalBlock =
 
 export type LegalDocument = {
   title: string;
-  effectiveDate: string;
   programOperator: string;
   programName?: string;
   intro?: string;
@@ -19,11 +18,8 @@ export type LegalDocument = {
   }[];
 };
 
-const effectiveDate = "August 26, 2026";
-
 const privacy: LegalDocument = {
   title: "Privacy Policy",
-  effectiveDate,
   programOperator: compliance.legalName,
   intro: `This Privacy Policy describes how ${compliance.legalName} collects, uses, shares, and protects personal information in connection with ${compliance.website} and related ministry communications.`,
   sections: [
@@ -196,7 +192,7 @@ const privacy: LegalDocument = {
       blocks: [
         {
           type: "p",
-          text: "This Privacy Policy may be updated from time to time. The effective date above will be revised when a change is published.",
+          text: "This Privacy Policy may be updated from time to time.",
         },
       ],
     },
@@ -209,7 +205,6 @@ const privacy: LegalDocument = {
 
 const terms: LegalDocument = {
   title: "Terms of Service",
-  effectiveDate,
   programOperator: compliance.legalName,
   intro: `These Terms of Service govern use of the Donald Mayes Ministries website operated by ${compliance.legalName}. By using the website, you agree to these Terms.`,
   sections: [
@@ -319,7 +314,7 @@ const terms: LegalDocument = {
       blocks: [
         {
           type: "p",
-          text: "These Terms may be updated from time to time. The effective date above will be revised when a change is published.",
+          text: "These Terms may be updated from time to time.",
         },
       ],
     },
@@ -332,7 +327,6 @@ const terms: LegalDocument = {
 
 const smsTerms: LegalDocument = {
   title: "SMS Messaging Terms",
-  effectiveDate,
   programOperator: compliance.legalName,
   programName: compliance.programName,
   intro: `These SMS Messaging Terms govern the ${compliance.programName} operated by ${compliance.legalName}. Support is available at [${compliance.email}](${compliance.emailHref}) and [${compliance.phone}](${compliance.phoneHref}).`,

@@ -2,6 +2,9 @@
 
 ## 2026-10-29
 
+- Removed visible effective-date labels from privacy, terms, and SMS terms pages; removed copyright years from visible site footers
+- Linked the verified client-provided YouTube channel on `/videos`; individual highlights await verifiable video links and engagement data
+
 - Hid podcast publication dates, archive year span, and year filters without changing original RSS data or sorting
 - Added a dedicated Videos page and navigation entry, pending approved video links
 - Unified general, SMS/compliance, speaking and booking phone numbers to +1 447-226-0717

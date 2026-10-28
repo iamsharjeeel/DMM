@@ -1,5 +1,6 @@
 import { AccentRule } from "@/components/ui/AccentRule";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { buttonClassName } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { site } from "@/config/site";
 import { videoMessages, videosPage } from "@/content/videos";
@@ -45,7 +46,15 @@ export default function VideosPage() {
             <div className="mt-12 max-w-3xl border-t border-rule pt-10 lg:mt-16">
               <h2 className="font-display text-3xl leading-tight">{videosPage.empty.heading}</h2>
               <p className="mt-4 max-w-xl text-ink-soft">{videosPage.empty.body}</p>
-              <div className="mt-8">
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href={videosPage.channelUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={buttonClassName({ variant: "primary", size: "md" })}
+                >
+                  {videosPage.empty.channelCta}
+                </a>
                 <ButtonLink href={site.routes.episodes} variant="secondary">
                   {videosPage.empty.cta}
                 </ButtonLink>

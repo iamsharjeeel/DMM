@@ -100,7 +100,7 @@ export function SpeakingLanding() {
           </div>
           <div className="flex flex-col gap-4 border-t border-cream/10 pt-6 sm:flex-row sm:items-center sm:justify-between">
             <p>
-              © {site.copyrightYear} {site.legalName}. All Rights Reserved.
+              © {site.legalName}. All Rights Reserved.
             </p>
             <ul className="flex flex-wrap gap-5">
               {legalNav.map((item) => (

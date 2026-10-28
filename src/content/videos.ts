@@ -14,9 +14,11 @@ export const videosPage = {
   eyebrow: "Watch",
   headline: "Video Messages",
   lede: "A home for video messages and teaching from Pastor Donald Mayes.",
+  channelUrl: "https://www.youtube.com/@donaldmayes9857",
   empty: {
-    heading: "Video messages are coming soon.",
-    body: "There are no videos available here yet. In the meantime, you can listen to Loving Everyone Always in the audio archive.",
+    heading: "Explore Pastor Mayes on YouTube.",
+    body: "Visit the YouTube channel to watch available messages. Individual videos will be featured here once their links and details are verified.",
+    channelCta: "Visit YouTube Channel",
     cta: "Listen to the Podcast",
   },
   watchLabel: "Watch video",

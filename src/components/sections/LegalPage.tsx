@@ -119,7 +119,6 @@ function LegalDocumentView({ page }: { page: LegalDocument }) {
   return (
     <article className="bg-ivory">
       <Container width="narrow" className="py-16 lg:py-24">
-        <p className="eyebrow text-blue">Effective Date: {page.effectiveDate}</p>
         <AccentRule className="mt-5" />
         <h1 className="display-lg mt-5">{page.title}</h1>
         <p className="mt-6 text-ink-soft">
